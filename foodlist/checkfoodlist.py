@@ -1,0 +1,36 @@
+#from __future__ import unicode_literals
+import os
+
+from linebot import LineBotApi, WebhookHandler
+from linebot.exceptions import InvalidSignatureError
+from linebot.models import MessageEvent, PostbackEvent, TextMessage, TextSendMessage, ImageSendMessage, FlexSendMessage
+
+import random
+
+# 我們的函數
+from foodlist import foodinsert
+
+# Channel Access Token
+line_bot_api = LineBotApi('OxFz4p5BSnf4OMX3gG5RsWOoDt1xKqb/MgIgkPpCFZAG97cU085VHbKqX3M7PxMT7UcMqPLD1g2/GAtXLrCtA3csBzCLulogW6zckNvfTl1UDo8ypLml38KT8kWLtPeE53AkumUg+w+MYlTD3Cp/sgdB04t89/1O/w1cDnyilFU=')
+# Channel Secret
+#handler = WebhookHandler('4c1f11afcd419b717773c2ccab3ff01c')
+
+# 請 LINE 幫我們存入資料
+def insert_record(event):
+    
+    try:
+        record_list = utils.prepare_record(event.message.text)
+        reply = CallDatabase.line_insert_record(record_list)
+
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=reply)
+        )
+
+    except:
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text='失敗了')
+        )
+
+    return True

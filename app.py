@@ -8,6 +8,8 @@ from linebot.exceptions import (
 )
 from linebot.models import *
 
+from foodlist import checkfoodlist
+
 #import os
 #import psycopg2
 
@@ -90,6 +92,10 @@ def handle_message(event):
                 else:
                     message = TextSendMessage(text="不要！只吃晚餐！")
                     line_bot_api.reply_message(event.reply_token, message)
+        elif strCheck.find('//新增_') >= 0:
+            reply = checkfoodlist.insert_record(event)
+#            message = checkfoodlist.insert_record(event)
+#            line_bot_api.reply_message(event.reply_token, message)
 #    else:
 #        message = TextSendMessage(text="")
 #        line_bot_api.reply_message(event.reply_token, message)
