@@ -7,8 +7,8 @@ import psycopg2
 DATABASE_URL = os.environ['DATABASE_URL']
 #DATABASE_URL = os.popen('heroku config:get DATABASE_URL -a ann-chang-dinnereat').read()[:-1]
 
-#conn = psycopg2.connect(DATABASE_URL, sslmode='require')
-#cursor = conn.cursor()
+conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+cursor = conn.cursor()
 #create_table_query = '''CREATE TABLE tblfoodlist(
 #    seqno serial PRIMARY KEY,
 #    foodtype VARCHAR (50) NOT NULL,
