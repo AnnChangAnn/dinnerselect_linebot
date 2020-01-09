@@ -8,7 +8,7 @@ from linebot.models import MessageEvent, PostbackEvent, TextMessage, TextSendMes
 import random
 
 # 我們的函數
-from foodlist import foodinsert
+from foodlist import foodinsert, formattext
 
 # Channel Access Token
 line_bot_api = LineBotApi('OxFz4p5BSnf4OMX3gG5RsWOoDt1xKqb/MgIgkPpCFZAG97cU085VHbKqX3M7PxMT7UcMqPLD1g2/GAtXLrCtA3csBzCLulogW6zckNvfTl1UDo8ypLml38KT8kWLtPeE53AkumUg+w+MYlTD3Cp/sgdB04t89/1O/w1cDnyilFU=')
@@ -19,8 +19,8 @@ line_bot_api = LineBotApi('OxFz4p5BSnf4OMX3gG5RsWOoDt1xKqb/MgIgkPpCFZAG97cU085VH
 def insert_record(event):
     
     try:
-        record_list = utils.prepare_record(event.message.text)
-        reply = CallDatabase.line_insert_record(record_list)
+        record_list = formattext.prepare_record(event.message.text)
+        reply = foodinsert.line_insert_record(record_list)
 
         line_bot_api.reply_message(
             event.reply_token,
