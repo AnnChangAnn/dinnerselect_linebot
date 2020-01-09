@@ -8,6 +8,9 @@ from linebot.exceptions import (
 )
 from linebot.models import *
 
+import os
+import psycopg2
+
 app = Flask(__name__)
 
 # Channel Access Token
@@ -39,14 +42,21 @@ def handle_message(event):
     strCheck = str(event.message.text)
     print(strCheck)
     
-#    DATABASE_URL = os.environ['DATABASE_URL']
-#    conn = psycopg2.connect(DATABASE_URL, sslmode='require')
-#
-#    postgres_select_query = f"""SELECT * FROM tblfoodlist"""
-#
-#    cursor.execute(postgres_select_query)
-#    count = cursor.rowcount
-#    print(count)
+    DATABASE_URL = os.environ['DATABASE_URL']
+    conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+    cursor = conn.cursor()
+
+    create_table_query = '''CREATE TABLE tblfoodlist(
+        seqno serial PRIMARY KEY,
+        foodtype VARCHAR (50) NOT NULL,
+        foodname VARCHAR (50) NOT NULL
+    );'''
+
+    cursor.execute(create_table_query)
+    conn.commit()
+    
+    message = f"恭喜您！ 資料成功建立 tblfoodlist 表單！"
+    print(message)
     
     if event.message.text == "晚餐吃啥":
         strfoodlist = "雞腿便當,咖哩飯,濃厚豚骨拉麵"
@@ -96,7 +106,7 @@ def handle_message(event):
 #        message = TextSendMessage(text="")
 #        line_bot_api.reply_message(event.reply_token, message)
 
-import os
+#import os
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)
