@@ -4,8 +4,8 @@ import psycopg2
 
 
 #def line_insert_record(record_list):
-#DATABASE_URL = os.environ['DATABASE_URL']
-DATABASE_URL = os.popen('heroku config:get DATABASE_URL -a ann-chang-dinnereat').read()[:-1]
+DATABASE_URL = os.environ['DATABASE_URL']
+#DATABASE_URL = os.popen('heroku config:get DATABASE_URL -a ann-chang-dinnereat').read()[:-1]
 
 conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 cursor = conn.cursor()
