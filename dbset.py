@@ -19,7 +19,7 @@ cursor = conn.cursor()
 
 record = [('food', '維力炸醬麵'),('food', '辣炒年糕'),('food', '餛飩乾麵')]
 table_columns = '(foodtype, foodname)'
-postgres_insert_query = f"""INSERT INTO alpaca_training {table_columns} VALUES (%s, %s);"""
+postgres_insert_query = f"""INSERT INTO tblfoodlist {table_columns} VALUES (%s, %s);"""
 
 #cursor.execute(postgres_insert_query, record)
 cursor.executemany(postgres_insert_query, record)
@@ -28,7 +28,7 @@ conn.commit()
 count = cursor.rowcount
 print(count, "Record inserted successfully into tblfoodlist")
 
-postgres_select_query = f"""SELECT * FROM alpaca_training"""
+postgres_select_query = f"""SELECT * FROM tblfoodlist"""
 
 cursor.execute(postgres_select_query)
 cursor.fetchmany()
