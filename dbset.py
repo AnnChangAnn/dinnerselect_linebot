@@ -22,7 +22,7 @@ table_columns = '(foodtype, foodname)'
 postgres_insert_query = f"""INSERT INTO alpaca_training {table_columns} VALUES (%s, %s);"""
 
 #cursor.execute(postgres_insert_query, record)
-cursor.executemany(postgres_insert_query, records)
+cursor.executemany(postgres_insert_query, record)
 conn.commit()
 
 count = cursor.rowcount
