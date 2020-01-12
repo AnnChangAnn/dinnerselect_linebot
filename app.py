@@ -10,6 +10,8 @@ from linebot.models import *
 
 from foodlist import checkfoodlist
 
+import random
+
 #import os
 #import psycopg2
 
@@ -58,6 +60,7 @@ def handle_message(event):
             line_bot_api.reply_message(event.reply_token, message)
         elif event.message.text == "吃拉麵嗎":
             receivetxt = checkfoodlist.select_record(event)
+            print(receivetxt)
 #            strfoodlist = "鬼金棒,壹之穴,豚人,麵屋輝,半熟堂,東京油組,Soba Shinn & 柑橘,美濃屋,勝王,你回來啦,吉天元,勝千代,涼風奄,小櫻,極匠,蘭丸,鷹流,悠然,麵屋壹慶,雞吉君,雞二,小川,真登,真劍,五之神,誠屋,道樂屋台,羽畠食堂,大和家,麵屋山茶,特濃屋,山嵐拉麵,武藤,旺味麵場,麵屋一燈,花月嵐,凪NAGI,一幻,麵屋武藏,麵屋一騎,小山拉麵,通堂,屯京拉麵,山頭火,霸嗎,双豚,森住康二,一番星,北一家,熊越岳,DUE ITALIAN,太陽番茄拉麵,玩笑亭,博多幸龍,初,一風堂,三冬麵鋪,沾麵玉,豚戈屋台,麵屋一鮫,隱家拉麵,荷麵亭,山形心心拉麵,百八龍拉麵,麵屋秋匠,墨洋拉麵,鳥人拉麵,麵屋武藏神山,一蘭,重熙老麵,麵屋千雲,TSUTA TAIWAN(蔦),三田製麵所,麵SATO SOBA,AJARI拉麵,札幌炎神,濟善老麵,哲麵,麵屋公子,辰拉麵,昕家,23私房拉麵,海貓亭,勝八,大角拉麵,極清拉麵,麵屋一擊,麵屋一虎,不二家拉麵"
 #            strfood = strfoodlist.split(",")
 #
