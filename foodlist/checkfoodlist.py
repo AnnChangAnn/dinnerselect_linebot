@@ -42,6 +42,7 @@ def select_record(event):
         selecttype = event.message.text[1:3]
         print(selecttype)
         reply = foodinsert.line_select_overall(selecttype)
+        print(reply)
 
         line_bot_api.reply_message(
             event.reply_token,
@@ -54,4 +55,4 @@ def select_record(event):
             TextSendMessage(text='失敗了')
         )
 
-    return True
+    return reply
