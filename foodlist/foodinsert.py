@@ -1,6 +1,7 @@
 
 import os
 import psycopg2
+import random
 
 
 def line_insert_record(record_list):
@@ -33,15 +34,16 @@ def line_select_overall(choosetype):
     print(postgres_select_query)
 
     cursor.execute(postgres_select_query)
-    raw = cursor.fetchmany(1)
-    print(raw)
-    dtlist = []
-
-    for i in raw:
-        dtlist.append((str(i[0])))
-        print(dtlist[i])
-
-    message = dtlist[0]
+    raw = cursor.fetchall()
+    print(random.choice(raw))
+#    dtlist = []
+#
+#    for i in raw:
+#        dtlist.append((str(i[0])))
+#        print(dtlist[i])
+#
+#    message = dtlist[0]
+    message = random.choice(raw)
     cursor.close()
     conn.close()
 
