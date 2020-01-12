@@ -28,8 +28,8 @@ def line_select_overall(choosetype):
     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
     cursor = conn.cursor()
 
-    strfoodtype = choosetype
-    postgres_select_query = f"""SELECT foodname FROM tblfoodlist where foodtype =  '{strfoodtype}';"""
+    strfoodtype = "'" + choosetype + "'"
+    postgres_select_query = f"""SELECT foodname FROM tblfoodlist where foodtype =  %s order by seqno;"""
     print(postgres_select_query)
 
     cursor.execute(postgres_select_query)
