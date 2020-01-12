@@ -66,7 +66,7 @@ def handle_message(event):
             #            message = TextSendMessage(text= random.choice(strreply) + random.choice(strfood) + "!!")
                 message = TextSendMessage(text= random.choice(strreply) + receivetxt + "!!")
                 line_bot_api.reply_message(event.reply_token, message)
-            elif
+            else:
                 message = ""
                 print(receivetxt)
                 line_bot_api.reply_message(event.reply_token, message)
@@ -83,7 +83,7 @@ def handle_message(event):
     #            message = TextSendMessage(text= random.choice(strreply) + random.choice(strfood) + "!!")
                 message = TextSendMessage(text= random.choice(strreply) + receivetxt + "!!")
                 line_bot_api.reply_message(event.reply_token, message)
-            elif
+            else:
                 message = ""
                 print(receivetxt)
                 line_bot_api.reply_message(event.reply_token, message)
