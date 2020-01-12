@@ -50,9 +50,33 @@ def select_record(event):
 #        )
 
     except:
-        line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text='失敗了')
-        )
+        reply = "失敗了"
+#        line_bot_api.reply_message(
+#            event.reply_token,
+#            TextSendMessage(text='失敗了')
+#        )
+
+    return reply
+
+def select_dinner_record(event):
+
+    try:
+#        record_list = formattext.prepare_record(event.message.text)
+        selecttype = "food"
+#        print(selecttype)
+        reply = foodinsert.line_select_overall(selecttype)
+        print(reply)
+
+#        line_bot_api.reply_message(
+#            event.reply_token,
+#            TextSendMessage(text=reply)
+#        )
+
+    except:
+        reply = "失敗了"
+#        line_bot_api.reply_message(
+#            event.reply_token,
+#            TextSendMessage(text='失敗了')
+#        )
 
     return reply
