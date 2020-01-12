@@ -34,3 +34,23 @@ def insert_record(event):
         )
 
     return True
+
+def select_record(event):
+
+    try:
+#        record_list = formattext.prepare_record(event.message.text)
+        selecttype = event.message.text[1:2]
+        reply = foodinsert.line_select_overall(selecttype)
+
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=reply)
+        )
+
+    except:
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text='失敗了')
+        )
+
+    return True

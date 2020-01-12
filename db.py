@@ -21,3 +21,27 @@ def line_insert_record(record_list):
     conn.close()
 
     return message
+
+def line_select_overall(choosetype):
+    DATABASE_URL = os.environ['DATABASE_URL']
+
+    conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+    cursor = conn.cursor()
+    
+    strfoodtype = choosetype
+    postgres_select_query = f"""SELECT foodname FROM tblfoodlist where foodtype =  '{strfoodtype}';"""
+    print(postgres_select_query)
+    
+    cursor.execute(postgres_select_query)
+    raw = cursor.fetchone()
+    message = []
+
+    for i in raw:
+        message.append((str(i[0])))
+
+    cursor.close()
+    conn.close()
+
+    return message
+
+

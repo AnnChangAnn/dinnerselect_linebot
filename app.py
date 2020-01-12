@@ -57,12 +57,13 @@ def handle_message(event):
             #message = TextSendMessage(text=event.message.text)
             line_bot_api.reply_message(event.reply_token, message)
         elif event.message.text == "吃拉麵嗎":
-            strfoodlist = "鬼金棒,壹之穴,豚人,麵屋輝,半熟堂,東京油組,Soba Shinn & 柑橘,美濃屋,勝王,你回來啦,吉天元,勝千代,涼風奄,小櫻,極匠,蘭丸,鷹流,悠然,麵屋壹慶,雞吉君,雞二,小川,真登,真劍,五之神,誠屋,道樂屋台,羽畠食堂,大和家,麵屋山茶,特濃屋,山嵐拉麵,武藤,旺味麵場,麵屋一燈,花月嵐,凪NAGI,一幻,麵屋武藏,麵屋一騎,小山拉麵,通堂,屯京拉麵,山頭火,霸嗎,双豚,森住康二,一番星,北一家,熊越岳,DUE ITALIAN,太陽番茄拉麵,玩笑亭,博多幸龍,初,一風堂,三冬麵鋪,沾麵玉,豚戈屋台,麵屋一鮫,隱家拉麵,荷麵亭,山形心心拉麵,百八龍拉麵,麵屋秋匠,墨洋拉麵,鳥人拉麵,麵屋武藏神山,一蘭,重熙老麵,麵屋千雲,TSUTA TAIWAN(蔦),三田製麵所,麵SATO SOBA,AJARI拉麵,札幌炎神,濟善老麵,哲麵,麵屋公子,辰拉麵,昕家,23私房拉麵,海貓亭,勝八,大角拉麵,極清拉麵,麵屋一擊,麵屋一虎,不二家拉麵"
-            strfood = strfoodlist.split(",")
-            
-            strreplylist = "好阿！吃,好！ ,我想吃,可以！吃,要不要吃,好！我們去吃,走阿吃,好好好好好！吃,好窩～那我們吃,可哇！吃,行！想吃,吃吃吃吃吃,拉麵吃起來！吃,吃一波"
-            strreply = strreplylist.split(",")
-            message = TextSendMessage(text= random.choice(strreply) + random.choice(strfood) + "!!")
+            reply = checkfoodlist.select_record(event)
+#            strfoodlist = "鬼金棒,壹之穴,豚人,麵屋輝,半熟堂,東京油組,Soba Shinn & 柑橘,美濃屋,勝王,你回來啦,吉天元,勝千代,涼風奄,小櫻,極匠,蘭丸,鷹流,悠然,麵屋壹慶,雞吉君,雞二,小川,真登,真劍,五之神,誠屋,道樂屋台,羽畠食堂,大和家,麵屋山茶,特濃屋,山嵐拉麵,武藤,旺味麵場,麵屋一燈,花月嵐,凪NAGI,一幻,麵屋武藏,麵屋一騎,小山拉麵,通堂,屯京拉麵,山頭火,霸嗎,双豚,森住康二,一番星,北一家,熊越岳,DUE ITALIAN,太陽番茄拉麵,玩笑亭,博多幸龍,初,一風堂,三冬麵鋪,沾麵玉,豚戈屋台,麵屋一鮫,隱家拉麵,荷麵亭,山形心心拉麵,百八龍拉麵,麵屋秋匠,墨洋拉麵,鳥人拉麵,麵屋武藏神山,一蘭,重熙老麵,麵屋千雲,TSUTA TAIWAN(蔦),三田製麵所,麵SATO SOBA,AJARI拉麵,札幌炎神,濟善老麵,哲麵,麵屋公子,辰拉麵,昕家,23私房拉麵,海貓亭,勝八,大角拉麵,極清拉麵,麵屋一擊,麵屋一虎,不二家拉麵"
+#            strfood = strfoodlist.split(",")
+#
+#            strreplylist = "好阿！吃,好！ ,我想吃,可以！吃,要不要吃,好！我們去吃,走阿吃,好好好好好！吃,好窩～那我們吃,可哇！吃,行！想吃,吃吃吃吃吃,拉麵吃起來！吃,吃一波"
+#            strreply = strreplylist.split(",")
+#            message = TextSendMessage(text= random.choice(strreply) + random.choice(strfood) + "!!")
             
             line_bot_api.reply_message(event.reply_token, message)
         elif event.message.text == "好美":
