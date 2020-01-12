@@ -33,7 +33,7 @@ def line_select_overall(choosetype):
     print(postgres_select_query)
 
     cursor.execute(postgres_select_query)
-    raw = cursor.fetchone()
+    raw = cursor.fetchmany(1)
     message = []
 
     for i in raw:
