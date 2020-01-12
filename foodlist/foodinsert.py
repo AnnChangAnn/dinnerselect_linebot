@@ -32,7 +32,7 @@ def line_select_overall(choosetype):
     postgres_select_query = f"""SELECT foodname FROM tblfoodlist where foodtype =  %s order by seqno;"""
     print(postgres_select_query)
 
-    cursor.execute(postgres_select_query)
+    cursor.execute(postgres_select_query, strfoodtype)
     raw = cursor.fetchmany(1)
     message = []
 
