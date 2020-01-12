@@ -65,7 +65,7 @@ def handle_message(event):
 #            strreply = strreplylist.split(",")
 #            message = TextSendMessage(text= random.choice(strreply) + random.choice(strfood) + "!!")
             
-            line_bot_api.reply_message(event.reply_token, message)
+#            line_bot_api.reply_message(event.reply_token, message)
         elif event.message.text == "好美":
             message = TextSendMessage(text="哪有你美")
             line_bot_api.reply_message(event.reply_token, message)
