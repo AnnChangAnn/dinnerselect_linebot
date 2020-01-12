@@ -29,17 +29,19 @@ def line_select_overall(choosetype):
     cursor = conn.cursor()
 
     strfoodtype = "'" + choosetype + "'"
-    postgres_select_query = f"""SELECT foodname FROM tblfoodlist where foodtype =  %s order by seqno;"""
+    postgres_select_query = f"""SELECT foodname FROM tblfoodlist where foodtype =  {strfoodtype} order by seqno;"""
     print(postgres_select_query)
 
-    cursor.execute(postgres_select_query, strfoodtype)
+    cursor.execute(postgres_select_query)
     raw = cursor.fetchmany(1)
-    message = []
+    dtlist = []
 
     for i in raw:
-        message.append((str(i[0])))
+        dtlist.append((str(i[0])))
+        print(dtlist[i])
 
+    message = dtlist[0]
     cursor.close()
     conn.close()
 
-    return message[1]
+    return message
