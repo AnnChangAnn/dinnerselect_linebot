@@ -44,10 +44,10 @@ def select_record(event):
         reply = foodinsert.line_select_overall(selecttype)
         print(reply)
 
-        line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text=reply)
-        )
+#        line_bot_api.reply_message(
+#            event.reply_token,
+#            TextSendMessage(text=reply)
+#        )
 
     except:
         line_bot_api.reply_message(
