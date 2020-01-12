@@ -36,10 +36,10 @@ def line_select_overall(choosetype):
     raw = cursor.fetchone()
     message = []
 
-#    for i in raw:
-        message.append((str(raw[0])))
+    for i in raw:
+        message.append((str(i[0])))
 
     cursor.close()
     conn.close()
 
-    return message
+    return message[1]
