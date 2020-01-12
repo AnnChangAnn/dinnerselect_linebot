@@ -66,3 +66,4 @@ def prepare_record(text):
         record_list.append(record)
         
     return record_list
+
