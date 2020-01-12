@@ -39,7 +39,8 @@ def select_record(event):
 
     try:
 #        record_list = formattext.prepare_record(event.message.text)
-        selecttype = event.message.text[1:2]
+        selecttype = event.message.text[1:3]
+        print(selecttype)
         reply = foodinsert.line_select_overall(selecttype)
 
         line_bot_api.reply_message(
