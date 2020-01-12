@@ -34,6 +34,7 @@ def line_select_overall(choosetype):
 
     cursor.execute(postgres_select_query)
     raw = cursor.fetchmany(1)
+    print(raw)
     dtlist = []
 
     for i in raw:
