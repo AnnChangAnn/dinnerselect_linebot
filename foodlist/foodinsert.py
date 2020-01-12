@@ -35,7 +35,9 @@ def line_select_overall(choosetype):
 
     cursor.execute(postgres_select_query)
     raw = cursor.fetchall()
-    print(random.choice(raw))
+    print(raw)
+    message = random.choice(raw)
+    print(message)
 #    dtlist = []
 #
 #    for i in raw:
