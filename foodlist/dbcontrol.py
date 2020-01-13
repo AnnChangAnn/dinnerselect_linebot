@@ -75,7 +75,7 @@ def line_delete_record(record_list):
     strfoodtype = record_list
     delete_table_query = f'''DELETE from tblfoodlist where
         foodname = '{strfoodtype}'
-    );'''
+    ;'''
     print (delete_table_query)
     
     cursor.execute(delete_table_query)
