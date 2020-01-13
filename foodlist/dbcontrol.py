@@ -19,8 +19,8 @@ def line_create_table(new_table_name):
     cursor.execute(create_table_query)
     conn.commit()
 
-    message = f"恭喜您！ 資料成功建立  表單！"
-    print(message)
+    message = f"恭喜您！ 成功建立新表單！"
+#    print(message)
     cursor.close()
     conn.close()
 
@@ -39,7 +39,7 @@ def line_insert_record(record_list):
     conn.commit()
 
     message = f"恭喜您！ 資料成功加入 tblfoodlist 表單！"
-    print(message)
+#    print(message)
     cursor.close()
     conn.close()
 
@@ -59,7 +59,30 @@ def line_select_overall(choosetype):
     raw = cursor.fetchall()
 #    print(raw)
     (message,) = random.choice(raw)
-    print(message)
+#    print(message)
+    
+    cursor.close()
+    conn.close()
+
+    return message
+    
+def line_delete_record(record_list):
+    DATABASE_URL = os.environ['DATABASE_URL']
+
+    conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+    cursor = conn.cursor()
+    
+    strfoodtype = record_list
+    delete_table_query = f'''DELETE from tblfoodlist where
+        foodname = {strfoodtype}
+    );'''
+    print (delete_table_query)
+    
+#    cursor.execute(delete_table_query)
+#    conn.commit()
+
+    message = f"恭喜您！ 成功刪除資料！"
+#    print(message)
     
     cursor.close()
     conn.close()

@@ -67,11 +67,26 @@ def select_dinner_record(event):
 def line_create_table(event):
 
     try:
-        reply = dbcontrol.line_create_table(selecttype)
+        reply = dbcontrol.line_create_table(event.message.text)
         print(reply)
 
     except:
         reply = "失敗了"
 
     return reply
+
+def line_delete_data(event):
+
+    try:
+        deletefood = event.message.text[7:]
+        print(deletefood)
+        reply = dbcontrol.line_delete_record(deletefood)
+        print(reply)
+
+    except:
+        reply = "失敗了"
+
+    return reply
+
+
 
