@@ -123,6 +123,7 @@ def handle_message(event):
 #            reply = checkfoodlist.line_create_table(event)
         elif strCheck.find('管理者刪除db資料') >= 0:
             reply = checkfoodlist.line_delete_data(event)
+            line_bot_api.reply_message(event.reply_token, reply)
     #    else:
 #        message = TextSendMessage(text="")
 #        line_bot_api.reply_message(event.reply_token, message)
