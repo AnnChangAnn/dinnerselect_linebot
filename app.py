@@ -125,6 +125,10 @@ def handle_message(event):
             reply = checkfoodlist.line_delete_data(event)
             message = TextSendMessage(text= reply)
             line_bot_api.reply_message(event.reply_token, message)
+        elif strCheck.find('test_program') >= 0:
+            reply = checkfoodlist.line_test_program(event)
+            message = TextSendMessage(text= reply)
+            line_bot_api.reply_message(event.reply_token, message)
     #    else:
 #        message = TextSendMessage(text="")
 #        line_bot_api.reply_message(event.reply_token, message)

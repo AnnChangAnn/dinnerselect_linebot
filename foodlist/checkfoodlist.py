@@ -93,5 +93,16 @@ def line_delete_data(event):
     
     return reply
 
+def line_test_program(event):
 
+    try:
+        txttext = event.message.text
+        print(txttext)
+        reply = dbcontrol.line_test_program(txttext)
+        print(reply)
+
+    except:
+        reply = "失敗了"
+
+    return reply
 

@@ -108,3 +108,24 @@ def line_delete_record(record_list):
     conn.close()
 
     return message
+
+def line_test_program(txttext):
+    DATABASE_URL = os.environ['DATABASE_URL']
+
+    conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+    cursor = conn.cursor()
+
+    postgres_select_query = f"""SELECT replyfront, replyend FROM tblreply;"""
+    print(postgres_select_query)
+
+    cursor.execute(postgres_select_query)
+    raw = cursor.fetchall()
+#    print(raw)
+    (message, message2) = random.choice(raw)
+    print(message1)
+    print(message2)
+    
+    cursor.close()
+    conn.close()
+
+    return message1
