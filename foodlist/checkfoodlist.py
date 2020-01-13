@@ -39,7 +39,7 @@ def insert_record(event):
 
     return True
 
-def insert_record(event):
+def user_insert_record(event):
 
     try:
         if event.message.text.find('拉麵') == 3:
