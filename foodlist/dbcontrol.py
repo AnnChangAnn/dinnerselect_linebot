@@ -34,7 +34,7 @@ def line_insert_record(record_list):
     
     table_columns = '(foodtype, foodname)'
     postgres_insert_query = f"""INSERT INTO tblfoodlist {table_columns} VALUES (%s, %s);"""
-
+    print(postgres_insert_query)
     cursor.executemany(postgres_insert_query, record_list)
     conn.commit()
 
