@@ -105,7 +105,7 @@ def handle_message(event):
         elif event.message.text == "消夜吃啥" or event.message.text == "宵夜吃啥":
             message = TextSendMessage(text="沒有 只吃晚餐")
             line_bot_api.reply_message(event.reply_token, message)
-        elif strCheck.find('晚餐吃啥') >= 0:
+        elif strCheck.find('嗨機器人') >= 0:
             if strCheck.find('自我介紹') >= 0 :
                 message = TextSendMessage(text="輸入 晚餐吃啥 or 吃拉麵嗎 \n來獲得良好的建議！ \n ----- \n想新加入菜單 請輸入： \n我要新增拉麵(空格)拉麵名 \n或 \n我要新增晚餐(空格)食物名 \n來加入菜單 \n例如：我要新增晚餐 蛋炒飯 \n我們就會幫您加入'蛋炒飯'這個菜單")
                 line_bot_api.reply_message(event.reply_token, message)
