@@ -77,7 +77,7 @@ def user_insert_record(record_list):
     cursor.executemany(postgres_insert_query, record_list)
     conn.commit()
 
-    message = f"恭喜您！ 資料成功加入 tblfoodlist 表單！"
+    message = f"好喔！下次會考慮推薦你這個～"
 #    print(message)
     cursor.close()
     conn.close()

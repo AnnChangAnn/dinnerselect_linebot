@@ -54,7 +54,7 @@ def user_insert_record(event):
             record_list = [('food', event.message.text[7:])]
             print(record_list)
             reply = "test"
-#            reply = dbcontrol.user_insert_record(record_list)
+            reply = dbcontrol.user_insert_record(record_list)
 
         line_bot_api.reply_message(
             event.reply_token,
