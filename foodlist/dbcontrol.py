@@ -3,6 +3,28 @@ import os
 import psycopg2
 import random
 
+def line_create_table(new_table_name):
+    DATABASE_URL = os.environ['DATABASE_URL']
+
+    conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+    cursor = conn.cursor()
+    
+    create_table_query = f'''CREATE TABLE tblreply(
+        seqno serial PRIMARY KEY,
+        foodtype VARCHAR (50) NOT NULL,
+        replyfront VARCHAR (50) NOT NULL,
+        replyend VARCHAR (50) NOT NULL
+    );'''
+    
+    cursor.execute(create_table_query)
+    conn.commit()
+
+    message = f"恭喜您！ 資料成功建立  表單！"
+    print(message)
+    cursor.close()
+    conn.close()
+
+    return message
 
 def line_insert_record(record_list):
     DATABASE_URL = os.environ['DATABASE_URL']
@@ -16,7 +38,7 @@ def line_insert_record(record_list):
     cursor.executemany(postgres_insert_query, record_list)
     conn.commit()
 
-    message = f"恭喜您！ 資料成功建立 tblfoodlist 表單！"
+    message = f"恭喜您！ 資料成功加入 tblfoodlist 表單！"
     print(message)
     cursor.close()
     conn.close()

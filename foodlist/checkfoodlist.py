@@ -8,7 +8,7 @@ from linebot.models import MessageEvent, PostbackEvent, TextMessage, TextSendMes
 import random
 
 # 我們的函數
-from foodlist import foodinsert, formattext
+from foodlist import dbcontrol, formattext
 
 # Channel Access Token
 line_bot_api = LineBotApi('OxFz4p5BSnf4OMX3gG5RsWOoDt1xKqb/MgIgkPpCFZAG97cU085VHbKqX3M7PxMT7UcMqPLD1g2/GAtXLrCtA3csBzCLulogW6zckNvfTl1UDo8ypLml38KT8kWLtPeE53AkumUg+w+MYlTD3Cp/sgdB04t89/1O/w1cDnyilFU=')
@@ -20,7 +20,7 @@ def insert_record(event):
     
     try:
         record_list = formattext.prepare_record(event.message.text)
-        reply = foodinsert.line_insert_record(record_list)
+        reply = dbcontrol.line_insert_record(record_list)
 
         line_bot_api.reply_message(
             event.reply_token,
@@ -41,21 +41,13 @@ def select_record(event):
 #        record_list = formattext.prepare_record(event.message.text)
         selecttype = event.message.text[1:3]
         print(selecttype)
-        reply = foodinsert.line_select_overall(selecttype)
+        reply = dbcontrol.line_select_overall(selecttype)
         print(reply)
-
-#        line_bot_api.reply_message(
-#            event.reply_token,
-#            TextSendMessage(text=reply)
-#        )
 
     except:
         reply = "失敗了"
-#        line_bot_api.reply_message(
-#            event.reply_token,
-#            TextSendMessage(text='失敗了')
-#        )
-
+       
+       
     return reply
 
 def select_dinner_record(event):
@@ -64,19 +56,22 @@ def select_dinner_record(event):
 #        record_list = formattext.prepare_record(event.message.text)
         selecttype = "food"
 #        print(selecttype)
-        reply = foodinsert.line_select_overall(selecttype)
+        reply = dbcontrol.line_select_overall(selecttype)
         print(reply)
-
-#        line_bot_api.reply_message(
-#            event.reply_token,
-#            TextSendMessage(text=reply)
-#        )
 
     except:
         reply = "失敗了"
-#        line_bot_api.reply_message(
-#            event.reply_token,
-#            TextSendMessage(text='失敗了')
-#        )
 
     return reply
+
+def line_create_table(event):
+
+    try:
+        reply = dbcontrol.line_create_table(selecttype)
+        print(reply)
+
+    except:
+        reply = "失敗了"
+
+    return reply
+

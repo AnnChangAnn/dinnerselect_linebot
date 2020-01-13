@@ -61,7 +61,7 @@ def handle_message(event):
 
             receivetxt = checkfoodlist.select_dinner_record(event)
             if receivetxt != "失敗了":
-                strreplylist = "好阿！吃,好！ ,我想吃,可以！吃,要不要吃,好！我們去吃,走阿吃,好好好好好！吃,好窩～那我們吃,可哇！吃,行！想吃,吃吃吃吃吃,拉麵吃起來！吃,吃一波"
+                strreplylist = "吃,我想想... ,我想吃,要不要吃,我們去吃,走阿吃,欸嘿！吃,考慮一下,可吃,想吃,吃吃吃吃吃,晚餐吃起來！吃,吃一波,吃個,我覺得吃,今天就是要吃,當然是要吃"
                 strreply = strreplylist.split(",")
             #            message = TextSendMessage(text= random.choice(strreply) + random.choice(strfood) + "!!")
                 message = TextSendMessage(text= random.choice(strreply) + receivetxt + "!!")
@@ -119,7 +119,9 @@ def handle_message(event):
             reply = checkfoodlist.insert_record(event)
 #            message = checkfoodlist.insert_record(event)
 #            line_bot_api.reply_message(event.reply_token, message)
-#    else:
+        elif event.message.text == "create table":
+            reply = checkfoodlist.insert_record(event)
+    #    else:
 #        message = TextSendMessage(text="")
 #        line_bot_api.reply_message(event.reply_token, message)
 
