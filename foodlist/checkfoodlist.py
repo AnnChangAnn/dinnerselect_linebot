@@ -42,18 +42,18 @@ def insert_record(event):
 def user_insert_record(event):
 
     try:
-        print(event.message.text)
+#        print(event.message.text)
         if event.message.text.find('拉麵') >= 0:
-            print(event.message.text.find('拉麵'))
+#            print(event.message.text.find('拉麵'))
             record_list = [('拉麵', event.message.text[7:])]
-            print(record_list)
-            reply = "test"
-#            reply = dbcontrol.user_insert_record(record_list)
+#            print(record_list)
+#            reply = "test"
+            reply = dbcontrol.user_insert_record(record_list)
         elif event.message.text.find('晚餐') >= 0:
-            print(event.message.text.find('晚餐'))
+#            print(event.message.text.find('晚餐'))
             record_list = [('food', event.message.text[7:])]
-            print(record_list)
-            reply = "test"
+#            print(record_list)
+#            reply = "test"
             reply = dbcontrol.user_insert_record(record_list)
 
         line_bot_api.reply_message(
