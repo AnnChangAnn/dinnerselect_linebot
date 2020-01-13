@@ -77,10 +77,24 @@ def line_select_overall(choosetype):
 
     cursor.execute(postgres_select_query)
     raw = cursor.fetchall()
-#    print(raw)
-    (message,) = random.choice(raw)
-#    print(message)
+    (food_name,) = random.choice(raw)
     
+    postgres_select_query = f"""SELECT replyfront, replyend FROM tblreply where foortype =  {strfoodtype};"""
+    print(postgres_select_query)
+
+    cursor.execute(postgres_select_query)
+    rawreply = cursor.fetchall()
+#    print(rawreply)
+    (reply_front, reply_end) = random.choice(rawreply)
+    print(reply_front)
+    print(reply_end)
+    
+    if reply_end == '_':
+        message = reply_front + food_name + "!!"
+    else:
+        message = reply_front + food_name + reply_end
+    print(message)
+        
     cursor.close()
     conn.close()
 
