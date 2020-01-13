@@ -81,10 +81,12 @@ def handle_message(event):
 #            strfood = strfoodlist.split(",")
 #
             if receivetxt != "失敗了":
-                strreplylist = "好阿！吃,好！ ,我想吃,可以！吃,要不要吃,好！我們去吃,走阿吃,好好好好好！吃,好窩～那我們吃,可哇！吃,行！想吃,吃吃吃吃吃,拉麵吃起來！吃,吃一波"
-                strreply = strreplylist.split(",")
-    #            message = TextSendMessage(text= random.choice(strreply) + random.choice(strfood) + "!!")
-                message = TextSendMessage(text= random.choice(strreply) + receivetxt + "!!")
+#                strreplylist = "好阿！吃,好！ ,我想吃,可以！吃,要不要吃,好！我們去吃,走阿吃,好好好好好！吃,好窩～那我們吃,可哇！吃,行！想吃,吃吃吃吃吃,拉麵吃起來！吃,吃一波"
+#                strreply = strreplylist.split(",")
+#    #            message = TextSendMessage(text= random.choice(strreply) + random.choice(strfood) + "!!")
+#                message = TextSendMessage(text= random.choice(strreply) + receivetxt + "!!")
+#                line_bot_api.reply_message(event.reply_token, message)
+                message = TextSendMessage(text= receivetxt)
                 line_bot_api.reply_message(event.reply_token, message)
             else:
                 message = ""
