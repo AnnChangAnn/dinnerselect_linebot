@@ -39,6 +39,33 @@ def insert_record(event):
 
     return True
 
+def insert_record(event):
+
+    try:
+        if event.message.text.find('拉麵') == 3:
+            record_list = [('拉麵', event.message.text[7:])]
+            print(record_list)
+            reply = "test"
+#            reply = dbcontrol.user_insert_record(record_list)
+        elif vent.message.text.find('晚餐') == 3:
+            record_list = [('food', event.message.text[7:])]
+            print(record_list)
+            reply = "test"
+#            reply = dbcontrol.user_insert_record(record_list)
+
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=reply)
+        )
+
+    except:
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text='失敗了')
+        )
+
+    return True
+
 def select_record(event):
 
     try:

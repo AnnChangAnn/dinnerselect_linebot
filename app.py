@@ -120,6 +120,10 @@ def handle_message(event):
                 else:
                     message = TextSendMessage(text="不要！只吃晚餐！")
                     line_bot_api.reply_message(event.reply_token, message)
+        elif strCheck.find('我要新增拉麵') == 0 or strCheck.find('我要新增晚餐') == 0:
+            reply = checkfoodlist.user_insert_record(event)
+            message = TextSendMessage(text= reply)
+            line_bot_api.reply_message(event.reply_token, message)
         elif strCheck.find('//管理者新增_') >= 0:
             reply = checkfoodlist.insert_record(event)
 #            message = checkfoodlist.insert_record(event)
