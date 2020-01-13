@@ -78,8 +78,8 @@ def line_delete_record(record_list):
     );'''
     print (delete_table_query)
     
-#    cursor.execute(delete_table_query)
-#    conn.commit()
+    cursor.execute(delete_table_query)
+    conn.commit()
 
     message = f"恭喜您！ 成功刪除資料！"
 #    print(message)
