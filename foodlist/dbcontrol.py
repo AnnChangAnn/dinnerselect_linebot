@@ -120,7 +120,7 @@ def line_test_program(txttext):
 
     cursor.execute(postgres_select_query)
     raw = cursor.fetchall()
-#    print(raw)
+    print(raw)
     (message, message2) = random.choice(raw)
     print(message1)
     print(message2)
