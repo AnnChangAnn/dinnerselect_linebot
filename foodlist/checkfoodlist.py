@@ -19,8 +19,12 @@ line_bot_api = LineBotApi('OxFz4p5BSnf4OMX3gG5RsWOoDt1xKqb/MgIgkPpCFZAG97cU085VH
 def insert_record(event):
     
     try:
-        record_list = formattext.prepare_record(event.message.text)
-        reply = dbcontrol.line_insert_record(record_list)
+        if event.message.text.find('//管理者新增_回應') >= 0:
+            record_list = formattext.prepare_reply(event.message.text)
+            reply = dbcontrol.line_insert_reply(record_list)
+        else:
+            record_list = formattext.prepare_record(event.message.text)
+            reply = dbcontrol.line_insert_record(record_list)
 
         line_bot_api.reply_message(
             event.reply_token,
@@ -73,8 +77,7 @@ def line_create_table(event):
 
     except:
         reply = "失敗了"
-    
-    
+
     return reply
 
 def line_delete_data(event):
@@ -87,7 +90,6 @@ def line_delete_data(event):
 
     except:
         reply = "失敗了"
-    
     
     return reply
 
