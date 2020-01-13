@@ -62,6 +62,7 @@ def select_dinner_record(event):
     except:
         reply = "失敗了"
 
+
     return reply
 
 def line_create_table(event):
@@ -72,6 +73,7 @@ def line_create_table(event):
 
     except:
         reply = "失敗了"
+
 
     return reply
 
@@ -85,6 +87,7 @@ def line_delete_data(event):
 
     except:
         reply = "失敗了"
+
 
     return reply
 
