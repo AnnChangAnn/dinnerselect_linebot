@@ -119,8 +119,8 @@ def handle_message(event):
             reply = checkfoodlist.insert_record(event)
 #            message = checkfoodlist.insert_record(event)
 #            line_bot_api.reply_message(event.reply_token, message)
-        elif event.message.text == "create table":
-            reply = checkfoodlist.line_create_table(event)
+#        elif event.message.text == "create table":
+#            reply = checkfoodlist.line_create_table(event)
         elif strCheck.find('刪除db資料') >= 0:
             reply = checkfoodlist.line_delete_data(event)
     #    else:
