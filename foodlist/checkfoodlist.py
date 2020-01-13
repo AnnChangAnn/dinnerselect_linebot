@@ -80,7 +80,7 @@ def line_create_table(event):
 def line_delete_data(event):
 
     try:
-        deletefood = event.message.text[7:]
+        deletefood = event.message.text[10:]
         print(deletefood)
         reply = dbcontrol.line_delete_record(deletefood)
         print(reply)
