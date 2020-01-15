@@ -60,9 +60,7 @@ def handle_join(event):
         請輸入：晚餐機器人自我介紹""")
 
     line_bot_api.reply_message(
-            event.reply_token,
-            TextMessage(text=message)
-        )
+            event.reply_token,message)
     print("JoinEvent =", JoinEvent)
 
 # 處理訊息
