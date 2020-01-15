@@ -74,7 +74,7 @@ def select_record(event):
     try:
 #        record_list = formattext.prepare_record(event.message.text)
         if event.message.text.find('火鍋') >= 0:
-            selecttype = "火鍋"
+            selecttype = "火鍋sp"
         else:
             selecttype = event.message.text[1:3]
             
