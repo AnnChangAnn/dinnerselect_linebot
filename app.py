@@ -118,7 +118,16 @@ def handle_message(event):
                 line_bot_api.reply_message(event.reply_token, message)
         elif strCheck.find('吃') == 0:
             if strCheck.find('嗎') == len(strCheck) -1:
-                if strCheck.find('晚餐') == -1 and strCheck.find('中餐') == -1 and strCheck.find('早餐') == -1 and strCheck.find('晚飯') == -1 and strCheck.find('午餐') == -1 and strCheck.find('早飯') == -1 and strCheck.find('宵夜') == -1 and strCheck.find('早點') == -1 and strCheck.find('消夜') == -1 and strCheck.find('夜消') == -1 and strCheck.find('夜宵') == -1:
+                if strCheck.find('火鍋') >= 0:
+                    receivetxt = checkfoodlist.select_record(event)
+                    if receivetxt != "失敗了":
+                        message = TextSendMessage(text= receivetxt)
+                        line_bot_api.reply_message(event.reply_token, message)
+                    else:
+                        message = ""
+                        print(receivetxt)
+                        line_bot_api.reply_message(event.reply_token, message)
+                elif strCheck.find('晚餐') == -1 and strCheck.find('中餐') == -1 and strCheck.find('早餐') == -1 and strCheck.find('晚飯') == -1 and strCheck.find('午餐') == -1 and strCheck.find('早飯') == -1 and strCheck.find('宵夜') == -1 and strCheck.find('早點') == -1 and strCheck.find('消夜') == -1 and strCheck.find('夜消') == -1 and strCheck.find('夜宵') == -1:
                     message = TextSendMessage(text="不要！只吃拉麵！")
                     line_bot_api.reply_message(event.reply_token, message)
                 elif strCheck.find('晚餐') >= 0 or strCheck.find('晚飯') >= 0:
@@ -131,16 +140,16 @@ def handle_message(event):
             reply = checkfoodlist.user_insert_record(event)
 #            message = TextSendMessage(text= reply)
 #            line_bot_api.reply_message(event.reply_token, message)
-        elif event.message.text == "//管理者各項指令":
-            message = TextSendMessage(text="//管理者新增_ \nfoodtype foodname \n//管理者新增_回應 \nfoodtype replyfront replyend \n管理者刪除db資料 \n管理者刪除db資料-foodname ")
+        elif event.message.text == "//user control":
+            message = TextSendMessage(text="useradd_ \nfoodtype foodname \nuseradd_reply\nfoodtype replyfront replyend\ndelete db-foodname ")
             line_bot_api.reply_message(event.reply_token, message)
-        elif strCheck.find('//管理者新增_') >= 0:
+        elif strCheck.find('useradd_') >= 0:
             reply = checkfoodlist.insert_record(event)
 #            message = checkfoodlist.insert_record(event)
 #            line_bot_api.reply_message(event.reply_token, message)
 #        elif event.message.text == "create table":
 #            reply = checkfoodlist.line_create_table(event)
-        elif strCheck.find('管理者刪除db資料') >= 0:
+        elif strCheck.find('delete db') >= 0:
             reply = checkfoodlist.line_delete_data(event)
             message = TextSendMessage(text= reply)
             line_bot_api.reply_message(event.reply_token, message)

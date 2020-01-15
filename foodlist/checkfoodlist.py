@@ -19,7 +19,7 @@ line_bot_api = LineBotApi('OxFz4p5BSnf4OMX3gG5RsWOoDt1xKqb/MgIgkPpCFZAG97cU085VH
 def insert_record(event):
     
     try:
-        if event.message.text.find('//管理者新增_回應') >= 0:
+        if event.message.text.find('useradd_reply') >= 0:
             record_list = formattext.prepare_reply(event.message.text)
             reply = dbcontrol.line_insert_reply(record_list)
         else:
@@ -73,7 +73,11 @@ def select_record(event):
 
     try:
 #        record_list = formattext.prepare_record(event.message.text)
-        selecttype = event.message.text[1:3]
+        if event.message.text.find('火鍋') >= 0:
+            selecttype = "火鍋"
+        else
+            selecttype = event.message.text[1:3]
+            
         print(selecttype)
         reply = dbcontrol.line_select_overall(selecttype)
         print(reply)
