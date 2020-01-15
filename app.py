@@ -58,7 +58,7 @@ def handle_join(event):
         -----
         若想再看一此以上內容
         請輸入：晚餐機器人自我介紹 """
-    message = message.strip()
+    message = message.lstrip()
     message = TextSendMessage(text=message)
 
     line_bot_api.reply_message(
