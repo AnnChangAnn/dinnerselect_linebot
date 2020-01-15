@@ -119,14 +119,15 @@ def handle_message(event):
         elif strCheck.find('吃') == 0:
             if strCheck.find('嗎') == len(strCheck) -1:
                 if strCheck.find('火鍋') >= 0:
-#                    receivetxt = checkfoodlist.select_record(event)
-#                    if receivetxt != "失敗了":
-#                        message = TextSendMessage(text= receivetxt)
-#                        line_bot_api.reply_message(event.reply_token, message)
-#                    else:
-#                        message = ""
-#                        print(receivetxt)
-#                        line_bot_api.reply_message(event.reply_token, message)
+                    receivetxt = checkfoodlist.select_record(event)
+                    if receivetxt != "失敗了":
+                        message = TextSendMessage(text= receivetxt)
+                        line_bot_api.reply_message(event.reply_token, message)
+                    else:
+                        message = ""
+                        print(receivetxt)
+                        line_bot_api.reply_message(event.reply_token, message)
+                        
                 elif strCheck.find('晚餐') == -1 and strCheck.find('中餐') == -1 and strCheck.find('早餐') == -1 and strCheck.find('晚飯') == -1 and strCheck.find('午餐') == -1 and strCheck.find('早飯') == -1 and strCheck.find('宵夜') == -1 and strCheck.find('早點') == -1 and strCheck.find('消夜') == -1 and strCheck.find('夜消') == -1 and strCheck.find('夜宵') == -1:
                     message = TextSendMessage(text="不要！只吃拉麵！")
                     line_bot_api.reply_message(event.reply_token, message)
@@ -141,7 +142,7 @@ def handle_message(event):
 #            message = TextSendMessage(text= reply)
 #            line_bot_api.reply_message(event.reply_token, message)
         elif event.message.text == "user_control":
-            message = TextSendMessage(text="useradd_ \nfoodtype foodname \nuseradd_reply\nfoodtype replyfront replyend\ndelete db-foodname ")
+            message = TextSendMessage(text="useradd_ \n foodtype foodname \n useradd_reply\n foodtype replyfront replyend\n delete db-foodname ")
             line_bot_api.reply_message(event.reply_token, message)
         elif strCheck.find('useradd_') >= 0:
             reply = checkfoodlist.insert_record(event)
