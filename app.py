@@ -40,6 +40,30 @@ def callback():
         abort(400)
     return 'OK'
 
+@handler.add(JoinEvent)
+def handle_join(event):
+    message = TextSendMessage(text="""各位安安
+        還不知道晚餐要吃什麼好嗎
+        問我就對了！！
+        輸入 晚餐吃啥 or 吃拉麵嗎
+        來獲得良好的建議！
+        -----
+        想新加入菜單 請輸入：
+        我要新增拉麵(空格)拉麵名
+        或
+        我要新增晚餐(空格)食物名
+        來加入菜單
+        例如：我要新增晚餐 蛋炒飯
+        我們就會幫您加入'蛋炒飯'這個菜單
+        -----
+        若想再看一此以上內容
+        請輸入：晚餐機器人自我介紹""")
+
+    line_bot_api.reply_message(
+            event.reply_token,
+            TextMessage(text=message)
+        )
+    print("JoinEvent =", JoinEvent)
 
 # 處理訊息
 @handler.add(MessageEvent, message=TextMessage)
@@ -105,7 +129,7 @@ def handle_message(event):
         elif event.message.text == "消夜吃啥" or event.message.text == "宵夜吃啥":
             message = TextSendMessage(text="沒有 只吃晚餐")
             line_bot_api.reply_message(event.reply_token, message)
-        elif strCheck.find('嗨機器人') >= 0:
+        elif strCheck.find('晚餐機器人') >= 0:
             if strCheck.find('自我介紹') >= 0 :
                 message = TextSendMessage(text="輸入 晚餐吃啥 or 吃拉麵嗎 \n來獲得良好的建議！ \n ----- \n想新加入菜單 請輸入： \n我要新增拉麵(空格)拉麵名 \n或 \n我要新增晚餐(空格)食物名 \n來加入菜單 \n例如：我要新增晚餐 蛋炒飯 \n我們就會幫您加入'蛋炒飯'這個菜單")
                 line_bot_api.reply_message(event.reply_token, message)
