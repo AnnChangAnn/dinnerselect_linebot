@@ -91,7 +91,7 @@ def line_select_overall(choosetype):
     cursor = conn.cursor()
 
     strfoodtype = "'" + choosetype + "'"
-    postgres_select_query = f"""SELECT foodname FROM tblfoodlist where foodtype =  {strfoodtype} order by seqno;"""
+    postgres_select_query = f"""SELECT foodname FROM tblfoodlist where foodtype =  {strfoodtype} ;"""
     print(postgres_select_query)
 
     cursor.execute(postgres_select_query)
@@ -112,6 +112,38 @@ def line_select_overall(choosetype):
         message = reply_front + food_name + "!!"
     else:
         message = reply_front + food_name + reply_end
+    print(message)
+        
+    cursor.close()
+    conn.close()
+
+    return message
+
+def line_select_sp(choosetype):
+    DATABASE_URL = os.environ['DATABASE_URL']
+
+    conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+    cursor = conn.cursor()
+
+    strfoodtype = "'" + choosetype + "'"
+    postgres_select_query = f"""SELECT foodname FROM tblfoodlist where foodtype =  {strfoodtype} ;"""
+    print(postgres_select_query)
+
+    cursor.execute(postgres_select_query)
+    raw = cursor.fetchall()
+    (food_name,) = random.choice(raw)
+    
+#    postgres_select_query = f"""SELECT replyfront, replyend FROM tblreply where foodtype =  {strfoodtype};"""
+#    print(postgres_select_query)
+#
+#    cursor.execute(postgres_select_query)
+#    rawreply = cursor.fetchall()
+##    print(rawreply)
+#    (reply_front, reply_end) = random.choice(rawreply)
+#    print(reply_front)
+#    print(reply_end)
+    
+    message = food_name
     print(message)
         
     cursor.close()

@@ -75,11 +75,14 @@ def select_record(event):
 #        record_list = formattext.prepare_record(event.message.text)
         if event.message.text.find('火鍋') >= 0:
             selecttype = "火鍋sp"
+            print(selecttype)
+            reply = dbcontrol.line_select_sp(selecttype)
         else:
             selecttype = event.message.text[1:3]
+            print(selecttype)
+            reply = dbcontrol.line_select_overall(selecttype)
             
-        print(selecttype)
-        reply = dbcontrol.line_select_overall(selecttype)
+        
         print(reply)
 
     except:
