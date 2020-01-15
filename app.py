@@ -42,8 +42,7 @@ def callback():
 
 @handler.add(JoinEvent)
 def handle_join(event):
-    message = TextSendMessage(text=
-        f""" 各位安安
+    message = """ 各位安安
         還不知道晚餐要吃什麼好嗎
         問我就對了！！
         輸入 晚餐吃啥 or 吃拉麵嗎
@@ -58,7 +57,9 @@ def handle_join(event):
         我們就會幫您加入'蛋炒飯'這個菜單
         -----
         若想再看一此以上內容
-        請輸入：晚餐機器人自我介紹 """)
+        請輸入：晚餐機器人自我介紹 """
+    message = message.strip()
+    message = TextSendMessage(text=message)
 
     line_bot_api.reply_message(
             event.reply_token,message)
