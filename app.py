@@ -141,7 +141,7 @@ def handle_message(event):
 #            message = TextSendMessage(text= reply)
 #            line_bot_api.reply_message(event.reply_token, message)
         elif event.message.text == "user_control":
-            message = TextSendMessage(text="useradd_ \n foodtype foodname \n useradd_reply\n foodtype replyfront replyend\n delete db-foodname ")
+            message = TextSendMessage(text=" useradd_ \n foodtype foodname \n useradd_reply\n foodtype replyfront replyend\n delete db-foodname ")
             line_bot_api.reply_message(event.reply_token, message)
         elif strCheck.find('useradd_') >= 0:
             reply = checkfoodlist.insert_record(event)
