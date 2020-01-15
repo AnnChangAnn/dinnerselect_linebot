@@ -57,7 +57,8 @@ def handle_join(event):
     我們就會幫您加入'蛋炒飯'這個菜單
     -----
     若想再看一此以上內容
-    請輸入：晚餐機器人自我介紹""")
+    請輸入：晚餐機器人自我介紹
+    """)
 
     line_bot_api.reply_message(
             event.reply_token,message)
