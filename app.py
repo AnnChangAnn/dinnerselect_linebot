@@ -180,27 +180,40 @@ def handle_message(event):
              
              line_bot_api.reply_message(
                  event.reply_token,
-                 ImagemapSendMessage(
-                     base_url=random_img_url,
-                     alt_text='test',
-                     base_size=BaseSize(height=1040, width=1040),
-                     actions=[
-                         URIImagemapAction(
-                             label = "hello",
-                             link_uri=random_img_url,
-                             area=ImagemapArea(
-                                 x=0, y=0, width=1040, height=1040
+                 TemplateSendMessage(
+                     alt_text='texttt',
+                     template=ImageCarouselTemplate(
+                         columns=[
+                             ImageCarouselColumn(
+                                 image_url=random_img_url,
+                                 action=PostbackTemplateAction(
+                                     label='postback1' #,
+#                                     text='postback text1',
+#                                     data='action=buy&itemid=1'
+                                 )
                              )
-                         ) #,
-#                         MessageImagemapAction(
-#                             text='hello',
-#                             area=ImagemapArea(
-#                                 x=0, y=0, width=520, height=1040
-#                             )
-#                         )
-                     ]
+                         ]
+                     )
                  )
              )
+             
+#             line_bot_api.reply_message(
+#                 event.reply_token,
+#                 ImagemapSendMessage(
+#                     base_url=random_img_url,
+#                     alt_text='test',
+#                     base_size=BaseSize(height=1040, width=1040),
+#                     actions=[
+#                         URIImagemapAction(
+#                             label = "hello",
+#                             link_uri=random_img_url,
+#                             area=ImagemapArea(
+#                                 x=0, y=0, width=1040, height=1040
+#                             )
+#                         )
+#                     ]
+#                 )
+#             )
             # 如果找不到圖，就學你說話
 #            except:
 #                line_bot_api.reply_message(
