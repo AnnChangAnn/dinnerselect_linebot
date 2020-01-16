@@ -173,7 +173,7 @@ def create_message_template(txtmain, reply):
         print('fetch img url finish')
         print(random_img_url)
         
-        google_string = {'q': txtmain '+拉麵'}
+        google_string = {'q': txtmain + '+拉麵'}
         url_google= f"https://www.google.com/search?{urllib.parse.urlencode(google_string)}/"
         print(url_google)
         
