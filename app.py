@@ -202,7 +202,7 @@ def handle_message(event):
                               ),
                               URIAction(
                                   label='uri',
-                                  uri=url1
+                                  uri='https://www.google.com/'
                               )
                           ]
                       )
