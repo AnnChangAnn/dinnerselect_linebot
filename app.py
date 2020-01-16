@@ -90,7 +90,7 @@ def handle_message(event):
                             text=foodreply,
                             actions=[
                                 URIAction(
-                                    label='Google ' + foodname,
+                                    label='搜尋：' + foodname,
                                     uri=url_google
                                 )
                             ]
