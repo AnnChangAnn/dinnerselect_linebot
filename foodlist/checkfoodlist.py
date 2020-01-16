@@ -84,7 +84,7 @@ def select_record(event):
             print(selecttype)
             replyselect = dbcontrol.line_select_overall(selecttype)
             (foodname, foodreply) = replyselect
-            (url, url_google) = create_message_template(foodname, foodreply)
+            (url, url_google) = create_message_template(selecttype, foodname)
             print(url, url_google)
             return foodname, foodreply, url, url_google
         
@@ -109,6 +109,24 @@ def select_dinner_record(event):
     
     
     return reply
+
+def google_text(event):
+
+    try:
+        foodname = event.message.text[5:]
+        selecttype = "food"
+        replyselect = dbcontrol.line_select_reply(selecttype)
+        (reply_front, reply_end) = replyselect
+        foodreply = reply_front + foodname + reply_end
+        (url, url_google) = create_message_template(selecttype, foodname)
+        print(url, url_google)
+        return foodname, foodreply, url, url_google
+        
+#        print(reply)
+
+    except:
+        reply = "失敗了"
+        return reply
 
 def line_create_table(event):
 
@@ -147,10 +165,14 @@ def line_test_program(event):
 
     return reply
 
-def create_message_template(txtmain, txtreply):
+def create_message_template(foodtype, txtmain):
 
     try:
-        q_string = {'q': txtmain+ ' 拉麵'}
+        if foodtype == '拉麵':
+            q_string = {'q': txtmain+ ' 拉麵'}
+        else:
+            q_string = {'q': txtmain }
+            
         url = f"https://www.google.com/search?tbm=isch&tbs=isz:m&{urllib.parse.urlencode(q_string)}/"
         print(url)
         headers = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36'}
@@ -175,35 +197,20 @@ def create_message_template(txtmain, txtreply):
         print('fetch img url finish')
         print(random_img_url)
         
-        google_string = {'q': txtmain + ' 拉麵'}
+        if foodtype == '拉麵':
+            google_string = {'q': txtmain + ' 拉麵'}
+        else:
+            google_string = {'q': txtmain }
+        
         url_google= f"https://www.google.com/search?{urllib.parse.urlencode(google_string)}"
         print(url_google)
         
         print(txtmain)
-        print(txtreply)
-        
-#        reply=TemplateSendMessage(
-#                  alt_text='Buttons template',
-#                  template=ButtonsTemplate(
-#                      thumbnail_image_url=random_img_url,
-#                      title= str(txtmain),
-#                      text='吃' + str(txtmain) + '如何？',
-#                      actions=[
-#                          URIAction(
-#                              label='Google ' + str(txtmain),
-#                              uri=url_google
-#                          )
-#                      ]
-#                  )
-#              )
-        
-#        reply = "success"
-#        print(reply)
+
         return random_img_url, url_google
 
     except:
         reply = "失敗了"
         return reply
        
-#    return url, url_google
 

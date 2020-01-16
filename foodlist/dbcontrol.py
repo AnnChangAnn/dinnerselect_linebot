@@ -133,16 +133,6 @@ def line_select_sp(choosetype):
     raw = cursor.fetchall()
     (food_name,) = random.choice(raw)
     
-#    postgres_select_query = f"""SELECT replyfront, replyend FROM tblreply where foodtype =  {strfoodtype};"""
-#    print(postgres_select_query)
-#
-#    cursor.execute(postgres_select_query)
-#    rawreply = cursor.fetchall()
-##    print(rawreply)
-#    (reply_front, reply_end) = random.choice(rawreply)
-#    print(reply_front)
-#    print(reply_end)
-    
     message = food_name
     print(message)
         
@@ -150,6 +140,32 @@ def line_select_sp(choosetype):
     conn.close()
 
     return message
+
+def line_select_reply(choosetype):
+    DATABASE_URL = os.environ['DATABASE_URL']
+
+    conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+    cursor = conn.cursor()
+
+    strfoodtype = "'" + choosetype + "'"
+    
+    postgres_select_query = f"""SELECT replyfront, replyend FROM tblreply where foodtype =  {strfoodtype};"""
+    print(postgres_select_query)
+
+    cursor.execute(postgres_select_query)
+    rawreply = cursor.fetchall()
+#    print(rawreply)
+    (reply_front, reply_end) = random.choice(rawreply)
+    print(reply_front)
+    print(reply_end)
+    
+    if reply_end == '_':
+        reply_end = "!!"
+        
+    cursor.close()
+    conn.close()
+
+    return reply_front, reply_end
     
 def line_delete_record(record_list):
     DATABASE_URL = os.environ['DATABASE_URL']
@@ -167,7 +183,6 @@ def line_delete_record(record_list):
     conn.commit()
 
     message = f"恭喜您！ 成功刪除資料！"
-#    print(message)
     
     cursor.close()
     conn.close()

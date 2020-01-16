@@ -91,7 +91,7 @@ def handle_message(event):
                         alt_text=foodreply,
                         template=ButtonsTemplate(
                             thumbnail_image_url=url,
-                            title= ' ',
+                            title= foodname,
                             text=foodreply,
                             actions=[
                                 URIAction(
@@ -107,6 +107,36 @@ def handle_message(event):
                 print(receivetxt)
                 line_bot_api.reply_message(event.reply_token, message)
         
+        #google搜尋
+        elif strCheck.find('！我要吃 ') == 0 or strCheck.find('!我要吃 ') == 0:
+            receivetxt = checkfoodlist.google_text(event)
+            #成功則回覆內容ㄝ，失敗則不回話
+            if receivetxt != "失敗了":
+                print(receivetxt)
+                (foodname, foodreply, url, url_google) = receivetxt
+                print(foodname, foodreply, url, url_google)
+                line_bot_api.reply_message(
+                    event.reply_token,
+                    TemplateSendMessage(
+                        alt_text=foodreply,
+                        template=ButtonsTemplate(
+                            thumbnail_image_url=url,
+                            title= ' ',
+                            text=foodname,
+                            actions=[
+                                URIAction(
+                                    label='搜尋：' + foodname,
+                                    uri=url_google
+                                )
+                            ]
+                        )
+                    )
+                )
+            else:
+                message = ""
+                print(receivetxt)
+                line_bot_api.reply_message(event.reply_token, message)
+            
         #幹話
         elif event.message.text == "好美":
             message = TextSendMessage(text="哪有你美")
