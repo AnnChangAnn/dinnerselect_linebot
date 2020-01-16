@@ -12,7 +12,7 @@ from foodlist import checkfoodlist
 
 import random
 import re
-import urllib2
+import urllib
 
 app = Flask(__name__)
 
