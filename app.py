@@ -91,8 +91,8 @@ def handle_message(event):
                         alt_text=foodreply,
                         template=ButtonsTemplate(
                             thumbnail_image_url=url,
-                            title= foodname,
-                            text=foodreply,
+                            title= ' ',
+                            text=' ',
                             actions=[
                                 URIAction(
                                     label='搜尋：' + foodname,
