@@ -180,7 +180,7 @@ def create_message_template(txtmain, txtreply):
         
         line_bot_api.reply_message(
             event.reply_token,
-            message = TemplateSendMessage(
+            TemplateSendMessage(
                 alt_text=txtreply,
                 template=ButtonsTemplate(
                     thumbnail_image_url=random_img_url,
