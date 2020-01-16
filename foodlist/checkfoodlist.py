@@ -6,6 +6,8 @@ from linebot.exceptions import InvalidSignatureError
 from linebot.models import MessageEvent, PostbackEvent, TextMessage, TextSendMessage, ImageSendMessage, FlexSendMessage
 
 import random
+import re
+import urllib
 
 # 我們的函數
 from foodlist import dbcontrol, formattext
@@ -141,5 +143,61 @@ def line_test_program(event):
     except:
         reply = "失敗了"
 
+    return reply
+
+def create_message_template(txtmain, reply):
+
+    try:
+        q_string = {'q': txtmain}
+        url = f"https://www.google.com/search?tbm=isch&tbs=isz:m&{urllib.parse.urlencode(q_string)}/"
+        print(url)
+        headers = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36'}
+
+        req = urllib.request.Request(url, headers = headers)
+        conn = urllib.request.urlopen(req)
+
+        print('fetch conn finish')
+
+        pattern = 'img data-src="\S*"'
+        img_list = []
+        
+       # result_finditer = re.finditer(pattern, str(conn.read()))
+       # print(type(result_finditer))
+       # print(result_finditer)
+        
+        for match in re.finditer(pattern, str(conn.read())):
+       # for match in result_finditer:
+            img_list.append(match.group()[14:-1])
+
+        random_img_url = img_list[random.randint(0, len(img_list)+1)]
+        print('fetch img url finish')
+        print(random_img_url)
+        
+        google_string = {'q': txtmain '+拉麵'}
+        url_google= f"https://www.google.com/search?{urllib.parse.urlencode(google_string)}/"
+        print(url_google)
+        
+        line_bot_api.reply_message(
+             event.reply_token,
+             TemplateSendMessage(
+                 alt_text='Buttons template',
+                 template=ButtonsTemplate(
+                     thumbnail_image_url=random_img_url,
+                     title= strCheck,
+                     text='吃' + strCheck + '如何？',
+                     actions=[
+                         URIAction(
+                             label='Google ' + strCheck,
+                             uri=url_google
+                         )
+                     ]
+                 )
+             )
+         )
+
+    except:
+        reply = "失敗了"
+       
+       
     return reply
 

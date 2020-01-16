@@ -160,25 +160,19 @@ def handle_message(event):
              pattern = 'img data-src="\S*"'
              img_list = []
              
-#             result_finditer = re.findall(pattern, str(conn.read()))
+#             result_finditer = re.finditer(pattern, str(conn.read()))
 #             print(type(result_finditer))
 #             print(result_finditer)
              
-             result_finditer = re.finditer(pattern, str(conn.read()))
-             print(type(result_finditer))
-             print(result_finditer)
-             
-#             for match in re.finditer(pattern, str(conn.read())):
-             for match in result_finditer:
+             for match in re.finditer(pattern, str(conn.read())):
+#             for match in result_finditer:
                  img_list.append(match.group()[14:-1])
-#                 print(img_list)
 
              random_img_url = img_list[random.randint(0, len(img_list)+1)]
-#             random_img_url = img_list[-1]
              print('fetch img url finish')
              print(random_img_url)
              
-             q_string = {'q': strCheck}
+             q_string = {'q': strCheck '+拉麵'}
              url1 = f"https://www.google.com/search?{urllib.parse.urlencode(q_string)}/"
              print(url1)
              
@@ -191,69 +185,15 @@ def handle_message(event):
                           title= strCheck,
                           text='吃' + strCheck + '如何？',
                           actions=[
-#                              PostbackAction(
-#                                  label='postback',
-#                                  display_text='text',
-#                                  data='action=buy&itemid=1'
-#                              ),
-#                              MessageAction(
-#                                  label='postback',
-#                                  text='postback'
-#                              ),
                               URIAction(
-                                  label='uri',
+                                  label='Google ' + strCheck,
                                   uri=url1
                               )
                           ]
                       )
                   )
               )
-             
-#             line_bot_api.reply_message(
-#                 event.reply_token,
-#                 TemplateSendMessage(
-#                     alt_text='texttt',
-#                     template=ImageCarouselTemplate(
-#                         columns=[
-#                             ImageCarouselColumn(
-#                                 image_url=random_img_url,
-#                                 action=PostbackAction(
-#                                     label='postback1',
-##                                     display_text='postback text1'
-#                                     text='postback text1',
-#                                     data='action=buy&itemid=1'
-#                                 )
-#                             )
-#                         ]
-#                     )
-#                 )
-#             )
-             
-#             line_bot_api.reply_message(
-#                 event.reply_token,
-#                 ImagemapSendMessage(
-#                     base_url=random_img_url,
-#                     alt_text='test',
-#                     base_size=BaseSize(height=1040, width=1040),
-#                     actions=[
-#                         URIImagemapAction(
-#                             label = "hello",
-#                             link_uri=random_img_url,
-#                             area=ImagemapArea(
-#                                 x=0, y=0, width=1040, height=1040
-#                             )
-#                         )
-#                     ]
-#                 )
-#             )
-            # 如果找不到圖，就學你說話
-#            except:
-#                line_bot_api.reply_message(
-#                    event.reply_token,
-#                    TextSendMessage(text=event.message.text)
-#                )
-#                pass
-
+      
 import os
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
