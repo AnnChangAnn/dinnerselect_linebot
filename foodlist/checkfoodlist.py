@@ -184,11 +184,11 @@ def create_message_template(txtmain, txtreply):
                 alt_text='Buttons template',
                 template=ButtonsTemplate(
                     thumbnail_image_url=random_img_url,
-                    title= txtmain,
-                    text='吃' + txtmain + '如何？',
+                    title= str(txtmain),
+                    text='吃' + str(txtmain) + '如何？',
                     actions=[
                         URIAction(
-                            label='Google ' + txtmain,
+                            label='Google ' + str(txtmain),
                             uri=url_google
                         )
                     ]
