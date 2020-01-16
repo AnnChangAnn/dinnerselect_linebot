@@ -74,8 +74,29 @@ def handle_message(event):
             receivetxt = checkfoodlist.select_record(event)
             #成功則回覆內容ㄝ，失敗則不回話
             if receivetxt != "失敗了":
-                message = TextSendMessage(text= receivetxt)
-                line_bot_api.reply_message(event.reply_token, message)
+#                message = TextSendMessage(text= receivetxt)
+#                line_bot_api.reply_message(event.reply_token, message)
+                print(receivetxt)
+                (txtmain, url, url_google) = receivetxt
+                print(txtmain, url, url_google)
+               #line_bot_api.reply_message(event.reply_token, message)
+                line_bot_api.reply_message(
+                    event.reply_token,
+                    TemplateSendMessage(
+                        alt_text='Buttons template',
+                        template=ButtonsTemplate(
+                            thumbnail_image_url=url,
+                            title= strCheck,
+                            text='吃' + strCheck + '如何？',
+                            actions=[
+                                URIAction(
+                                    label='Google ' + strCheck,
+                                    uri='https://www.google.com/'
+                                )
+                            ]
+                        )
+                    )
+                )
             else:
                 message = ""
                 print(receivetxt)

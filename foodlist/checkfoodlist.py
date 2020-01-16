@@ -83,16 +83,17 @@ def select_record(event):
             selecttype = event.message.text[1:3]
             print(selecttype)
             replyselect = dbcontrol.line_select_overall(selecttype)
-            reply = create_message_template(selecttype, replyselect)
-            
+            (url, url_google) = create_message_template(selecttype, replyselect)
+            print(url, url_google)
+            return replyselect, url, url_google
         
-        print(reply)
+#        print(reply)
 
     except:
         reply = "失敗了"
        
        
-    return reply
+        return reply
 
 def select_dinner_record(event):
 
@@ -181,28 +182,28 @@ def create_message_template(txtmain, txtreply):
         print(txtmain)
         print(txtreply)
         
-        reply=TemplateSendMessage(
-                  alt_text='Buttons template',
-                  template=ButtonsTemplate(
-                      thumbnail_image_url=random_img_url,
-                      title= str(txtmain),
-                      text='吃' + str(txtmain) + '如何？',
-                      actions=[
-                          URIAction(
-                              label='Google ' + str(txtmain),
-                              uri=url_google
-                          )
-                      ]
-                  )
-              )
+#        reply=TemplateSendMessage(
+#                  alt_text='Buttons template',
+#                  template=ButtonsTemplate(
+#                      thumbnail_image_url=random_img_url,
+#                      title= str(txtmain),
+#                      text='吃' + str(txtmain) + '如何？',
+#                      actions=[
+#                          URIAction(
+#                              label='Google ' + str(txtmain),
+#                              uri=url_google
+#                          )
+#                      ]
+#                  )
+#              )
         
 #        reply = "success"
-        print(reply)
-         
+#        print(reply)
+        return url, url_google
 
     except:
         reply = "失敗了"
+        return reply
        
-       
-    return reply
+#    return url, url_google
 
