@@ -180,9 +180,14 @@ def handle_message(event):
                              area=ImagemapArea(
                                  x=0, y=0, width=1040, height=1040
                              )
+                         ),
+                         MessageImagemapAction(
+                             text='hello',
+                             area=ImagemapArea(
+                                 x=520, y=0, width=520, height=1040
+                             )
                          )
-                     ],
-                     video= Video(external_link=ExternalLink(linkUri = random_img_url,label = 'test123'))
+                     ]
                  )
              )
             # 如果找不到圖，就學你說話
