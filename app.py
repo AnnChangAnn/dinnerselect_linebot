@@ -92,7 +92,7 @@ def handle_message(event):
                         template=ButtonsTemplate(
                             thumbnail_image_url=url,
                             title= ' ',
-                            text=' ',
+                            text=foodreply,
                             actions=[
                                 URIAction(
                                     label='搜尋：' + foodname,
