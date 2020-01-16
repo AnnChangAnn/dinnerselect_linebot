@@ -12,7 +12,7 @@ from foodlist import checkfoodlist
 
 import random
 import re
-import urllib
+import urllib2
 
 app = Flask(__name__)
 
@@ -147,7 +147,7 @@ def handle_message(event):
 #            try:
              strCheck = strCheck[14:]
              print(strCheck)
-             q_string = {'tbm': 'isch', 'q': strCheck}
+             q_string = {'tbm': 'isch', 'tbs': 'isz:m', 'q': strCheck}
              url = f"https://www.google.com/search?{urllib.parse.urlencode(q_string)}/"
              print(url)
              headers = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36'}
