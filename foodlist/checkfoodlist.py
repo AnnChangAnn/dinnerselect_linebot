@@ -199,7 +199,7 @@ def create_message_template(txtmain, txtreply):
         
 #        reply = "success"
 #        print(reply)
-        return url, url_google
+        return random_img_url, url_google
 
     except:
         reply = "失敗了"
