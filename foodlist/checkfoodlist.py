@@ -82,7 +82,8 @@ def select_record(event):
         else:
             selecttype = event.message.text[1:3]
             print(selecttype)
-            reply = dbcontrol.line_select_overall(selecttype)
+            replyselect = dbcontrol.line_select_overall(selecttype)
+            reply = create_message_template(selecttype, replyselect)
             
         
         print(reply)
@@ -145,7 +146,7 @@ def line_test_program(event):
 
     return reply
 
-def create_message_template(txtmain, reply):
+def create_message_template(txtmain, txtreply):
 
     try:
         q_string = {'q': txtmain}
@@ -174,26 +175,24 @@ def create_message_template(txtmain, reply):
         print(random_img_url)
         
         google_string = {'q': txtmain + '+拉麵'}
-        url_google= f"https://www.google.com/search?{urllib.parse.urlencode(google_string)}/"
+        url_google= f"https://www.google.com/search?{urllib.parse.urlencode(google_string)}"
         print(url_google)
         
-        line_bot_api.reply_message(
-             event.reply_token,
-             TemplateSendMessage(
-                 alt_text='Buttons template',
-                 template=ButtonsTemplate(
-                     thumbnail_image_url=random_img_url,
-                     title= strCheck,
-                     text='吃' + strCheck + '如何？',
-                     actions=[
-                         URIAction(
-                             label='Google ' + strCheck,
-                             uri=url_google
-                         )
-                     ]
-                 )
-             )
-         )
+        reply = TemplateSendMessage(
+            alt_text=txtreply,
+            template=ButtonsTemplate(
+                thumbnail_image_url=random_img_url,
+                title=txtmain,
+                text=txtreply,
+                actions=[
+                    URIAction(
+                        label='Google ' + txtmain,
+                        uri=url_google
+                    )
+                ]
+            )
+        )
+         
 
     except:
         reply = "失敗了"
