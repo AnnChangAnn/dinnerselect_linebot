@@ -176,7 +176,7 @@ def handle_message(event):
                      base_size=BaseSize(height=1040, width=1040),
                      actions=[
                          URIImagemapAction(
-                             label = "hello"
+                             label = "hello",
                              link_uri=random_img_url,
                              area=ImagemapArea(
                                  x=0, y=0, width=1040, height=1040
