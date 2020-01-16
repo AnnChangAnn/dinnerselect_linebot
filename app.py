@@ -147,8 +147,8 @@ def handle_message(event):
 #            try:
              strCheck = strCheck[14:]
              print(strCheck)
-             q_string = {'tbm': 'isch', 'tbs': 'isz\:m', 'q': strCheck}
-             url = f"https://www.google.com/search?{urllib.parse.urlencode(q_string)}/"
+             q_string = {'q': strCheck}
+             url = f"https://www.google.com/search?tbm=isch&tbs=isz:m&{urllib.parse.urlencode(q_string)}/"
              print(url)
              headers = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36'}
 
