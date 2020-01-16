@@ -165,7 +165,7 @@ def handle_message(event):
 #                 print(img_list)
 
 #             random_img_url = img_list[random.randint(0, len(img_list)+1)]
-             random_img_url = img_list[1]
+             random_img_url = img_list[-1]
              print('fetch img url finish')
              print(random_img_url)
              
@@ -182,13 +182,13 @@ def handle_message(event):
                              area=ImagemapArea(
                                  x=0, y=0, width=1040, height=1040
                              )
-                         ),
-                         MessageImagemapAction(
-                             text='hello',
-                             area=ImagemapArea(
-                                 x=0, y=0, width=520, height=1040
-                             )
-                         )
+                         ) #,
+#                         MessageImagemapAction(
+#                             text='hello',
+#                             area=ImagemapArea(
+#                                 x=0, y=0, width=520, height=1040
+#                             )
+#                         )
                      ]
                  )
              )
