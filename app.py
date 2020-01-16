@@ -180,6 +180,7 @@ def handle_message(event):
              
              q_string = {'q': strCheck}
              url1 = f"https://www.google.com/search?{urllib.parse.urlencode(q_string)}/"
+             print(url1)
              
              line_bot_api.reply_message(
                   event.reply_token,
@@ -196,8 +197,8 @@ def handle_message(event):
                                   data='action=buy&itemid=1'
                               ),
                               MessageAction(
-                                  label='',
-                                  text=''
+                                  label='postback',
+                                  text='postback'
                               ),
                               URIAction(
                                   label='uri',
