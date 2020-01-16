@@ -150,7 +150,7 @@ def line_test_program(event):
 def create_message_template(txtmain, txtreply):
 
     try:
-        q_string = {'q': txtmain}
+        q_string = {'q': txtmain+ ' 拉麵'}
         url = f"https://www.google.com/search?tbm=isch&tbs=isz:m&{urllib.parse.urlencode(q_string)}/"
         print(url)
         headers = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36'}
@@ -175,7 +175,7 @@ def create_message_template(txtmain, txtreply):
         print('fetch img url finish')
         print(random_img_url)
         
-        google_string = {'q': txtmain + '+拉麵'}
+        google_string = {'q': txtmain + ' 拉麵'}
         url_google= f"https://www.google.com/search?{urllib.parse.urlencode(google_string)}"
         print(url_google)
         
