@@ -172,7 +172,7 @@ def handle_message(event):
              print('fetch img url finish')
              print(random_img_url)
              
-             q_string = {'q': strCheck '+拉麵'}
+             q_string = {'q': strCheck + '+拉麵'}
              url1 = f"https://www.google.com/search?{urllib.parse.urlencode(q_string)}/"
              print(url1)
              
