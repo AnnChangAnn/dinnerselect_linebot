@@ -201,6 +201,7 @@ def create_message_template(foodtype, txtmain):
             google_string = {'q': txtmain + ' 拉麵'}
         else:
             google_string = {'q': txtmain }
+        print(google_string)
         
         url_google= f"https://www.google.com/search?{urllib.parse.urlencode(google_string)}"
         print(url_google)
