@@ -182,7 +182,7 @@ def handle_message(event):
                              )
                          )
                      ],
-                     video= external_link=ExternalLink(linkUri = random_img_url,label = 'test123')]
+                     video= Video(external_link=ExternalLink(linkUri = random_img_url,label = 'test123'))
                  )
              )
             # 如果找不到圖，就學你說話
