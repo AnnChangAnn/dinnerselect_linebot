@@ -11,6 +11,8 @@ from linebot.models import *
 from foodlist import checkfoodlist
 
 import random
+import re
+import urllib
 
 app = Flask(__name__)
 
