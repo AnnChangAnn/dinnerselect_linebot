@@ -178,25 +178,55 @@ def handle_message(event):
              print('fetch img url finish')
              print(random_img_url)
              
+             q_string = {'q': strCheck}
+             url1 = f"https://www.google.com/search?{urllib.parse.urlencode(q_string)}/"
+             
              line_bot_api.reply_message(
-                 event.reply_token,
-                 TemplateSendMessage(
-                     alt_text='texttt',
-                     template=ImageCarouselTemplate(
-                         columns=[
-                             ImageCarouselColumn(
-                                 image_url=random_img_url,
-                                 action=PostbackAction(
-                                     label='postback1',
-#                                     display_text='postback text1'
-                                     text='postback text1',
-                                     data='action=buy&itemid=1'
-                                 )
-                             )
-                         ]
-                     )
-                 )
-             )
+                  event.reply_token,
+                  TemplateSendMessage(
+                      alt_text='Buttons template',
+                      template=ButtonsTemplate(
+                          thumbnail_image_url=random_img_url,
+                          title='Menu',
+                          text='Please select',
+                          actions=[
+                              PostbackAction(
+                                  label='postback',
+                                  display_text='',
+                                  data='action=buy&itemid=1'
+                              ),
+                              MessageAction(
+                                  label='',
+                                  text=''
+                              ),
+                              URIAction(
+                                  label='uri',
+                                  uri=url1
+                              )
+                          ]
+                      )
+                  )
+              )
+             
+#             line_bot_api.reply_message(
+#                 event.reply_token,
+#                 TemplateSendMessage(
+#                     alt_text='texttt',
+#                     template=ImageCarouselTemplate(
+#                         columns=[
+#                             ImageCarouselColumn(
+#                                 image_url=random_img_url,
+#                                 action=PostbackAction(
+#                                     label='postback1',
+##                                     display_text='postback text1'
+#                                     text='postback text1',
+#                                     data='action=buy&itemid=1'
+#                                 )
+#                             )
+#                         ]
+#                     )
+#                 )
+#             )
              
 #             line_bot_api.reply_message(
 #                 event.reply_token,
