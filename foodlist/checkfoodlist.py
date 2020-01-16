@@ -178,20 +178,24 @@ def create_message_template(txtmain, txtreply):
         url_google= f"https://www.google.com/search?{urllib.parse.urlencode(google_string)}"
         print(url_google)
         
-        reply = TemplateSendMessage(
-            alt_text=txtreply,
-            template=ButtonsTemplate(
-                thumbnail_image_url=random_img_url,
-                title=txtmain,
-                text=txtreply,
-                actions=[
-                    URIAction(
-                        label='Google ' + txtmain,
-                        uri=url_google
-                    )
-                ]
+        line_bot_api.reply_message(
+            event.reply_token,
+            message = TemplateSendMessage(
+                alt_text=txtreply,
+                template=ButtonsTemplate(
+                    thumbnail_image_url=random_img_url,
+                    title=txtmain,
+                    text=txtreply,
+                    actions=[
+                        URIAction(
+                            label='Google ' + txtmain,
+                            uri=url_google
+                        )
+                    ]
+                )
             )
         )
+        reply = "success"
         print(reply)
          
 
