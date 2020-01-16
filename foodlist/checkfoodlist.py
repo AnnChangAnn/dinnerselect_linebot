@@ -178,6 +178,9 @@ def create_message_template(txtmain, txtreply):
         url_google= f"https://www.google.com/search?{urllib.parse.urlencode(google_string)}"
         print(url_google)
         
+        print(txtmain)
+        print(txtreply)
+        
         reply=TemplateSendMessage(
                   alt_text='Buttons template',
                   template=ButtonsTemplate(
@@ -193,7 +196,7 @@ def create_message_template(txtmain, txtreply):
                   )
               )
         
-        'reply = "success"
+#        reply = "success"
         print(reply)
          
 
