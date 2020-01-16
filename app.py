@@ -188,21 +188,21 @@ def handle_message(event):
                       alt_text='Buttons template',
                       template=ButtonsTemplate(
                           thumbnail_image_url=random_img_url,
-                          title='Menu',
-                          text='Please select',
+                          title= strCheck,
+                          text='吃' + strCheck + '如何？',
                           actions=[
-                              PostbackAction(
-                                  label='postback',
-                                  display_text='text',
-                                  data='action=buy&itemid=1'
-                              ),
-                              MessageAction(
-                                  label='postback',
-                                  text='postback'
-                              ),
+#                              PostbackAction(
+#                                  label='postback',
+#                                  display_text='text',
+#                                  data='action=buy&itemid=1'
+#                              ),
+#                              MessageAction(
+#                                  label='postback',
+#                                  text='postback'
+#                              ),
                               URIAction(
                                   label='uri',
-                                  uri='https://www.google.com/'
+                                  uri=url1
                               )
                           ]
                       )
