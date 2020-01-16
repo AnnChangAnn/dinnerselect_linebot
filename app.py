@@ -139,9 +139,60 @@ def handle_message(event):
             message = TextSendMessage(text= reply)
             line_bot_api.reply_message(event.reply_token, message)
         elif strCheck.find('test_program') >= 0:    #測試 目前無用
-            reply = checkfoodlist.line_test_program(event)
-            message = TextSendMessage(text= reply)
-            line_bot_api.reply_message(event.reply_token, message)
+#            reply = checkfoodlist.line_test_program(event)
+#            message = TextSendMessage(text= reply)
+#            line_bot_api.reply_message(event.reply_token, message)
+            try:
+                strCheck = strCheck[14:]
+                print(strCheck)
+                url = f"https://pixabay.com/images/search/{urllib.parse.urlencode({'q':strCheck})[2:]}/"
+                print(url)
+                headers = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36'}
+                
+                req = urllib.request.Request(url, headers = headers)
+                conn = urllib.request.urlopen(req)
+                
+                print('fetch page finish')
+                
+                pattern = 'img srcset="\S*\s\w*,'
+                img_list = []
+                
+                for match in re.finditer(pattern, str(conn.read())):
+                    img_list.append(match.group()[12:-3])
+                    
+                random_img_url = img_list[random.randint(0, len(img_list)+1)]
+                print('fetch img url finish')
+                print(random_img_url)
+                
+                line_bot_api.reply_message(
+                    event.reply_token,
+                    ImagemapSendMessage(
+                        base_url=random_img_url,
+                        alt_text='test',
+                        base_size=BaseSize(height=1040, width=1040),
+                        actions=[
+                            URIImagemapAction(
+                                link_uri=random_img_url,
+                                area=ImagemapArea(
+                                    x=0, y=0, width=520, height=1040
+                                )
+                            ),
+                            MessageImagemapAction(
+                                text='hello',
+                                area=ImagemapArea(
+                                    x=520, y=0, width=520, height=1040
+                                )
+                            )
+                        ]
+                    )
+                )
+            # 如果找不到圖，就學你說話
+            except:
+                line_bot_api.reply_message(
+                    event.reply_token,
+                    TextSendMessage(text=event.message.text)
+                )
+                pass
 
 import os
 if __name__ == "__main__":
