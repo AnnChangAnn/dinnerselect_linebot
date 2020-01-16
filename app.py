@@ -159,13 +159,17 @@ def handle_message(event):
 
              pattern = 'img data-src="\S*"'
              img_list = []
+             
+             result_finditer = re.finditer(pattern, str(conn.read()))
+             print(type(result_finditer))
+             print(result_finditer)
 
              for match in re.finditer(pattern, str(conn.read())):
                  img_list.append(match.group()[14:-1])
 #                 print(img_list)
 
 #             random_img_url = img_list[random.randint(0, len(img_list)+1)]
-             random_img_url = img_list[-1]
+             random_img_url = img_list[0]
              print('fetch img url finish')
              print(random_img_url)
              
