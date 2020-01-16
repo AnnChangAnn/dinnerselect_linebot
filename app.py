@@ -144,58 +144,59 @@ def handle_message(event):
 #            reply = checkfoodlist.line_test_program(event)
 #            message = TextSendMessage(text= reply)
 #            line_bot_api.reply_message(event.reply_token, message)
-            try:
-                strCheck = strCheck[14:]
-                print(strCheck)
-                q_string = {'tbm': 'isch', 'q': strCheck}
-                url = f"https://www.google.com/search?{urllib.parse.urlencode(q_string)}/"
-                print(url)
-                headers = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36'}
+#            try:
+             strCheck = strCheck[14:]
+             print(strCheck)
+             q_string = {'tbm': 'isch', 'q': strCheck}
+             url = f"https://www.google.com/search?{urllib.parse.urlencode(q_string)}/"
+             print(url)
+             headers = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36'}
 
-                req = urllib.request.Request(url, headers = headers)
-                conn = urllib.request.urlopen(req)
+             req = urllib.request.Request(url, headers = headers)
+             conn = urllib.request.urlopen(req)
 
-                print('fetch conn finish')
+             print('fetch conn finish')
 
-                pattern = 'img data-src="\S*"'
-                img_list = []
+             pattern = 'img data-src="\S*"'
+             img_list = []
 
-                for match in re.finditer(pattern, str(conn.read())):
-                    img_list.append(match.group()[14:-1])
+             for match in re.finditer(pattern, str(conn.read())):
+                 img_list.append(match.group()[14:-1])
+                 print(img_list)
 
-                random_img_url = img_list[random.randint(0, len(img_list)+1)]
-                print('fetch img url finish')
-                print(random_img_url)
-                
-                line_bot_api.reply_message(
-                    event.reply_token,
-                    ImagemapSendMessage(
-                        base_url=random_img_url,
-                        alt_text='test',
-                        base_size=BaseSize(height=1040, width=1040),
-                        actions=[
-                            URIImagemapAction(
-                                link_uri=random_img_url,
-                                area=ImagemapArea(
-                                    x=0, y=0, width=520, height=1040
-                                )
-                            ),
-                            MessageImagemapAction(
-                                text='hello',
-                                area=ImagemapArea(
-                                    x=520, y=0, width=520, height=1040
-                                )
-                            )
-                        ]
-                    )
-                )
+             random_img_url = img_list[random.randint(0, len(img_list)+1)]
+             print('fetch img url finish')
+             print(random_img_url)
+             
+             line_bot_api.reply_message(
+                 event.reply_token,
+                 ImagemapSendMessage(
+                     base_url=random_img_url,
+                     alt_text='test',
+                     base_size=BaseSize(height=1040, width=1040),
+                     actions=[
+                         URIImagemapAction(
+                             link_uri=random_img_url,
+                             area=ImagemapArea(
+                                 x=0, y=0, width=520, height=1040
+                             )
+                         ),
+                         MessageImagemapAction(
+                             text='hello',
+                             area=ImagemapArea(
+                                 x=520, y=0, width=520, height=1040
+                             )
+                         )
+                     ]
+                 )
+             )
             # 如果找不到圖，就學你說話
-            except:
-                line_bot_api.reply_message(
-                    event.reply_token,
-                    TextSendMessage(text=event.message.text)
-                )
-                pass
+#            except:
+#                line_bot_api.reply_message(
+#                    event.reply_token,
+#                    TextSendMessage(text=event.message.text)
+#                )
+#                pass
 
 import os
 if __name__ == "__main__":
