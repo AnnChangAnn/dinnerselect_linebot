@@ -184,7 +184,7 @@ def handle_message(event):
                          MessageImagemapAction(
                              text='hello',
                              area=ImagemapArea(
-                                 x=520, y=0, width=520, height=1040
+                                 x=0, y=0, width=520, height=1040
                              )
                          )
                      ]
