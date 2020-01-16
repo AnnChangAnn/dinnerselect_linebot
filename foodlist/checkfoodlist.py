@@ -192,6 +192,7 @@ def create_message_template(txtmain, txtreply):
                 ]
             )
         )
+        print(reply)
          
 
     except:
