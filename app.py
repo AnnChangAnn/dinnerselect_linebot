@@ -187,8 +187,8 @@ def handle_message(event):
                              ImageCarouselColumn(
                                  image_url=random_img_url,
                                  action=PostbackAction(
-                                     label='postback1',
-                                     display_text='postback text1'
+                                     label='postback1'
+#                                     display_text='postback text1'
 #                                     ,text='postback text1',
 #                                     data='action=buy&itemid=1'
                                  )
