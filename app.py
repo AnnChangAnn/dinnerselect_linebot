@@ -160,9 +160,9 @@ def handle_message(event):
              pattern = 'img data-src="\S*"'
              img_list = []
              
-             result_finditer = re.findall(pattern, str(conn.read()))
-             print(type(result_finditer))
-             print(result_finditer)
+#             result_finditer = re.findall(pattern, str(conn.read()))
+#             print(type(result_finditer))
+#             print(result_finditer)
              
              result_finditer = re.finditer(pattern, str(conn.read()))
              print(type(result_finditer))
