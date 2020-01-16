@@ -79,7 +79,7 @@ def handle_message(event):
             else:
                 message = ""
                 print(receivetxt)
-#                line_bot_api.reply_message(event.reply_token, message)
+                line_bot_api.reply_message(event.reply_token, message)
         
         #幹話
         elif event.message.text == "好美":
