@@ -181,11 +181,11 @@ def create_message_template(txtmain, txtreply):
         line_bot_api.reply_message(
             event.reply_token,
             TemplateSendMessage(
-                alt_text=txtreply,
+                alt_text=str(txtreply),
                 template=ButtonsTemplate(
                     thumbnail_image_url=random_img_url,
                     title=txtmain,
-                    text=txtreply,
+                    text=str(txtreply),
                     actions=[
                         URIAction(
                             label='Google ' + txtmain,
