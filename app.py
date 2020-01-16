@@ -193,7 +193,7 @@ def handle_message(event):
                           actions=[
                               PostbackAction(
                                   label='postback',
-                                  display_text='',
+                                  display_text='text',
                                   data='action=buy&itemid=1'
                               ),
                               MessageAction(
