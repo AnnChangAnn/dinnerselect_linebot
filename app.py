@@ -162,7 +162,7 @@ def handle_message(event):
 
              for match in re.finditer(pattern, str(conn.read())):
                  img_list.append(match.group()[14:-1])
-                 print(img_list)
+#                 print(img_list)
 
              random_img_url = img_list[random.randint(0, len(img_list)+1)]
              print('fetch img url finish')
