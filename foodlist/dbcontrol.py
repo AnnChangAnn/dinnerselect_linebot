@@ -117,7 +117,7 @@ def line_select_overall(choosetype):
     cursor.close()
     conn.close()
 
-    return message
+    return food_name, message
 
 def line_select_sp(choosetype):
     DATABASE_URL = os.environ['DATABASE_URL']

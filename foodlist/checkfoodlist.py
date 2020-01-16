@@ -83,16 +83,15 @@ def select_record(event):
             selecttype = event.message.text[1:3]
             print(selecttype)
             replyselect = dbcontrol.line_select_overall(selecttype)
-            (url, url_google) = create_message_template(selecttype, replyselect)
+            (foodname, foodreply) = replyselect
+            (url, url_google) = create_message_template(foodname, foodreply)
             print(url, url_google)
-            return replyselect, url, url_google
+            return foodname, foodreply, url, url_google
         
 #        print(reply)
 
     except:
         reply = "失敗了"
-       
-       
         return reply
 
 def select_dinner_record(event):
@@ -101,7 +100,8 @@ def select_dinner_record(event):
 #        record_list = formattext.prepare_record(event.message.text)
         selecttype = "food"
 #        print(selecttype)
-        reply = dbcontrol.line_select_overall(selecttype)
+        foodreply = dbcontrol.line_select_overall(selecttype)
+        (foodname, reply) = foodreply
         print(reply)
 
     except:

@@ -77,21 +77,21 @@ def handle_message(event):
 #                message = TextSendMessage(text= receivetxt)
 #                line_bot_api.reply_message(event.reply_token, message)
                 print(receivetxt)
-                (txtmain, url, url_google) = receivetxt
-                print(txtmain, url, url_google)
+                (foodname, foodreply, url, url_google) = receivetxt
+                print(foodname, foodreply, url, url_google)
                #line_bot_api.reply_message(event.reply_token, message)
                 line_bot_api.reply_message(
                     event.reply_token,
                     TemplateSendMessage(
-                        alt_text='Buttons template',
+                        alt_text=foodreply,
                         template=ButtonsTemplate(
                             thumbnail_image_url=url,
-                            title= strCheck,
-                            text='吃' + strCheck + '如何？',
+                            title= foodname,
+                            text=foodreply,
                             actions=[
                                 URIAction(
-                                    label='Google ' + strCheck,
-                                    uri='https://www.google.com/'
+                                    label='Google ' + foodname,
+                                    uri=url_google
                                 )
                             ]
                         )
