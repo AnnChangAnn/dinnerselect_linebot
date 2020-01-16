@@ -173,7 +173,7 @@ def handle_message(event):
                  ImagemapSendMessage(
                      base_url=random_img_url,
                      alt_text='test',
-                     base_size=BaseSize(height=260, width=260),
+                     base_size=BaseSize(height=1040, width=1040),
                      actions=[
                          URIImagemapAction(
                              link_uri=random_img_url,
@@ -181,7 +181,8 @@ def handle_message(event):
                                  x=0, y=0, width=1040, height=1040
                              )
                          )
-                     ]
+                     ],
+                     video=[externalLink(linkUri = random_img_url,label = "test123")]
                  )
              )
             # 如果找不到圖，就學你說話
