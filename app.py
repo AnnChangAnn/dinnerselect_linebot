@@ -171,7 +171,6 @@ def handle_message(event):
              line_bot_api.reply_message(
                  event.reply_token,
                  ImagemapSendMessage(
-                     base_url=random_img_url,
                      alt_text='test',
                      base_size=BaseSize(height=1040, width=1040),
                      actions=[
