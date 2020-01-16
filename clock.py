@@ -1,4 +1,7 @@
 from apscheduler.schedulers.blocking import BlockingScheduler
+import random
+import re
+import urllib
 
 sched = BlockingScheduler()
 

@@ -169,7 +169,7 @@ def handle_message(event):
 #                 print(img_list)
 
 #             random_img_url = img_list[random.randint(0, len(img_list)+1)]
-             random_img_url = img_list[0]
+             random_img_url = img_list[1]
              print('fetch img url finish')
              print(random_img_url)
              
