@@ -5,7 +5,7 @@ import urllib.request
 
 sched = BlockingScheduler()
 
-@sched.scheduled_job('cron', hour='6-23', minute='*/20')
+@sched.scheduled_job('cron', hour='0-16', minute='*/20')
 def scheduled_job():
     url = "https://ann-chang-dinnereat.herokuapp.com/"
     conn = urllib.request.urlopen(url)

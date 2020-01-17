@@ -113,7 +113,7 @@ def select_dinner_record(event):
 def google_text(event):
 
     try:
-        foodname = event.message.text[5:]
+        foodname = event.message.text[4:]
         selecttype = "food"
         replyselect = dbcontrol.line_select_reply(selecttype)
         (reply_front, reply_end) = replyselect
