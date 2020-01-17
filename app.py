@@ -141,6 +141,15 @@ def handle_message(event):
         elif event.message.text == "好美":
             message = TextSendMessage(text="哪有你美")
             line_bot_api.reply_message(event.reply_token, message)
+        elif event.message.text == "好阿":
+            message = TextSendMessage(text="好阿")
+            line_bot_api.reply_message(event.reply_token, message)
+        elif event.message.text == "好啊":
+            message = TextSendMessage(text="好啊")
+            line_bot_api.reply_message(event.reply_token, message)
+        elif event.message.text == "好":
+            message = TextSendMessage(text="好")
+            line_bot_api.reply_message(event.reply_token, message)
         
         #一律只吃晚餐
         elif event.message.text == "中餐吃啥" or event.message.text == "午餐吃啥" or event.message.text == "早餐吃啥" or event.message.text == "早點吃啥" or event.message.text == "消夜吃啥" or event.message.text == "宵夜吃啥":

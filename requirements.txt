@@ -2,4 +2,4 @@ line-bot-sdk
 gunicorn==20.0.4
 psycopg2==2.8.4
 flask
-APScheduler==3.6.1
+APScheduler==3.6.3
