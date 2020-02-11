@@ -185,7 +185,7 @@ def create_message_template(foodtype, txtmain):
 #        pattern = 'img data-src="\S*"'
 #        pattern = 'data-iid="0" data-iurl="\S*"'
 #        ]\n,["https://
-        pattern = ',["https://\S*.jpg"'
+        pattern = ',["https://"\S*".jpg"'
         img_list = []
         
         result_finditer = re.finditer(pattern, str(conn.read()))
