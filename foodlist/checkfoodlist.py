@@ -186,11 +186,11 @@ def create_message_template(foodtype, txtmain):
         img_list = []
         
         result_finditer = re.finditer(pattern, str(conn.read()))
-        print(type(result_finditer))
-        print(result_finditer)
+#        print(type(result_finditer))
+#        print(result_finditer)
         
-#        for match in re.finditer(pattern, str(conn.read())):
-        for match in result_finditer:
+        for match in re.finditer(pattern, str(conn.read())):
+#        for match in result_finditer:
             img_list.append(match.group()[14:-1])
 
         random_img_url = img_list[random.randint(0, len(img_list)+1)]
