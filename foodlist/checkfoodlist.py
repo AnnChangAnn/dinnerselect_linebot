@@ -183,17 +183,17 @@ def create_message_template(foodtype, txtmain):
         print('fetch conn finish')
 
 #        pattern = 'img data-src="\S*"'
-        pattern = 'data-iid="0" data-iurl="\*"'
+        pattern = 'data-iid="0" data-iurl="\S*"'
         img_list = []
         
         result_finditer = re.finditer(pattern, str(conn.read()))
-#        print(type(result_finditer))
-#        print(result_finditer)
+        print(type(result_finditer))
+        print(result_finditer)
         
-        for match in re.finditer(pattern, str(conn.read())):
-#        for match in result_finditer:
+#        for match in re.finditer(pattern, str(conn.read())):
+        for match in result_finditer:
 #            img_list.append(match.group()[14:-1])
-            img_list.append(match.group()[23:-2])
+            img_list.append(match.group()[24:-2])
             print(img_list)
 
         random_img_url = img_list[random.randint(0, len(img_list)+1)]
