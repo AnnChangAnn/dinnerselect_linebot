@@ -213,9 +213,9 @@ def create_message_template(foodtype, txtmain):
 #            print(img_list)
 
 #        random_img_url = img_list[random.randint(0, len(img_list)+1)]
-        random_img_url = ActualImages[random.randint(0, len(ActualImages)+1)]
+#        random_img_url = ActualImages[random.randint(0, len(ActualImages)+1)]
+        random_img_url = ActualImages[0]
         print('fetch img url finish')
-        print(random_img_url)
         print(random_img_url)
         
         if foodtype == '拉麵':
