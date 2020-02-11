@@ -4,10 +4,12 @@ import os
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
 from linebot.models import MessageEvent, PostbackEvent, TextMessage, TextSendMessage, ImageSendMessage, FlexSendMessage
+from bs4 import BeautifulSoup
 
 import random
 import re
 import urllib
+import json
 
 # 我們的函數
 from foodlist import dbcontrol, formattext
@@ -176,31 +178,42 @@ def create_message_template(foodtype, txtmain):
         url = f"https://www.google.com/search?tbm=isch&tbs=isz:m&{urllib.parse.urlencode(q_string)}/"
         print(url)
         headers = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36'}
+        
+        soup = BeautifulSoup(urllib2.urlopen(urllib2.Request(url,headers=headers)),'html.parser')
 
-        req = urllib.request.Request(url, headers = headers)
-        conn = urllib.request.urlopen(req)
+#        req = urllib.request.Request(url, headers = headers)
+#        conn = urllib.request.urlopen(req)
 
         print('fetch conn finish')
 
-        pattern = 'img data-src="\S*"'
+#        pattern = 'img data-src="\S*"'
 #        pattern = 'data-iid="0" data-iurl="\S*"'
 #        ]\n,["https://
 #        pattern = ',["https://"\S*".jpg"'
-        img_list = []
-        
-        result_finditer = re.finditer(pattern, str(conn.read()))
-        print(type(result_finditer))
-        print(result_finditer)
-        
-#        for match in re.finditer(pattern, str(conn.read())):
-        for match in result_finditer:
-            img_list.append(match.group()[14:-1])
-#            img_list.append(match.group()[3:-1])
-            print(img_list)
 
-        random_img_url = img_list[random.randint(0, len(img_list)+1)]
+        ActualImages=[]# contains the link for Large original images, type of  image
+        for a in soup.find_all("div",{"class":"rg_meta"}):
+            link , Type =json.loads(a.text)["ou"]  ,json.loads(a.text)["ity"]
+            ActualImages.append((link,Type))
+            print(ActualImages)
+
+#        img_list = []
+        
+#        result_finditer = re.finditer(pattern, str(conn.read()))
+#        print(type(result_finditer))
+#        print(result_finditer)
+#
+##        for match in re.finditer(pattern, str(conn.read())):
+#        for match in result_finditer:
+#            img_list.append(match.group()[14:-1])
+##            img_list.append(match.group()[3:-1])
+#            print(img_list)
+
+#        random_img_url = img_list[random.randint(0, len(img_list)+1)]
+        random_img_url = ActualImages[random.randint(0, len(ActualImages)+1)]
         print('fetch img url finish')
         print(random_img_url)
+        print(random_img_url[0])
         
         if foodtype == '拉麵':
             google_string = {'q': txtmain + ' 拉麵'}
@@ -213,7 +226,7 @@ def create_message_template(foodtype, txtmain):
         
         print(txtmain)
 
-        return random_img_url, url_google
+        return random_img_url[0], url_google
 
     except Exception as e:
         reply = "失敗了"
