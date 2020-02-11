@@ -210,8 +210,9 @@ def create_message_template(foodtype, txtmain):
 
         return random_img_url, url_google
 
-    except:
+    except Exception as e:
         reply = "失敗了"
+        print(e)
         return reply
        
 
