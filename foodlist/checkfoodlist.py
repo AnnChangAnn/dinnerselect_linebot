@@ -193,10 +193,11 @@ def create_message_template(foodtype, txtmain):
 #        pattern = ',["https://"\S*".jpg"'
 
         ActualImages=[]# contains the link for Large original images, type of  image
-        for a in soup.find_all("img"):
+        for a in soup.find_all("img", class_="rg_i Q4LuWd tx8vtf"):
             print(a.get('data-iurl'))
-            link , Type =json.loads(a.text)["ou"]  ,json.loads(a.text)["ity"]
-            ActualImages.append((link,Type))
+#            link , Type =json.loads(a.text)["ou"]  ,json.loads(a.text)["ity"]
+#            ActualImages.append((link,Type))
+            ActualImages.append(a.get('data-iurl'))
             print(ActualImages)
 
 #        img_list = []
@@ -215,7 +216,7 @@ def create_message_template(foodtype, txtmain):
         random_img_url = ActualImages[random.randint(0, len(ActualImages)+1)]
         print('fetch img url finish')
         print(random_img_url)
-        print(random_img_url[0])
+        print(random_img_url)
         
         if foodtype == '拉麵':
             google_string = {'q': txtmain + ' 拉麵'}
@@ -228,7 +229,7 @@ def create_message_template(foodtype, txtmain):
         
         print(txtmain)
 
-        return random_img_url[0], url_google
+        return random_img_url, url_google
 
     except Exception as e:
         reply = "失敗了"
