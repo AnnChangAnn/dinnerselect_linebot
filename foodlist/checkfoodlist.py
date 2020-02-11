@@ -8,7 +8,7 @@ from bs4 import BeautifulSoup
 
 import random
 import re
-import urllib
+#import urllib
 import urllib2
 import json
 
