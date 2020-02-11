@@ -8,8 +8,8 @@ from bs4 import BeautifulSoup
 
 import random
 import re
-#import urllib
-import urllib2
+import urllib
+#import urllib2
 import json
 
 # 我們的函數
@@ -180,7 +180,7 @@ def create_message_template(foodtype, txtmain):
         print(url)
         headers = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36'}
         
-        soup = BeautifulSoup(urllib2.urlopen(urllib2.Request(url,headers=headers)),'html.parser')
+        soup = BeautifulSoup(urllib.urlopen(urllib.Request(url,headers=headers)),'html.parser')
 
 #        req = urllib.request.Request(url, headers = headers)
 #        conn = urllib.request.urlopen(req)
