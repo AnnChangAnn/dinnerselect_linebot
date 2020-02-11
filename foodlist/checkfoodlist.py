@@ -183,7 +183,7 @@ def create_message_template(foodtype, txtmain):
         print('fetch conn finish')
 
 #        pattern = 'img data-src="\S*"'
-        pattern = 'data-iid="0" data-iurl="*"'
+        pattern = 'data-iid="0" data-iurl="\*"'
         img_list = []
         
         result_finditer = re.finditer(pattern, str(conn.read()))
