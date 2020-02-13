@@ -195,7 +195,8 @@ def create_message_template(foodtype, txtmain):
 #        pattern = ',["https://"\S*".jpg"'
 
         ActualImages=[]# contains the link for Large original images, type of  image
-        for a in soup.find_all("img", class_="rg_i Q4LuWd tx8vtf", limit=1):
+#        for a in soup.find_all("img", class_="rg_i Q4LuWd tx8vtf", limit=1):
+        for a in soup.find("img", {"class":"rg_i Q4LuWd tx8vtf"}):
             print(a.get('data-iurl'))
             ActualImages.append(a.get('data-iurl'))
             print(ActualImages)
