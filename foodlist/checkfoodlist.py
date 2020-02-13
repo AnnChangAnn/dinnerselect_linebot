@@ -180,8 +180,8 @@ def create_message_template(foodtype, txtmain):
         print(url)
         headers = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36'}
         
-#        soup = BeautifulSoup(urllib.request.urlopen(urllib.request.Request(url,headers=headers)),'html.parser')
-        soup = BeautifulSoup(urllib.request.urlopen(urllib.request.Request(url,headers=headers)),'lxml')
+        soup = BeautifulSoup(urllib.request.urlopen(urllib.request.Request(url,headers=headers)),'html.parser')
+#        soup = BeautifulSoup(urllib.request.urlopen(urllib.request.Request(url,headers=headers)),'lxml')
 
 #        req = urllib.request.Request(url, headers = headers)
 #        conn = urllib.request.urlopen(req)
