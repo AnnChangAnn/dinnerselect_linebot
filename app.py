@@ -45,7 +45,7 @@ def callback():
 #加入群組自動發送
 @handler.add(JoinEvent)
 def handle_join(event):
-    message = TextSendMessage(text=" 各位安安\n還不知道晚餐要吃什麼好嗎?\n問我就對了！！\n\n輸入 晚餐吃啥 or 吃拉麵嗎\n來獲得良好的建議！\n-----\n懶得開google嗎?\n輸入：\n!想吃(空格)食物名\n我們幫你搜尋~\n-----\n想新加入菜單\n請輸入：\n\n我要新增拉麵(空格)拉麵名\n\n或\n\n我要新增晚餐(空格)食物名\n\n來加入菜單\n例如：\n我要新增晚餐 蛋炒飯\n\n我們就會幫您加入'蛋炒飯'這個菜單\n-----\n若想再看一次此內容\n請輸入：\n!機器人自介")
+    message = TextSendMessage(text=" 安安你好\n還不知道晚餐要吃什麼好嗎?\n問我就對了！！\n\n輸入 晚餐吃啥 or 吃拉麵嗎\n來獲得良好的建議！\n-----\n懶得開google嗎?\n輸入：\n!想吃(空格)食物名\n我們幫你搜尋~\n-----\n想新加入菜單\n請輸入：\n\n我要新增拉麵(空格)拉麵名\n\n或\n\n我要新增晚餐(空格)食物名\n\n來加入菜單\n例如：\n我要新增晚餐 蛋炒飯\n\n我們就會幫您加入'蛋炒飯'這個菜單\n-----\n若想再看一次此內容\n請輸入：\n!機器人自介")
 
     line_bot_api.reply_message(
             event.reply_token,message)
@@ -54,7 +54,7 @@ def handle_join(event):
 # 加好友回覆
 @handler.add(FollowEvent)
 def handle_follow(event):
-    message = TextSendMessage(text=" 各位安安\n還不知道晚餐要吃什麼好嗎?\n問我就對了！！\n\n輸入 晚餐吃啥 or 吃拉麵嗎\n來獲得良好的建議！\n-----\n懶得開google嗎?\n輸入：\n!想吃(空格)食物名\n我們幫你搜尋~\n-----\n想新加入菜單\n請輸入：\n\n我要新增拉麵(空格)拉麵名\n\n或\n\n我要新增晚餐(空格)食物名\n\n來加入菜單\n例如：\n我要新增晚餐 蛋炒飯\n\n我們就會幫您加入'蛋炒飯'這個菜單\n-----\n若想再看一次此內容\n請輸入：\n!機器人自介")
+    message = TextSendMessage(text=" 安安你好\n還不知道晚餐要吃什麼好嗎?\n問我就對了！！\n\n輸入 晚餐吃啥 or 吃拉麵嗎\n來獲得良好的建議！\n-----\n懶得開google嗎?\n輸入：\n!想吃(空格)食物名\n我們幫你搜尋~\n-----\n想新加入菜單\n請輸入：\n\n我要新增拉麵(空格)拉麵名\n\n或\n\n我要新增晚餐(空格)食物名\n\n來加入菜單\n例如：\n我要新增晚餐 蛋炒飯\n\n我們就會幫您加入'蛋炒飯'這個菜單\n-----\n若想再看一次此內容\n請輸入：\n!機器人自介")
 
     line_bot_api.reply_message(
             event.reply_token,message)
@@ -175,7 +175,7 @@ def handle_message(event):
 #        elif strCheck.find('晚餐機器人') >= 0:
         elif strCheck == "!機器人自介" or strCheck == "！機器人自介":
 #            if strCheck.find('自我介紹') >= 0 :
-            message = TextSendMessage(text="各位安安\n還不知道晚餐要吃什麼好嗎?\n問我就對了！！\n\n輸入 晚餐吃啥 or 吃拉麵嗎\n來獲得良好的建議！\n-----\n懶得開google嗎?\n輸入：\n!想吃(空格)食物名\n我們幫你搜尋~\n-----\n想新加入菜單\n請輸入：\n\n我要新增拉麵(空格)拉麵名\n\n或\n\n我要新增晚餐(空格)食物名\n\n來加入菜單\n例如：\n我要新增晚餐 蛋炒飯\n\n我們就會幫您加入'蛋炒飯'這個菜單\n-----\n若想再看一次此內容\n請輸入：\n!機器人自介")
+            message = TextSendMessage(text="安安你好\n還不知道晚餐要吃什麼好嗎?\n問我就對了！！\n\n輸入 晚餐吃啥 or 吃拉麵嗎\n來獲得良好的建議！\n-----\n懶得開google嗎?\n輸入：\n!想吃(空格)食物名\n我們幫你搜尋~\n-----\n想新加入菜單\n請輸入：\n\n我要新增拉麵(空格)拉麵名\n\n或\n\n我要新增晚餐(空格)食物名\n\n來加入菜單\n例如：\n我要新增晚餐 蛋炒飯\n\n我們就會幫您加入'蛋炒飯'這個菜單\n-----\n若想再看一次此內容\n請輸入：\n!機器人自介")
             line_bot_api.reply_message(event.reply_token, message)
                 
         #"吃??嗎"的特定回覆
