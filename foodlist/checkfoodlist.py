@@ -187,7 +187,7 @@ def create_message_template(foodtype, txtmain):
 #        conn = urllib.request.urlopen(req)
 
         print('fetch conn finish')
-        print(soup)
+#        print(soup)
 
 #        pattern = 'img data-src="\S*"'
 #        pattern = 'data-iid="0" data-iurl="\S*"'
