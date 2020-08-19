@@ -15,6 +15,7 @@ import json
 
 # 我們的函數
 from foodlist import dbcontrol, formattext
+import requests
 
 # Channel Access Token
 line_bot_api = LineBotApi('OxFz4p5BSnf4OMX3gG5RsWOoDt1xKqb/MgIgkPpCFZAG97cU085VHbKqX3M7PxMT7UcMqPLD1g2/GAtXLrCtA3csBzCLulogW6zckNvfTl1UDo8ypLml38KT8kWLtPeE53AkumUg+w+MYlTD3Cp/sgdB04t89/1O/w1cDnyilFU=')
@@ -247,16 +248,17 @@ def test_geocoding(event):
         url = f"https://maps.googleapis.com/maps/api/geocode/json?address={q_string}&key=%20AIzaSyDK-Gv6pcSDFWyexGbFGNVRuerH8HsNWQU"
         print(url)
      
-        req = urllib.request.Request(url)
+        #req = urllib.request.Request(url)
+        req = requests.get(url)
         print('request success!!')
         print(req)
-        output = json.loads(req)
+        #output = json.loads(req)
         #output = urllib.request.urlopen(req)
         print('output success!!')
-        print ("output['types']: ＃＃", output['types'])
+        print (r.text)
         #print(output.read())
      
-        return output['types']
+        return r.text #output['types']
         #return output.read()
      
     
