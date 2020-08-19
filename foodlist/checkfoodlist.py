@@ -5,7 +5,7 @@ from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
 from linebot.models import MessageEvent, PostbackEvent, TextMessage, TextSendMessage, ImageSendMessage, FlexSendMessage
 from bs4 import BeautifulSoup
-from selenium import webdriver
+#from selenium import webdriver
 
 import random
 import re
