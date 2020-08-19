@@ -248,7 +248,10 @@ def test_geocoding(event):
         print(url)
      
         req = urllib.request.Request(url)
+        print('request success!!')
+        print(req)
         output = urllib.request.urlopen(req)
+        print('output success!!')
         print(output.read())
      
         return output.read()
