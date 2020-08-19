@@ -260,8 +260,9 @@ def test_geocoding(event):
         print(list_of_dicts["status"])
         #print (req.status)
         #rint(output['location'])
-     
-        return req.text #output['types']
+
+        return list_of_dicts["location"]
+        #return req.text #output['types']
         #return output.read()
      
     
