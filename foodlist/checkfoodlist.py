@@ -255,9 +255,11 @@ def test_geocoding(event):
         #output = json.loads(req)
         #output = urllib.request.urlopen(req)
         print('output success!!')
-        print (req.text)
+        #print (req.text)
         list_of_dicts = req.json()
         print(list_of_dicts["status"])
+        for aaa in list_of_dicts:
+            print(aaa)
         list_of_result = list_of_dicts["results"]
         list_of_geo = list_of_result["geometry"]
         #print (req.status)
