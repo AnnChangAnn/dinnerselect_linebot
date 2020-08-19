@@ -257,4 +257,4 @@ def create_message_template(foodtype, txtmain):
      except:
          reply = "失敗了"
     
-     return reply
+     #return reply
