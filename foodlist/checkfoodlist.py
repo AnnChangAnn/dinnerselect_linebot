@@ -253,8 +253,10 @@ def test_geocoding(event):
         req_dict = req.json()
         json_string = json.dumps(req_dict)
         json_format = json.loads(json_string)
-        output = json_format['results'][0]['geometry']['location']
+        lat = json_format['results'][0]['geometry']['location']['lat']
+        lng = json_format['results'][0]['geometry']['location']['lng']
         print(output)
+        output = "lat:" + lat + ", lng:" + lng
         
         return output
      
