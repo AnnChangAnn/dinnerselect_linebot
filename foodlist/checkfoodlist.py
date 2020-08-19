@@ -257,9 +257,9 @@ def test_geocoding(event):
         lng = json_format['results'][0]['geometry']['location']['lng']
         print(lat, lng)
         output = "lat:" + lat + ", lng:" + lng
-        print(output)
+        print(f"{output}")
         
-        return output
+        return f"{output}"
      
     
     except:
