@@ -259,8 +259,10 @@ def test_geocoding(event):
         list_of_dicts = req.json()
         #print(list_of_dicts["status"])
         print(list_of_dicts['results'])
-        print(type(list_of_dicts['results']))
-        list_of_result = json.dumps([ob.__dict__ for ob in list_of_dicts['results']])
+        xxx = list_of_dicts['results'].split("'location'")[1].split("'location_type'")[0]
+        print(xxx)
+        #print(type(list_of_dicts['results']))
+        #list_of_result = json.dumps([ob.__dict__ for ob in list_of_dicts['results']])
         #print(list_of_result)
         #list_of_result = json.dumps(list_of_dicts["results"].__dict__)
         #xxx = json.loads(list_of_result)
@@ -270,8 +272,8 @@ def test_geocoding(event):
         #print (req.status)
         #rint(output['location'])
 
-        return list_of_geo["location"]
-        #return req.text #output['types']
+        #return list_of_geo["location"]
+        return req.text #output['types']
         #return output.read()
      
     
