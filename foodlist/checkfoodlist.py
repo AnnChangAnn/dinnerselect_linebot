@@ -250,11 +250,14 @@ def test_geocoding(event):
         req = urllib.request.Request(url)
         print('request success!!')
         print(req)
-        output = urllib.request.urlopen(req)
+        output = json.loads(req)
+        #output = urllib.request.urlopen(req)
         print('output success!!')
-        print(output.read())
+        print ("output['types']: ＃＃", output['types'])
+        ＃print(output.read())
      
-        return output.read()
+        return output['types']
+        #return output.read()
      
     
     except:
