@@ -256,10 +256,10 @@ def test_geocoding(event):
         lat = json_format['results'][0]['geometry']['location']['lat']
         lng = json_format['results'][0]['geometry']['location']['lng']
         print(lat, lng)
-        output = "lat:" + lat + ", lng:" + lng
-        print(f"{output}")
+        output = f"lat:{lat}, lng:{lng}"
+        print(output)
         
-        return f"{output}"
+        return output
      
     
     except:
