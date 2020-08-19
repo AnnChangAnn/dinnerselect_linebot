@@ -257,7 +257,7 @@ def test_geocoding(event):
         print('output success!!')
         #print (req.text)
         list_of_dicts = req.json()
-        data = json.loads(req)
+        data = json.loads(list_of_dicts)
         print(data['results']['geometry']['location'])
         #print(list_of_dicts["status"])
         print(list_of_dicts['results'])
