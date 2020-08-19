@@ -239,22 +239,22 @@ def create_message_template(foodtype, txtmain):
  
  def test_geocoding(event):
 
- try:
+     try:
      
-     txttext = event.message.text
-     text_list = txttext.split(' ')
-     q_string = text_list[1]
-     url = f"https://maps.googleapis.com/maps/api/geocode/json?address={q_string}&key=%20AIzaSyDK-Gv6pcSDFWyexGbFGNVRuerH8HsNWQU"
-     print(url)
+         txttext = event.message.text
+         text_list = txttext.split(' ')
+         q_string = text_list[1]
+         url = f"https://maps.googleapis.com/maps/api/geocode/json?address={q_string}&key=%20AIzaSyDK-Gv6pcSDFWyexGbFGNVRuerH8HsNWQU"
+         print(url)
      
-     req = urllib.request.Request(url)
-     output = urllib.request.urlopen(req)
-     print(output.read())
+         req = urllib.request.Request(url)
+         output = urllib.request.urlopen(req)
+         print(output.read())
      
-     return output.read()
+         return output.read()
      
-
- except:
-     reply = "失敗了"
-
- return reply
+    
+     except:
+         reply = "失敗了"
+    
+     return reply
