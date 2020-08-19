@@ -256,8 +256,10 @@ def test_geocoding(event):
         #output = urllib.request.urlopen(req)
         print('output success!!')
         print (req.text)
-        print (req.status)
-        p#rint(output['location'])
+        list_of_dicts = req.json()
+        print(list_of_dicts["status"])
+        #print (req.status)
+        #rint(output['location'])
      
         return req.text #output['types']
         #return output.read()
