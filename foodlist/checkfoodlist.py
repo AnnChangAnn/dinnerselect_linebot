@@ -247,40 +247,16 @@ def test_geocoding(event):
         q_string = text_list[1]
         url = f"https://maps.googleapis.com/maps/api/geocode/json?address={q_string}&key=%20AIzaSyDK-Gv6pcSDFWyexGbFGNVRuerH8HsNWQU"
         print(url)
-     
-        #req = urllib.request.Request(url)
+
         req = requests.get(url)
         print('request success!!')
-        print(type(req))
-        #print(req)
-        #output = json.loads(req)
-        #output = urllib.request.urlopen(req)
-        print('output success!!')
-        #print (req.text)
-        #list_of_dicts = req.json()
-        rrr = req.json()
-        #print(type(list_of_dicts))
-        r = json.dumps(rrr)
-        data = json.loads(r)
-        print(data['results'][0]['geometry']['location'])
-        #print(list_of_dicts["status"])
-        print(list_of_dicts['results'])
-        #xxx = list_of_dicts['results'].split("'location'")[1].split("'location_type'")[0]
-        #print(xxx)
-        #print(type(list_of_dicts['results']))
-        #list_of_result = json.dumps([ob.__dict__ for ob in list_of_dicts['results']])
-        #print(list_of_result)
-        #list_of_result = json.dumps(list_of_dicts["results"].__dict__)
-        #xxx = json.loads(list_of_result)
-        #print(xxx['geometry'])
-        #list_of_geo = list_of_result["geometry"]
-        #print(list_of_geo)
-        #print (req.status)
-        #rint(output['location'])
-
-        #return list_of_geo["location"]
-        return req.text #output['types']
-        #return output.read()
+        req_dict = req.json()
+        json_string = json.dumps(req_dict)
+        json_format = json.loads(json_string)
+        output = json_format['results'][0]['geometry']['location']
+        print(output)
+        
+        return output
      
     
     except:
