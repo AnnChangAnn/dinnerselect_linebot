@@ -254,7 +254,7 @@ def test_geocoding(event):
         #output = urllib.request.urlopen(req)
         print('output success!!')
         print ("output['types']: ＃＃", output['types'])
-        ＃print(output.read())
+        #print(output.read())
      
         return output['types']
         #return output.read()
