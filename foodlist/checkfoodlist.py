@@ -240,6 +240,10 @@ def create_message_template(foodtype, txtmain):
  def test_geocoding(event):
 
  try:
+     
+     txttext = event.message.text
+     text_list = txttext.split(' ')
+     q_string = text_list[1]
      url = f"https://maps.googleapis.com/maps/api/geocode/json?address={q_string}&key=%20AIzaSyDK-Gv6pcSDFWyexGbFGNVRuerH8HsNWQU"
      print(url)
      
