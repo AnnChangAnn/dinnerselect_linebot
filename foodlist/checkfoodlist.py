@@ -5,6 +5,7 @@ from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
 from linebot.models import MessageEvent, PostbackEvent, TextMessage, TextSendMessage, ImageSendMessage, FlexSendMessage
 from bs4 import BeautifulSoup
+from selenium import webdriver
 
 import random
 import re
@@ -235,5 +236,21 @@ def create_message_template(foodtype, txtmain):
         reply = "失敗了"
         print(e)
         return reply
-       
+ 
+ def test_geocoding(event):
 
+ try:
+     url = f"https://maps.googleapis.com/maps/api/geocode/json?address={q_string}&key=%20AIzaSyDK-Gv6pcSDFWyexGbFGNVRuerH8HsNWQU"
+     print(url)
+     
+     req = urllib.request.Request(url)
+     output = urllib.request.urlopen(req)
+     print(output.read())
+     
+     return output.read()
+     
+
+ except:
+     reply = "失敗了"
+
+ return reply
