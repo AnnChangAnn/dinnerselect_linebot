@@ -215,7 +215,7 @@ def handle_message(event):
             reply = checkfoodlist.line_delete_data(event)
             message = TextSendMessage(text= reply)
             line_bot_api.reply_message(event.reply_token, message)
-        elif strCheck.find('！想吃 ') == 0 or strCheck.find('!想吃 ') == 0: #geocoding test
+        elif strCheck.find('！店家 ') == 0 or strCheck.find('!店家 ') == 0: #geocoding test
             reply = checkfoodlist.test_geocoding(event)
             message = TextSendMessage(text= reply)
             line_bot_api.reply_message(event.reply_token, message)
