@@ -252,11 +252,12 @@ def test_geocoding(event):
         req = requests.get(url)
         print('request success!!')
         #print(req)
-        output = json.loads(req)
+        #output = json.loads(req)
         #output = urllib.request.urlopen(req)
         print('output success!!')
         print (req.text)
-        print(output['location'])
+        print (req.status)
+        p#rint(output['location'])
      
         return req.text #output['types']
         #return output.read()
