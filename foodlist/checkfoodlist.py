@@ -260,9 +260,10 @@ def test_geocoding(event):
         print(list_of_dicts["status"])
         #for aaa in list_of_dicts:
         print(list_of_dicts['results'])
-        list_of_result = list_of_dicts["results"].json()
+        list_of_result = list_of_dicts["results"]
         print(list_of_result)
         list_of_geo = list_of_result["geometry"]
+        print(list_of_geo)
         #print (req.status)
         #rint(output['location'])
 
