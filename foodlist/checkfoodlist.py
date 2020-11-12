@@ -275,8 +275,8 @@ def lineNotifyMessage(event):
         
         #msg = '嗨嗨'
         #token = 'UHuNE7kJqtjMywNnNWRTNbz62SEDhwN5upw5OPOj19H'
-        token = 'Q2bIg5ezRJOwgRm6pk6kSQeaKXw82OoPg2XzaTWPnwp' #國泰用權杖
-        #token = 'USkHU0yOjSAfbkeB3fWA8OgUfBixKvMlPKQ4OOSFbjC' #小嘍囉審核群
+        #token = 'Q2bIg5ezRJOwgRm6pk6kSQeaKXw82OoPg2XzaTWPnwp' #國泰用權杖
+        token = 'USkHU0yOjSAfbkeB3fWA8OgUfBixKvMlPKQ4OOSFbjC' #小嘍囉審核群
         
         headers = {
             "Authorization": "Bearer " + token,
