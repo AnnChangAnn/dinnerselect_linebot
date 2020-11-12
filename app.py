@@ -37,8 +37,8 @@ def test():
 
 def lineNotifyMessage(token, msg):
     #msg = '嗨嗨'
-    #token = 'cNli7fHSNzcYtAQnh8JpsZ6QA7RoWW2P711SO8hevca'
-    token = 'IiJV43n3iEw0Gm3f2Qb1QF2E9LfnY8Rvr1BvD2kevg9'
+    #token = 'C2MMtPLrfSbUaTyaGWxZM7Zq58LwRKKoNjMfMWXtpGt' #國泰發行權杖
+    token = 'Q2bIg5ezRJOwgRm6pk6kSQeaKXw82OoPg2XzaTWPnwp'
     headers = {
         "Authorization": "Bearer " + token,
         "Content-Type" : "application/x-www-form-urlencoded"}
