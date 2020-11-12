@@ -13,6 +13,7 @@ from foodlist import checkfoodlist
 import random
 import re
 import urllib
+import requests
 
 app = Flask(__name__)
 
@@ -30,7 +31,8 @@ def home():
 @app.route("/test", methods=['GET'])
 def test():
     values = request.args.get('value')
-    return  lineNotifyMessage('1',values)
+    #return  lineNotifyMessage('1',values)
+    status_code = lineNotifyMessage('1',values)
 
 def lineNotifyMessage(token, msg):
     #msg = '嗨嗨'
