@@ -274,8 +274,8 @@ def lineNotifyMessage(event):
         q_string = text_list[1]
         
         #msg = '嗨嗨'
-        token = 'cNli7fHSNzcYtAQnh8JpsZ6QA7RoWW2P711SO8hevca'
-        #token = 'IiJV43n3iEw0Gm3f2Qb1QF2E9LfnY8Rvr1BvD2kevg9'
+        #token = 'cNli7fHSNzcYtAQnh8JpsZ6QA7RoWW2P711SO8hevca'
+        token = 'IiJV43n3iEw0Gm3f2Qb1QF2E9LfnY8Rvr1BvD2kevg9'
         
         headers = {
             "Authorization": "Bearer " + token,
