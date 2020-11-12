@@ -264,6 +264,7 @@ def test_geocoding(event):
     
     except:
         reply = "失敗了"
+        return reply
 
 def lineNotifyMessage(event):
     
@@ -284,5 +285,7 @@ def lineNotifyMessage(event):
         return q_string
         
     except:
-        return = "failed"
+        reply = "failed"
+        return reply
+        
     #return reply
