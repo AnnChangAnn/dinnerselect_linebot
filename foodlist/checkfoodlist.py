@@ -274,8 +274,8 @@ def lineNotifyMessage(event):
         q_string = text_list[1]
         
         #msg = '嗨嗨'
-        #token = 'UHuNE7kJqtjMywNnNWRTNbz62SEDhwN5upw5OPOj19H'
-        #token = 'Q2bIg5ezRJOwgRm6pk6kSQeaKXw82OoPg2XzaTWPnwp' #國泰用權杖
+        #token = 'C2MMtPLrfSbUaTyaGWxZM7Zq58LwRKKoNjMfMWXtpGt' #國泰發行權杖
+        #token = 'Q2bIg5ezRJOwgRm6pk6kSQeaKXw82OoPg2XzaTWPnwp' #cathaybk測試權杖
         token = 'USkHU0yOjSAfbkeB3fWA8OgUfBixKvMlPKQ4OOSFbjC' #小嘍囉審核群
         
         headers = {
