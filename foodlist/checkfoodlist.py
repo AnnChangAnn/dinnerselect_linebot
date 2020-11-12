@@ -265,4 +265,24 @@ def test_geocoding(event):
     except:
         reply = "失敗了"
 
+def lineNotifyMessage(event):
+    
+    try:
+        txttext = event.message.text
+        text_list = txttext.split(' ')
+        q_string = text_list[1]
+        
+        #msg = '嗨嗨'
+        token = 'cNli7fHSNzcYtAQnh8JpsZ6QA7RoWW2P711SO8hevca'
+        #token = 'IiJV43n3iEw0Gm3f2Qb1QF2E9LfnY8Rvr1BvD2kevg9'
+        
+        headers = {
+            "Authorization": "Bearer " + token,
+            "Content-Type" : "application/x-www-form-urlencoded"}
+        payload = {'message': q_string}
+        r = requests.post("https://notify-api.line.me/api/notify", headers = headers,     params =     payload)
+        return q_string
+        
+    except:
+        return = "failed"
     #return reply

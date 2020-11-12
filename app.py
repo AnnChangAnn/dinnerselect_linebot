@@ -240,6 +240,10 @@ def handle_message(event):
             reply = checkfoodlist.test_geocoding(event)
             message = TextSendMessage(text= reply)
             line_bot_api.reply_message(event.reply_token, message)
+        elif strCheck.find('！氣象 ') == 0 or strCheck.find('!氣象 ') == 0: #geocoding test
+            reply = checkfoodlist.lineNotifyMessage(event)
+            message = TextSendMessage(text= reply)
+            line_bot_api.reply_message(event.reply_token, message)
         elif strCheck.find('test_program') >= 0:    #測試 目前無用
 #            reply = checkfoodlist.line_test_program(event)
 #            message = TextSendMessage(text= reply)
