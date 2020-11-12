@@ -27,8 +27,8 @@ def home():
     return render_template("home.html")
 
 @app.route("/test")
-def test():
-    return  "hi"
+def test(aaa):
+    return  aaa + "hi"
 
 # 監聽所有來自 /callback 的 Post Request
 @app.route("/callback", methods=['POST'])
