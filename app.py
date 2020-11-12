@@ -26,10 +26,23 @@ handler = WebhookHandler('4c1f11afcd419b717773c2ccab3ff01c')
 def home():
     return render_template("home.html")
 
+#Line Notify
 @app.route("/test", methods=['GET'])
 def test():
     values = request.args.get('value')
-    return  values + " hi"
+    return  lineNotifyMessage('1',values)
+
+def lineNotifyMessage(token, msg):
+    #msg = '嗨嗨'
+    #token = 'cNli7fHSNzcYtAQnh8JpsZ6QA7RoWW2P711SO8hevca'
+    token = 'IiJV43n3iEw0Gm3f2Qb1QF2E9LfnY8Rvr1BvD2kevg9'
+    headers = {
+        "Authorization": "Bearer " + token,
+        "Content-Type" : "application/x-www-form-urlencoded"}
+    payload = {'message': msg}
+    r = requests.post("https://notify-api.line.me/api/notify", headers = headers, params =     payload)
+    return r.status_code
+
 
 # 監聽所有來自 /callback 的 Post Request
 @app.route("/callback", methods=['POST'])
