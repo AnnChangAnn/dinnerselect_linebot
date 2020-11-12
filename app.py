@@ -31,8 +31,8 @@ def home():
 @app.route("/test", methods=['GET'])
 def test():
     values = request.args.get('value')
-    #return  lineNotifyMessage('1',values)
-    status_code = lineNotifyMessage('1',values)
+    return  lineNotifyMessage('1',values)
+    #status_code = lineNotifyMessage('1',values)
 
 def lineNotifyMessage(token, msg):
     #msg = '嗨嗨'
