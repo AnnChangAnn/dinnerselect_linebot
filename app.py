@@ -28,7 +28,8 @@ def home():
 
 @app.route("/test", methods=['GET'])
 def test():
-    return  test + "hi"
+    values = request.args.get('value')
+    return  values + " hi"
 
 # 監聽所有來自 /callback 的 Post Request
 @app.route("/callback", methods=['POST'])
