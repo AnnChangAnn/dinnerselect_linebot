@@ -26,6 +26,10 @@ handler = WebhookHandler('4c1f11afcd419b717773c2ccab3ff01c')
 def home():
     return render_template("home.html")
 
+@app.route("/test")
+def test():
+    return  "hi"
+
 # 監聽所有來自 /callback 的 Post Request
 @app.route("/callback", methods=['POST'])
 def callback():
