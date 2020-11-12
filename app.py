@@ -51,7 +51,7 @@ def lineNotifyMessage(token, msg):
     NowTime = NowDate + 'T06:00:00'
     
     Location_List = ['臺北市','新北市','桃園市','基隆市']
-    msg = "今日白天天氣\r    時間: 6:00~18:00\r"
+    msg = "今日天氣\r    時間: 6:00~18:00\r"
     msg_weather = ''
     
     for i in Location_List[0:]:
