@@ -270,8 +270,9 @@ def lineNotifyMessage(event):
     
     try:
         txttext = event.message.text
-        text_list = txttext.split(' ')
-        q_string = text_list[1]
+        #text_list = txttext.split(' ')
+        #q_string = text_list[1]
+        q_string = txttext[4:]
         
         #msg = '嗨嗨'
         #token = 'C2MMtPLrfSbUaTyaGWxZM7Zq58LwRKKoNjMfMWXtpGt' #國泰發行權杖
