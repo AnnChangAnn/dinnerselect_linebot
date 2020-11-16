@@ -298,6 +298,7 @@ def lineNotifyWeather(event):
             json_format = json.loads(json_string)
             location = json_format['records']['location'][0]['locationName']
             weather =     json_format['records']['location'][0]['weatherElement'][0]['time'][0]    ['parameter']['parameterName']
+            feeling =     json_format['records']['location'][0]['weatherElement'][3]['time'][0]    ['parameter']['parameterName']
             MinT =     json_format['records']['location'][0]['weatherElement'][2]['time'][0]    ['parameter']['parameterName']
             MaxT =     json_format['records']['location'][0]['weatherElement'][4]['time'][0]    ['parameter']['parameterName']
             pop =     json_format['records']['location'][0]['weatherElement'][1]['time'][0]    ['parameter']['parameterName']
@@ -306,7 +307,8 @@ def lineNotifyWeather(event):
             #print(lat, lng)
             msg_weather = msg_weather + f'''
             
-        {location}: {weather}
+        {location}
+        {weather}，{feeling}
         氣溫: {MinT}度~{MaxT}度
         降雨機率: {pop}%'''
         
