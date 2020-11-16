@@ -285,7 +285,7 @@ def lineNotifyWeather(event):
             "Content-Type" : "application/x-www-form-urlencoded"}
             
         Location_List = ['臺北市','新北市','桃園市','基隆市']
-        msg = "今日白天天氣\r"
+        msg = "\r"
         msg_weather = ''
         
         for i in Location_List[0:]:
