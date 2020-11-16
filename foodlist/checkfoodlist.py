@@ -266,7 +266,7 @@ def test_geocoding(event):
         reply = "失敗了"
         return reply
 
-def lineNotifyMessage(event):
+def lineNotifyWeather(event):
     
     try:
         txttext = event.message.text
@@ -278,6 +278,7 @@ def lineNotifyMessage(event):
         #token = 'C2MMtPLrfSbUaTyaGWxZM7Zq58LwRKKoNjMfMWXtpGt' #國泰發行權杖
         token = 'Q2bIg5ezRJOwgRm6pk6kSQeaKXw82OoPg2XzaTWPnwp' #cathaybk測試權杖
         #token = 'USkHU0yOjSAfbkeB3fWA8OgUfBixKvMlPKQ4OOSFbjC' #小嘍囉審核群
+        #token = 'zhhw2k6lirJwSfpXhZH249cxodCafjozQdCtqUqpdXU' #小嘍囉管理版公告
         
         headers = {
             "Authorization": "Bearer " + token,
@@ -316,6 +317,32 @@ def lineNotifyMessage(event):
         r = requests.post("https://notify-api.line.me/api/notify", headers = headers,     params =     payload)
         return q_string
         
+    except:
+        reply = "failed"
+        return reply
+
+def lineNotifyAnnounce(event):
+
+    try:
+        txttext = event.message.text
+        #text_list = txttext.split(' ')
+        #q_string = text_list[1]
+        q_string = txttext[4:]
+    
+        #msg = '嗨嗨'
+        #token = 'C2MMtPLrfSbUaTyaGWxZM7Zq58LwRKKoNjMfMWXtpGt' #國泰發行權杖
+        token = 'Q2bIg5ezRJOwgRm6pk6kSQeaKXw82OoPg2XzaTWPnwp' #cathaybk測試權杖
+        #token = 'USkHU0yOjSAfbkeB3fWA8OgUfBixKvMlPKQ4OOSFbjC' #小嘍囉審核群
+        #token = 'zhhw2k6lirJwSfpXhZH249cxodCafjozQdCtqUqpdXU' #小嘍囉管理版公告
+    
+        headers = {
+            "Authorization": "Bearer " + token,
+            "Content-Type" : "application/x-www-form-urlencoded"}
+    
+        payload = {'message': q_string}
+        r = requests.post("https://notify-api.line.me/api/notify", headers = headers,         params =     payload)
+        return q_string
+    
     except:
         reply = "failed"
         return reply

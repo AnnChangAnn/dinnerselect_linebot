@@ -35,13 +35,14 @@ def home():
 def test():
     values = request.args.get('value')
     #return  lineNotifyMessage('1',values)
-    status_code = lineNotifyMessage('1',values)
+    status_code = lineNotifyWeather('1',values)
     return '123'
 
-def lineNotifyMessage(token, msg):
+def lineNotifyWeather(token, msg):
     #token = 'C2MMtPLrfSbUaTyaGWxZM7Zq58LwRKKoNjMfMWXtpGt' #國泰發行權杖
     #token = 'Q2bIg5ezRJOwgRm6pk6kSQeaKXw82OoPg2XzaTWPnwp' #cathaybk測試權杖
-    token = 'USkHU0yOjSAfbkeB3fWA8OgUfBixKvMlPKQ4OOSFbjC' #小嘍囉審核群
+    #token = 'USkHU0yOjSAfbkeB3fWA8OgUfBixKvMlPKQ4OOSFbjC' #小嘍囉審核群
+    token = 'zhhw2k6lirJwSfpXhZH249cxodCafjozQdCtqUqpdXU' #小嘍囉管理版公告
     headers = {
         "Authorization": "Bearer " + token,
         "Content-Type" : "application/x-www-form-urlencoded"}
@@ -277,9 +278,13 @@ def handle_message(event):
             message = TextSendMessage(text= reply)
             line_bot_api.reply_message(event.reply_token, message)
         elif strCheck.find('！氣象 ') == 0 or strCheck.find('!氣象 ') == 0: #geocoding test
-            reply = checkfoodlist.lineNotifyMessage(event)
+            reply = checkfoodlist.lineNotifyWeather(event)
             message = TextSendMessage(text= reply)
             line_bot_api.reply_message(event.reply_token, message)
+        elif strCheck.find('！公告 ') == 0 or strCheck.find('!公告 ') == 0: #geocoding test
+            reply = checkfoodlist.lineNotifyAnnounce(event)
+            #message = TextSendMessage(text= reply)
+            #line_bot_api.reply_message(event.reply_token, message)
         elif strCheck.find('test_program') >= 0:    #測試 目前無用
 #            reply = checkfoodlist.line_test_program(event)
 #            message = TextSendMessage(text= reply)
