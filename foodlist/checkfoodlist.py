@@ -307,10 +307,10 @@ def lineNotifyWeather(event):
             #print(lat, lng)
             msg_weather = msg_weather + f'''
             
-        {location}
-        {weather}，{feeling}
-        氣溫: {MinT}度~{MaxT}度
-        降雨機率: {pop}%'''
+    {location}
+    {weather}，{feeling}
+    氣溫: {MinT}度~{MaxT}度
+    降雨機率: {pop}%'''
         
         payload = {'message': msg + msg_weather}
             
@@ -335,7 +335,8 @@ def lineNotifyAnnounce(event):
         #token = 'C2MMtPLrfSbUaTyaGWxZM7Zq58LwRKKoNjMfMWXtpGt' #國泰發行權杖
         #token = 'Q2bIg5ezRJOwgRm6pk6kSQeaKXw82OoPg2XzaTWPnwp' #cathaybk測試權杖
         #token = 'USkHU0yOjSAfbkeB3fWA8OgUfBixKvMlPKQ4OOSFbjC' #小嘍囉審核群
-        token = 'zhhw2k6lirJwSfpXhZH249cxodCafjozQdCtqUqpdXU' #小嘍囉管理版公告
+        #token = 'zhhw2k6lirJwSfpXhZH249cxodCafjozQdCtqUqpdXU' #小嘍囉管理版公告
+        token = 'mT4u7fjyHcfQLjpj2e1JnZrajS8Cz9wweBfD0Ad85nb' #小嘍囉公告
     
         headers = {
             "Authorization": "Bearer " + token,
