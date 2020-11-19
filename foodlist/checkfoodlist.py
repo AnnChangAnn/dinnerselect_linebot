@@ -257,7 +257,8 @@ def test_geocoding(event):
         lng = json_format['results'][0]['geometry']['location']['lng']
         loc = json_format['results'][0]['formatted_address']
         print(lat, lng)
-        output = (f"""經度:{lng} ,緯度:{lat}\n"""
+        output = (f"""經度:{lng}\n"""
+                  f"""緯度:{lat}\n"""
                   f"""地址:{loc}""")
         print(output)
         
