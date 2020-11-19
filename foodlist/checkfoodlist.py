@@ -255,15 +255,17 @@ def test_geocoding(event):
         json_format = json.loads(json_string)
         lat = json_format['results'][0]['geometry']['location']['lat']
         lng = json_format['results'][0]['geometry']['location']['lng']
+        lng = json_format['results'][0]['formatted_address']
         print(lat, lng)
-        output = f"lat:{lat}, lng:{lng}"
+        output = f"""經度:{lng} ,緯度:{lat}
+        地址:{loc}"""
         print(output)
         
         return output
      
     
     except:
-        reply = "失敗了"
+        reply = "查無此地點"
         return reply
 
 def lineNotifyWeather(event):
