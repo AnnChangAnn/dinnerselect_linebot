@@ -245,7 +245,7 @@ def test_geocoding(event):
         txttext = event.message.text
         text_list = txttext.split(' ')
         q_string = text_list[1]
-        url = f"https://maps.googleapis.com/maps/api/geocode/json?address={q_string}&key=%20AIzaSyDK-Gv6pcSDFWyexGbFGNVRuerH8HsNWQU"
+        url = f"https://maps.googleapis.com/maps/api/geocode/json?address={q_string}&key=AIzaSyDK-Gv6pcSDFWyexGbFGNVRuerH8HsNWQU"
         print(url)
 
         req = requests.get(url)
