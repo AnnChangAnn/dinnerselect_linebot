@@ -3,7 +3,7 @@ import os
 from flask import Flask, request, abort, render_template
 
 from linebot import (
-    LineBotApi, WebhookHandler, WebhookParser
+    LineBotApi, WebhookHandler
 )
 from linebot.exceptions import (
     InvalidSignatureError
@@ -41,7 +41,7 @@ if channel_access_token is None:
     sys.exit(1)
 
 line_bot_api = LineBotApi(channel_access_token)
-handler = WebhookParser(channel_secret)
+handler = WebhookHandler(channel_secret)
 
 #喚醒heroku
 @app.route("/")
