@@ -279,9 +279,10 @@ def lineNotifyWeather(event):
         
         #msg = '嗨嗨'
         #token = 'C2MMtPLrfSbUaTyaGWxZM7Zq58LwRKKoNjMfMWXtpGt' #國泰發行權杖
-        token = 'Q2bIg5ezRJOwgRm6pk6kSQeaKXw82OoPg2XzaTWPnwp' #cathaybk測試權杖
+        #token = 'Q2bIg5ezRJOwgRm6pk6kSQeaKXw82OoPg2XzaTWPnwp' #cathaybk測試權杖
         #token = 'USkHU0yOjSAfbkeB3fWA8OgUfBixKvMlPKQ4OOSFbjC' #小嘍囉審核群
         #token = 'zhhw2k6lirJwSfpXhZH249cxodCafjozQdCtqUqpdXU' #小嘍囉管理版公告
+        token = 'DSbKQs4mH5nTdEC0k3BGwNZiOUagMJiZGVTOcH4jMuh' #小嘍囉今日天氣
         
         headers = {
             "Authorization": "Bearer " + token,
