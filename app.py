@@ -1,7 +1,8 @@
+import sys
 from flask import Flask, request, abort, render_template
 
 from linebot import (
-    LineBotApi, WebhookHandler
+    LineBotApi, WebhookHandler, WebhookParser
 )
 from linebot.exceptions import (
     InvalidSignatureError
@@ -21,9 +22,25 @@ from datetime import datetime
 app = Flask(__name__)
 
 # Channel Access Token
-line_bot_api = LineBotApi('OxFz4p5BSnf4OMX3gG5RsWOoDt1xKqb/MgIgkPpCFZAG97cU085VHbKqX3M7PxMT7UcMqPLD1g2/GAtXLrCtA3csBzCLulogW6zckNvfTl1UDo8ypLml38KT8kWLtPeE53AkumUg+w+MYlTD3Cp/sgdB04t89/1O/w1cDnyilFU=')
+#line_bot_api = LineBotApi('OxFz4p5BSnf4OMX3gG5RsWOoDt1xKqb/MgIgkPpCFZAG97cU085VHbKqX3M7PxMT7UcMqPLD1g2/GAtXLrCtA3csBzCLulogW6zckNvfTl1UDo8ypLml38KT8kWLtPeE53AkumUg+w+MYlTD3Cp/sgdB04t89/1O/w1cDnyilFU=')
 # Channel Secret
-handler = WebhookHandler('4c1f11afcd419b717773c2ccab3ff01c')
+#handler = WebhookHandler('4c1f11afcd419b717773c2ccab3ff01c')
+
+# get channel_secret and channel_access_token from your environment variable
+
+channel_secret = os.getenv('LINE_CHANNEL_SECRET',  None)
+channel_access_token = os.getenv('LINE_CHANNEL_ACCESS_TOKEN',  None)
+
+if channel_secret is None:
+    print('Specify LINE_CHANNEL_SECRET as environment variable.')
+    sys.exit(1)
+
+if channel_access_token is None:
+    print('Specify LINE_CHANNEL_ACCESS_TOKEN as environment variable.')
+    sys.exit(1)
+
+line_bot_api = LineBotApi(channel_access_token)
+parser = WebhookParser(channel_secret)
 
 #喚醒heroku
 @app.route("/")
