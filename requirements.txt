@@ -1,0 +1,6 @@
+line-bot-sdk
+psycopg2==2.8.4
+flask
+APScheduler==3.6.3
+bs4
+lxml
