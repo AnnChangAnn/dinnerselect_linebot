@@ -41,7 +41,7 @@ if channel_access_token is None:
     sys.exit(1)
 
 line_bot_api = LineBotApi(channel_access_token)
-parser = WebhookParser(channel_secret)
+handler = WebhookParser(channel_secret)
 
 #喚醒heroku
 @app.route("/")
