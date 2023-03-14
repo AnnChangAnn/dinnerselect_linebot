@@ -228,20 +228,6 @@ def handle_message(event):
 #                 message = ""
 #                 print(receivetxt)
 #                 line_bot_api.reply_message(event.reply_token, message)
-            
-#         #幹話
-#         elif event.message.text == "好美":
-#             message = TextSendMessage(text="哪有你美")
-#             line_bot_api.reply_message(event.reply_token, message)
-#         elif event.message.text == "好阿":
-#             message = TextSendMessage(text="好阿")
-#             line_bot_api.reply_message(event.reply_token, message)
-#         elif event.message.text == "好啊":
-#             message = TextSendMessage(text="好啊")
-#             line_bot_api.reply_message(event.reply_token, message)
-#         elif event.message.text == "好":
-#             message = TextSendMessage(text="好")
-#             line_bot_api.reply_message(event.reply_token, message)
         
 #         #一律只吃晚餐
 #         elif event.message.text == "中餐吃啥" or event.message.text == "午餐吃啥" or event.message.text == "早餐吃啥" or event.message.text == "早點吃啥" or event.message.text == "消夜吃啥" or event.message.text == "宵夜吃啥":
@@ -287,6 +273,20 @@ def handle_message(event):
         if strCheck == "!機器人自介" or strCheck == "！機器人自介":
  #            if strCheck.find('自我介紹') >= 0 :
             message = TextSendMessage(text=" 安安你好\n我只是個社畜機器人，你問啥我就回答啥~\n輸入 \'hi ai\'\n來獲得一些小建議\n-----\n若想再看一次此內容\n請輸入：\n!機器人自介")
+            line_bot_api.reply_message(event.reply_token, message)
+
+        #幹話
+        elif event.message.text == "好美":
+            message = TextSendMessage(text="哪有你美")
+            line_bot_api.reply_message(event.reply_token, message)
+        elif event.message.text == "好阿":
+            message = TextSendMessage(text="好阿")
+            line_bot_api.reply_message(event.reply_token, message)
+        elif event.message.text == "好啊":
+            message = TextSendMessage(text="好啊")
+            line_bot_api.reply_message(event.reply_token, message)
+        elif event.message.text == "好":
+            message = TextSendMessage(text="好")
             line_bot_api.reply_message(event.reply_token, message)
 
         #ChatGPT 回覆            
