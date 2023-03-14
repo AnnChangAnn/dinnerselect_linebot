@@ -302,7 +302,7 @@ def handle_message(event):
                 temperature=0.6
             )
             # 接收到回覆訊息後，移除換行符號
-            reply_msg = response["choices"][0]["text"].replace('\n', '')
+            reply_msg = response['choices'][0]['message']['content']
 
             message = TextSendMessage(text=reply_msg)
             line_bot_api.reply_message(event.reply_token, message)
