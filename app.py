@@ -290,7 +290,7 @@ def handle_message(event):
 
         #ChatGPT 回覆            
         elif strCheck[:5].lower() == 'hi ai':
-            openai.api_key = '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'
+            openai.api_key = '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'
             # 將第5個字元之後的訊息發送給 OpenAI
             prompt = strCheck[5:] 
             response = openai.Completion.create(
