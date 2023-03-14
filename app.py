@@ -294,10 +294,12 @@ def handle_message(event):
             openai.api_key = chatGPT_key
             # 將第5個字元之後的訊息發送給 OpenAI
             prompt = strCheck[5:] 
-            response = openai.Completion.create(
+            response = openai.ChatCompletion.create(
                 model='gpt-3.5-turbo',
                 messages=[
-                    {"role": "user", "content": prompt}]
+                    {'role': 'user', 'content': prompt}
+                ],
+                temperature=0.6
             )
             # 接收到回覆訊息後，移除換行符號
             reply_msg = response["choices"][0]["text"].replace('\n', '')
