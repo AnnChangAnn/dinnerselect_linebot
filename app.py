@@ -32,6 +32,7 @@ app = Flask(__name__)
 
 channel_secret = os.getenv('LINE_CHANNEL_SECRET',  None)
 channel_access_token = os.getenv('LINE_CHANNEL_ACCESS_TOKEN',  None)
+chatGPT_key = os.getenv('AI_APIKEY', None)
 
 if channel_secret is None:
     print('Specify LINE_CHANNEL_SECRET as environment variable.')
@@ -290,7 +291,7 @@ def handle_message(event):
 
         #ChatGPT 回覆            
         elif strCheck[:5].lower() == 'hi ai':
-            openai.api_key = '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'
+            openai.api_key = chatGPT_key
             # 將第5個字元之後的訊息發送給 OpenAI
             prompt = strCheck[5:] 
             response = openai.Completion.create(
