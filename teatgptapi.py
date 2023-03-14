@@ -1,7 +1,7 @@
 import openai
 import os
 
-chatGPT_key = os.getenv('AI_APIKEY', None)
+openai.api_key = os.getenv('AI_APIKEY', None)
 
 completion = openai.ChatCompletion.create(
     model='gpt-3.5-turbo',
@@ -11,4 +11,4 @@ completion = openai.ChatCompletion.create(
     temperature=0
 )
 
-print(completion['choices'][0]['message']['content'])
+print(completion['choices'][0]['message']['content'].replace('\n', ''))
