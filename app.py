@@ -296,9 +296,8 @@ def handle_message(event):
             prompt = strCheck[5:] 
             response = openai.Completion.create(
                 model='gpt-3.5-turbo',
-                prompt=prompt,
-                max_tokens=256,
-                temperature=0.5,
+                messages=[
+                    {"role": "user", "content": prompt}]
             )
             # 接收到回覆訊息後，移除換行符號
             reply_msg = response["choices"][0]["text"].replace('\n', '')
