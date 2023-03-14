@@ -4,3 +4,4 @@ flask
 APScheduler==3.6.3
 bs4
 lxml
+openai

@@ -1,3 +1,4 @@
+import openai
 import sys
 import os
 from flask import Flask, request, abort, render_template
@@ -122,7 +123,8 @@ def callback():
 #加入群組自動發送
 @handler.add(JoinEvent)
 def handle_join(event):
-    message = TextSendMessage(text=" 安安你好\n還不知道晚餐要吃什麼好嗎?\n問我就對了！！\n\n輸入 晚餐吃啥 or 吃拉麵嗎\n來獲得良好的建議！\n-----\n懶得開google嗎?\n輸入：\n!想吃(空格)食物名\n我們幫你搜尋~\n-----\n若想再看一次此內容\n請輸入：\n!機器人自介")
+    #message = TextSendMessage(text=" 安安你好\n還不知道晚餐要吃什麼好嗎?\n問我就對了！！\n\n輸入 晚餐吃啥 or 吃拉麵嗎\n來獲得良好的建議！\n-----\n懶得開google嗎?\n輸入：\n!想吃(空格)食物名\n我們幫你搜尋~\n-----\n若想再看一次此內容\n請輸入：\n!機器人自介")
+    message = TextSendMessage(text=" 安安你好\n我只是個社畜機器人，你問啥我就回答啥~\n輸入 \'hi ai\'\n來獲得一些小建議\n-----\n若想再看一次此內容\n請輸入：\n!機器人自介")
 
     line_bot_api.reply_message(
             event.reply_token,message)
@@ -131,7 +133,8 @@ def handle_join(event):
 # 加好友回覆
 @handler.add(FollowEvent)
 def handle_follow(event):
-    message = TextSendMessage(text=" 安安你好\n還不知道晚餐要吃什麼好嗎?\n問我就對了！！\n\n輸入 晚餐吃啥 or 吃拉麵嗎\n來獲得良好的建議！\n-----\n懶得開google嗎?\n輸入：\n!想吃(空格)食物名\n我們幫你搜尋~\n-----\n若想再看一次此內容\n請輸入：\n!機器人自介")
+    #message = TextSendMessage(text=" 安安你好\n還不知道晚餐要吃什麼好嗎?\n問我就對了！！\n\n輸入 晚餐吃啥 or 吃拉麵嗎\n來獲得良好的建議！\n-----\n懶得開google嗎?\n輸入：\n!想吃(空格)食物名\n我們幫你搜尋~\n-----\n若想再看一次此內容\n請輸入：\n!機器人自介")
+    message = TextSendMessage(text=" 安安你好\n我只是個社畜機器人，你問啥我就回答啥~\n輸入 \'hi ai\'\n來獲得一些小建議\n-----\n若想再看一次此內容\n請輸入：\n!機器人自介")
 
     line_bot_api.reply_message(
             event.reply_token,message)
@@ -146,142 +149,161 @@ def handle_message(event):
     #不接收line官方的訊息
     if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
         
-        #晚餐特定回覆
-        if event.message.text == "晚餐吃啥":
-            #查詢晚餐資料庫
-            receivetxt = checkfoodlist.select_dinner_record(event)
-            #成功則回覆內容ㄝ，失敗則不回話
-            if receivetxt != "失敗了":
-                message = TextSendMessage(text= receivetxt)
-                line_bot_api.reply_message(event.reply_token, message)
-            else:
-                message = ""
-                print(receivetxt)
-                line_bot_api.reply_message(event.reply_token, message)
+        #晚餐功能暫時關閉
         
-        #拉麵特定回覆
-        elif event.message.text == "吃拉麵嗎":
-            #查詢晚餐資料庫
-            receivetxt = checkfoodlist.select_record(event)
-            #成功則回覆內容ㄝ，失敗則不回話
-            if receivetxt != "失敗了":
-#                message = TextSendMessage(text= receivetxt)
-#                line_bot_api.reply_message(event.reply_token, message)
-                print(receivetxt)
-                (foodname, foodreply, url, url_google) = receivetxt
-                print(foodname, foodreply, url, url_google)
-               #line_bot_api.reply_message(event.reply_token, message)
-                line_bot_api.reply_message(
-                    event.reply_token,
-                    TemplateSendMessage(
-                        alt_text=foodreply,
-                        template=ButtonsTemplate(
-                            thumbnail_image_url=url,
-                            title= foodname,
-                            text=foodreply,
-                            actions=[
-                                URIAction(
-                                    label='搜尋：' + foodname,
-                                    uri=url_google
-                                )
-                            ]
-                        )
-                    )
-                )
-            else:
-                message = ""
-                print(receivetxt)
-                line_bot_api.reply_message(event.reply_token, message)
+#         #晚餐特定回覆
+#         if event.message.text == "晚餐吃啥":
+#             #查詢晚餐資料庫
+#             receivetxt = checkfoodlist.select_dinner_record(event)
+#             #成功則回覆內容ㄝ，失敗則不回話
+#             if receivetxt != "失敗了":
+#                 message = TextSendMessage(text= receivetxt)
+#                 line_bot_api.reply_message(event.reply_token, message)
+#             else:
+#                 message = ""
+#                 print(receivetxt)
+#                 line_bot_api.reply_message(event.reply_token, message)
         
-        #google搜尋
-        elif strCheck.find('！想吃 ') == 0 or strCheck.find('!想吃 ') == 0:
-            receivetxt = checkfoodlist.google_text(event)
-            #成功則回覆內容ㄝ，失敗則不回話
-            if receivetxt != "失敗了":
-                print(receivetxt)
-                (foodname, foodreply, url, url_google) = receivetxt
-                print(foodname, foodreply, url, url_google)
-                line_bot_api.reply_message(
-                    event.reply_token,
-                    TemplateSendMessage(
-                        alt_text=foodreply,
-                        template=ButtonsTemplate(
-                            thumbnail_image_url=url,
-                            title= ' ',
-                            text=foodname,
-                            actions=[
-                                URIAction(
-                                    label='搜尋：' + foodname,
-                                    uri=url_google
-                                )
-                            ]
-                        )
-                    )
-                )
-            else:
-                message = ""
-                print(receivetxt)
-                line_bot_api.reply_message(event.reply_token, message)
+#         #拉麵特定回覆
+#         elif event.message.text == "吃拉麵嗎":
+#             #查詢晚餐資料庫
+#             receivetxt = checkfoodlist.select_record(event)
+#             #成功則回覆內容ㄝ，失敗則不回話
+#             if receivetxt != "失敗了":
+# #                message = TextSendMessage(text= receivetxt)
+# #                line_bot_api.reply_message(event.reply_token, message)
+#                 print(receivetxt)
+#                 (foodname, foodreply, url, url_google) = receivetxt
+#                 print(foodname, foodreply, url, url_google)
+#                #line_bot_api.reply_message(event.reply_token, message)
+#                 line_bot_api.reply_message(
+#                     event.reply_token,
+#                     TemplateSendMessage(
+#                         alt_text=foodreply,
+#                         template=ButtonsTemplate(
+#                             thumbnail_image_url=url,
+#                             title= foodname,
+#                             text=foodreply,
+#                             actions=[
+#                                 URIAction(
+#                                     label='搜尋：' + foodname,
+#                                     uri=url_google
+#                                 )
+#                             ]
+#                         )
+#                     )
+#                 )
+#             else:
+#                 message = ""
+#                 print(receivetxt)
+#                 line_bot_api.reply_message(event.reply_token, message)
+        
+#         #google搜尋
+#         elif strCheck.find('！想吃 ') == 0 or strCheck.find('!想吃 ') == 0:
+#             receivetxt = checkfoodlist.google_text(event)
+#             #成功則回覆內容ㄝ，失敗則不回話
+#             if receivetxt != "失敗了":
+#                 print(receivetxt)
+#                 (foodname, foodreply, url, url_google) = receivetxt
+#                 print(foodname, foodreply, url, url_google)
+#                 line_bot_api.reply_message(
+#                     event.reply_token,
+#                     TemplateSendMessage(
+#                         alt_text=foodreply,
+#                         template=ButtonsTemplate(
+#                             thumbnail_image_url=url,
+#                             title= ' ',
+#                             text=foodname,
+#                             actions=[
+#                                 URIAction(
+#                                     label='搜尋：' + foodname,
+#                                     uri=url_google
+#                                 )
+#                             ]
+#                         )
+#                     )
+#                 )
+#             else:
+#                 message = ""
+#                 print(receivetxt)
+#                 line_bot_api.reply_message(event.reply_token, message)
             
-        #幹話
-        elif event.message.text == "好美":
-            message = TextSendMessage(text="哪有你美")
-            line_bot_api.reply_message(event.reply_token, message)
-        elif event.message.text == "好阿":
-            message = TextSendMessage(text="好阿")
-            line_bot_api.reply_message(event.reply_token, message)
-        elif event.message.text == "好啊":
-            message = TextSendMessage(text="好啊")
-            line_bot_api.reply_message(event.reply_token, message)
-        elif event.message.text == "好":
-            message = TextSendMessage(text="好")
-            line_bot_api.reply_message(event.reply_token, message)
+#         #幹話
+#         elif event.message.text == "好美":
+#             message = TextSendMessage(text="哪有你美")
+#             line_bot_api.reply_message(event.reply_token, message)
+#         elif event.message.text == "好阿":
+#             message = TextSendMessage(text="好阿")
+#             line_bot_api.reply_message(event.reply_token, message)
+#         elif event.message.text == "好啊":
+#             message = TextSendMessage(text="好啊")
+#             line_bot_api.reply_message(event.reply_token, message)
+#         elif event.message.text == "好":
+#             message = TextSendMessage(text="好")
+#             line_bot_api.reply_message(event.reply_token, message)
         
-        #一律只吃晚餐
-        elif event.message.text == "中餐吃啥" or event.message.text == "午餐吃啥" or event.message.text == "早餐吃啥" or event.message.text == "早點吃啥" or event.message.text == "消夜吃啥" or event.message.text == "宵夜吃啥":
-            message = TextSendMessage(text="沒有 只吃晚餐")
-            line_bot_api.reply_message(event.reply_token, message)
-#        elif event.message.text == "早餐吃啥" or event.message.text == "早點吃啥":
-#            message = TextSendMessage(text="沒有 只吃晚餐")
-#            line_bot_api.reply_message(event.reply_token, message)
-#        elif event.message.text == "消夜吃啥" or event.message.text == "宵夜吃啥":
-#            message = TextSendMessage(text="沒有 只吃晚餐")
-#            line_bot_api.reply_message(event.reply_token, message)
-
-        #自我介紹同加入群組自動發送內容
-#        elif strCheck.find('晚餐機器人') >= 0:
-        elif strCheck == "!機器人自介" or strCheck == "！機器人自介":
-#            if strCheck.find('自我介紹') >= 0 :
-            message = TextSendMessage(text="安安你好\n還不知道晚餐要吃什麼好嗎?\n問我就對了！！\n\n輸入 晚餐吃啥 or 吃拉麵嗎\n來獲得良好的建議！\n-----\n懶得開google嗎?\n輸入：\n!想吃(空格)食物名\n我們幫你搜尋~\n-----\n若想再看一次此內容\n請輸入：\n!機器人自介")
-            line_bot_api.reply_message(event.reply_token, message)
+#         #一律只吃晚餐
+#         elif event.message.text == "中餐吃啥" or event.message.text == "午餐吃啥" or event.message.text == "早餐吃啥" or event.message.text == "早點吃啥" or event.message.text == "消夜吃啥" or event.message.text == "宵夜吃啥":
+#             message = TextSendMessage(text="沒有 只吃晚餐")
+#             line_bot_api.reply_message(event.reply_token, message)
+# #        elif event.message.text == "早餐吃啥" or event.message.text == "早點吃啥":
+# #            message = TextSendMessage(text="沒有 只吃晚餐")
+# #            line_bot_api.reply_message(event.reply_token, message)
+# #        elif event.message.text == "消夜吃啥" or event.message.text == "宵夜吃啥":
+# #            message = TextSendMessage(text="沒有 只吃晚餐")
+# #            line_bot_api.reply_message(event.reply_token, message)
                 
-        #"吃??嗎"的特定回覆
-        elif strCheck.find('吃') == 0:
-            if strCheck.find('嗎') == len(strCheck) -1:
-                #火鍋特定回覆
-                if strCheck.find('火鍋') >= 0:
-                    receivetxt = checkfoodlist.select_record(event)
-                    if receivetxt != "失敗了":
-                        message = TextSendMessage(text= receivetxt)
-                        line_bot_api.reply_message(event.reply_token, message)
-                    else:
-                        message = ""
-                        print(receivetxt)
-                        line_bot_api.reply_message(event.reply_token, message)
-                elif strCheck.find('晚餐') == -1 and strCheck.find('中餐') == -1 and strCheck.find('早餐') == -1 and strCheck.find('晚飯') == -1 and strCheck.find('午餐') == -1 and strCheck.find('早飯') == -1 and strCheck.find('宵夜') == -1 and strCheck.find('早點') == -1 and strCheck.find('消夜') == -1 and strCheck.find('夜消') == -1 and strCheck.find('夜宵') == -1:
-                    message = TextSendMessage(text="不要！只吃拉麵！")
-                    line_bot_api.reply_message(event.reply_token, message)
-                elif strCheck.find('晚餐') >= 0 or strCheck.find('晚飯') >= 0:
-                    message = TextSendMessage(text="好阿！要吃什麼？")
-                    line_bot_api.reply_message(event.reply_token, message)
-                else:
-                    message = TextSendMessage(text="不要！只吃晚餐！")
-                    line_bot_api.reply_message(event.reply_token, message)
+#         #"吃??嗎"的特定回覆
+#         elif strCheck.find('吃') == 0:
+#             if strCheck.find('嗎') == len(strCheck) -1:
+#                 #火鍋特定回覆
+#                 if strCheck.find('火鍋') >= 0:
+#                     receivetxt = checkfoodlist.select_record(event)
+#                     if receivetxt != "失敗了":
+#                         message = TextSendMessage(text= receivetxt)
+#                         line_bot_api.reply_message(event.reply_token, message)
+#                     else:
+#                         message = ""
+#                         print(receivetxt)
+#                         line_bot_api.reply_message(event.reply_token, message)
+#                 elif strCheck.find('晚餐') == -1 and strCheck.find('中餐') == -1 and strCheck.find('早餐') == -1 and strCheck.find('晚飯') == -1 and strCheck.find('午餐') == -1 and strCheck.find('早飯') == -1 and strCheck.find('宵夜') == -1 and strCheck.find('早點') == -1 and strCheck.find('消夜') == -1 and strCheck.find('夜消') == -1 and strCheck.find('夜宵') == -1:
+#                     message = TextSendMessage(text="不要！只吃拉麵！")
+#                     line_bot_api.reply_message(event.reply_token, message)
+#                 elif strCheck.find('晚餐') >= 0 or strCheck.find('晚飯') >= 0:
+#                     message = TextSendMessage(text="好阿！要吃什麼？")
+#                     line_bot_api.reply_message(event.reply_token, message)
+#                 else:
+#                     message = TextSendMessage(text="不要！只吃晚餐！")
+#                     line_bot_api.reply_message(event.reply_token, message)
         
-        #使用者新增
-        elif strCheck.find('我要新增拉麵') == 0 or strCheck.find('我要新增晚餐') == 0:
-            reply = checkfoodlist.user_insert_record(event)
-            
+#         #使用者新增
+#         elif strCheck.find('我要新增拉麵') == 0 or strCheck.find('我要新增晚餐') == 0:
+#             reply = checkfoodlist.user_insert_record(event)
+
+         #自我介紹同加入群組自動發送內容
+ #        elif strCheck.find('晚餐機器人') >= 0:
+#         elif strCheck == "!機器人自介" or strCheck == "！機器人自介":
+        if strCheck == "!機器人自介" or strCheck == "！機器人自介":
+ #            if strCheck.find('自我介紹') >= 0 :
+            message = TextSendMessage(text=" 安安你好\n我只是個社畜機器人，你問啥我就回答啥~\n輸入 \'hi ai\'\n來獲得一些小建議\n-----\n若想再看一次此內容\n請輸入：\n!機器人自介")
+            line_bot_api.reply_message(event.reply_token, message)
+
+        #ChatGPT 回覆            
+        elif strCheck[:5].lower() == 'hi ai':
+            openai.api_key = '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'
+            # 將第5個字元之後的訊息發送給 OpenAI
+            prompt = strCheck[5:] 
+            response = openai.Completion.create(
+                model='gpt-3.5-turbo',
+                prompt=prompt,
+                max_tokens=256,
+                temperature=0.5,
+            )
+            # 接收到回覆訊息後，移除換行符號
+            reply_msg = response["choices"][0]["text"].replace('\n', '')
+
+            message = TextSendMessage(text=reply_msg)
+            line_bot_api.reply_message(event.reply_token, message)
         #開發者新增刪除
         elif event.message.text == "user_control":
             message = TextSendMessage(text=" useradd_ \n foodtype foodname \n useradd_reply\n foodtype replyfront replyend\n delete db-foodname ")
