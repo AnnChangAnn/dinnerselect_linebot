@@ -270,7 +270,7 @@ def handle_message(event):
          #自我介紹同加入群組自動發送內容
  #        elif strCheck.find('晚餐機器人') >= 0:
 #         elif strCheck == "!機器人自介" or strCheck == "！機器人自介":
-        if strCheck == "!機器人自介" or strCheck == "！機器人自介":
+        if strCheck == "!蒜頭自介" or strCheck == "！蒜頭自介":
  #            if strCheck.find('自我介紹') >= 0 :
             message = TextSendMessage(text=" 安安你好\n我只是個蒜頭，你問啥我就回答啥~\n輸入 \'hi ai\'\n來獲得一些小建議\n-----\n若想再看一次此內容\n請輸入：\n!蒜頭自介")
             line_bot_api.reply_message(event.reply_token, message)
