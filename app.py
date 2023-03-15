@@ -290,7 +290,7 @@ def handle_message(event):
             line_bot_api.reply_message(event.reply_token, message)
 
         #ChatGPT 回覆            
-        elif strCheck[:4] == '請問蒜頭':
+        elif strCheck.find('請問蒜頭') == 0:
             openai.api_key = chatGPT_key
             # 將第5個字元之後的訊息發送給 OpenAI
             prompt = strCheck[4:] 
