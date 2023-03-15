@@ -4,7 +4,7 @@ services:
   env: python
   repo: https://github.com/AnnChangAnn/dinnerselect_linebot.git
   buildCommand: cd examples/flask-echo;pip install gunicorn -r requirements.txt
-  startCommand: cd examples/flask-echo;gunicorn app:app --timeout 90
+  startCommand: cd examples/flask-echo;gunicorn --workers=3 app:app --timeout 200 --log-file -
   plan: free
   autoDeploy: false
   envVars:
