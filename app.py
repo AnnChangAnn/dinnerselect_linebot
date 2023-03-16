@@ -23,13 +23,6 @@ from datetime import datetime
 
 app = Flask(__name__)
 
-# Channel Access Token
-#line_bot_api = LineBotApi('OxFz4p5BSnf4OMX3gG5RsWOoDt1xKqb/MgIgkPpCFZAG97cU085VHbKqX3M7PxMT7UcMqPLD1g2/GAtXLrCtA3csBzCLulogW6zckNvfTl1UDo8ypLml38KT8kWLtPeE53AkumUg+w+MYlTD3Cp/sgdB04t89/1O/w1cDnyilFU=')
-# Channel Secret
-#handler = WebhookHandler('4c1f11afcd419b717773c2ccab3ff01c')
-
-# get channel_secret and channel_access_token from your environment variable
-
 channel_secret = os.getenv('LINE_CHANNEL_SECRET',  None)
 channel_access_token = os.getenv('LINE_CHANNEL_ACCESS_TOKEN',  None)
 chatGPT_key = os.getenv('AI_APIKEY', None)
@@ -89,9 +82,6 @@ def lineNotifyWeather(token, msg):
         MinT =     json_format['records']['location'][0]['weatherElement'][2]['time'][0]    ['parameter']['parameterName']
         MaxT =     json_format['records']['location'][0]['weatherElement'][4]['time'][0]    ['parameter']['parameterName']
         pop =     json_format['records']['location'][0]['weatherElement'][1]['time'][0]    ['parameter']['parameterName']
-        #lng = json_format['results'][0]['geometry']['location']['lng']
-        #print(lat)
-        #print(lat, lng)
         msg_weather = msg_weather + f'''
         
     {location}: {weather}
@@ -100,7 +90,6 @@ def lineNotifyWeather(token, msg):
     
     payload = {'message': msg + msg_weather}
 
-    #payload = {'message': msg}
     r = requests.post("https://notify-api.line.me/api/notify", headers = headers, params =     payload)
     return r.status_code
 
@@ -150,123 +139,6 @@ def handle_message(event):
     #不接收line官方的訊息
     if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
         
-        #晚餐功能暫時關閉
-        
-#         #晚餐特定回覆
-#         if event.message.text == "晚餐吃啥":
-#             #查詢晚餐資料庫
-#             receivetxt = checkfoodlist.select_dinner_record(event)
-#             #成功則回覆內容ㄝ，失敗則不回話
-#             if receivetxt != "失敗了":
-#                 message = TextSendMessage(text= receivetxt)
-#                 line_bot_api.reply_message(event.reply_token, message)
-#             else:
-#                 message = ""
-#                 print(receivetxt)
-#                 line_bot_api.reply_message(event.reply_token, message)
-        
-#         #拉麵特定回覆
-#         elif event.message.text == "吃拉麵嗎":
-#             #查詢晚餐資料庫
-#             receivetxt = checkfoodlist.select_record(event)
-#             #成功則回覆內容ㄝ，失敗則不回話
-#             if receivetxt != "失敗了":
-# #                message = TextSendMessage(text= receivetxt)
-# #                line_bot_api.reply_message(event.reply_token, message)
-#                 print(receivetxt)
-#                 (foodname, foodreply, url, url_google) = receivetxt
-#                 print(foodname, foodreply, url, url_google)
-#                #line_bot_api.reply_message(event.reply_token, message)
-#                 line_bot_api.reply_message(
-#                     event.reply_token,
-#                     TemplateSendMessage(
-#                         alt_text=foodreply,
-#                         template=ButtonsTemplate(
-#                             thumbnail_image_url=url,
-#                             title= foodname,
-#                             text=foodreply,
-#                             actions=[
-#                                 URIAction(
-#                                     label='搜尋：' + foodname,
-#                                     uri=url_google
-#                                 )
-#                             ]
-#                         )
-#                     )
-#                 )
-#             else:
-#                 message = ""
-#                 print(receivetxt)
-#                 line_bot_api.reply_message(event.reply_token, message)
-        
-#         #google搜尋
-#         elif strCheck.find('！想吃 ') == 0 or strCheck.find('!想吃 ') == 0:
-#             receivetxt = checkfoodlist.google_text(event)
-#             #成功則回覆內容ㄝ，失敗則不回話
-#             if receivetxt != "失敗了":
-#                 print(receivetxt)
-#                 (foodname, foodreply, url, url_google) = receivetxt
-#                 print(foodname, foodreply, url, url_google)
-#                 line_bot_api.reply_message(
-#                     event.reply_token,
-#                     TemplateSendMessage(
-#                         alt_text=foodreply,
-#                         template=ButtonsTemplate(
-#                             thumbnail_image_url=url,
-#                             title= ' ',
-#                             text=foodname,
-#                             actions=[
-#                                 URIAction(
-#                                     label='搜尋：' + foodname,
-#                                     uri=url_google
-#                                 )
-#                             ]
-#                         )
-#                     )
-#                 )
-#             else:
-#                 message = ""
-#                 print(receivetxt)
-#                 line_bot_api.reply_message(event.reply_token, message)
-        
-#         #一律只吃晚餐
-#         elif event.message.text == "中餐吃啥" or event.message.text == "午餐吃啥" or event.message.text == "早餐吃啥" or event.message.text == "早點吃啥" or event.message.text == "消夜吃啥" or event.message.text == "宵夜吃啥":
-#             message = TextSendMessage(text="沒有 只吃晚餐")
-#             line_bot_api.reply_message(event.reply_token, message)
-# #        elif event.message.text == "早餐吃啥" or event.message.text == "早點吃啥":
-# #            message = TextSendMessage(text="沒有 只吃晚餐")
-# #            line_bot_api.reply_message(event.reply_token, message)
-# #        elif event.message.text == "消夜吃啥" or event.message.text == "宵夜吃啥":
-# #            message = TextSendMessage(text="沒有 只吃晚餐")
-# #            line_bot_api.reply_message(event.reply_token, message)
-                
-#         #"吃??嗎"的特定回覆
-#         elif strCheck.find('吃') == 0:
-#             if strCheck.find('嗎') == len(strCheck) -1:
-#                 #火鍋特定回覆
-#                 if strCheck.find('火鍋') >= 0:
-#                     receivetxt = checkfoodlist.select_record(event)
-#                     if receivetxt != "失敗了":
-#                         message = TextSendMessage(text= receivetxt)
-#                         line_bot_api.reply_message(event.reply_token, message)
-#                     else:
-#                         message = ""
-#                         print(receivetxt)
-#                         line_bot_api.reply_message(event.reply_token, message)
-#                 elif strCheck.find('晚餐') == -1 and strCheck.find('中餐') == -1 and strCheck.find('早餐') == -1 and strCheck.find('晚飯') == -1 and strCheck.find('午餐') == -1 and strCheck.find('早飯') == -1 and strCheck.find('宵夜') == -1 and strCheck.find('早點') == -1 and strCheck.find('消夜') == -1 and strCheck.find('夜消') == -1 and strCheck.find('夜宵') == -1:
-#                     message = TextSendMessage(text="不要！只吃拉麵！")
-#                     line_bot_api.reply_message(event.reply_token, message)
-#                 elif strCheck.find('晚餐') >= 0 or strCheck.find('晚飯') >= 0:
-#                     message = TextSendMessage(text="好阿！要吃什麼？")
-#                     line_bot_api.reply_message(event.reply_token, message)
-#                 else:
-#                     message = TextSendMessage(text="不要！只吃晚餐！")
-#                     line_bot_api.reply_message(event.reply_token, message)
-        
-#         #使用者新增
-#         elif strCheck.find('我要新增拉麵') == 0 or strCheck.find('我要新增晚餐') == 0:
-#             reply = checkfoodlist.user_insert_record(event)
-
          #自我介紹同加入群組自動發送內容
  #        elif strCheck.find('晚餐機器人') >= 0:
 #         elif strCheck == "!機器人自介" or strCheck == "！機器人自介":
@@ -322,67 +194,9 @@ def handle_message(event):
             line_bot_api.reply_message(event.reply_token, message)
         elif strCheck.find('！氣象 ') == 0 or strCheck.find('!氣象 ') == 0: #geocoding test
             reply = checkfoodlist.lineNotifyWeather(event)
-            #message = TextSendMessage(text= reply)
-            #line_bot_api.reply_message(event.reply_token, message)
         elif strCheck.find('！公告 ') == 0 or strCheck.find('!公告 ') == 0: #geocoding test
             reply = checkfoodlist.lineNotifyAnnounce(event)
-            #message = TextSendMessage(text= reply)
-            #line_bot_api.reply_message(event.reply_token, message)
-        elif strCheck.find('test_program') >= 0:    #測試 目前無用
-#            reply = checkfoodlist.line_test_program(event)
-#            message = TextSendMessage(text= reply)
-#            line_bot_api.reply_message(event.reply_token, message)
-#            try:
-             strCheck = strCheck[14:]
-             print(strCheck)
-             q_string = {'q': strCheck}
-             url = f"https://www.google.com/search?tbm=isch&tbs=isz:m&{urllib.parse.urlencode(q_string)}/"
-             print(url)
-             headers = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36'}
 
-             req = urllib.request.Request(url, headers = headers)
-             conn = urllib.request.urlopen(req)
-
-             print('fetch conn finish')
-
-             pattern = 'img data-src="\S*"'
-             img_list = []
-             
-#             result_finditer = re.finditer(pattern, str(conn.read()))
-#             print(type(result_finditer))
-#             print(result_finditer)
-             
-             for match in re.finditer(pattern, str(conn.read())):
-#             for match in result_finditer:
-                 img_list.append(match.group()[14:-1])
-
-             random_img_url = img_list[random.randint(0, len(img_list)+1)]
-             print('fetch img url finish')
-             print(random_img_url)
-             
-             q_string = {'q': strCheck + '+拉麵'}
-             url1 = f"https://www.google.com/search?{urllib.parse.urlencode(q_string)}"
-             print(url1)
-             
-             line_bot_api.reply_message(
-                  event.reply_token,
-                  TemplateSendMessage(
-                      alt_text='Buttons template',
-                      template=ButtonsTemplate(
-                          thumbnail_image_url=random_img_url,
-                          title= strCheck,
-                          text='吃' + strCheck + '如何？',
-                          actions=[
-                              URIAction(
-                                  label='Google ' + strCheck,
-                                  uri=url1
-                              )
-                          ]
-                      )
-                  )
-              )
-      
-import os
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)
