@@ -85,7 +85,7 @@ def lineNotifyWeather(token, msg):
 @app.route("/callback", methods=['POST'])
 async def callback():
     signature = request.headers['X-Line-Signature']
-    body = await request.get_data(as_text=True)
+    body = request.get_data(as_text=True)
     app.logger.info("Request body: " + body)
 
     try:
