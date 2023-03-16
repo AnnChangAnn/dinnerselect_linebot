@@ -1,6 +1,7 @@
 line-bot-sdk
 psycopg2==2.8.4
 flask
+asgiref
 APScheduler==3.6.3
 bs4
 lxml
