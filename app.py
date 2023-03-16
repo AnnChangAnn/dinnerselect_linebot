@@ -35,7 +35,7 @@ def test():
     values = request.args.get('value')
     # return  lineNotifyMessage('1',values)
     status_code = lineNotifyWeather('1', values)
-    return '123'
+    return 'OK'
 
 def lineNotifyWeather(token, msg):
     # token = 'C2MMtPLrfSbUaTyaGWxZM7Zq58LwRKKoNjMfMWXtpGt' #國泰發行權杖
@@ -83,9 +83,9 @@ def lineNotifyWeather(token, msg):
 
 # 監聽所有來自 /callback 的 Post Request
 @app.route("/callback", methods=['POST'])
-async def callback():
+def callback():
     signature = request.headers['X-Line-Signature']
-    body = await request.get_data()
+    body = request.get_data(as_text=True)
     app.logger.info("Request body: " + body)
 
     try:
@@ -96,15 +96,15 @@ async def callback():
 
 #加入群組自動發送
 @handler.add(JoinEvent)
-async def handle_join(event):
+def handle_join(event):
     message = TextSendMessage(text=" 安安你好\n我只是個蒜頭，你問啥我就回答啥~\n輸入 \'請問蒜頭\'\n來獲得一些小建議\n-----\n若想再看一次此內容\n請輸入：\n!蒜頭自介")
 
-    await line_bot_api.reply_message(event.reply_token,message)
+    line_bot_api.reply_message(event.reply_token,message)
     print("JoinEvent =", JoinEvent)
 
 # 處理訊息
 @handler.add(MessageEvent, message=TextMessage)
-async def handle_message(event):
+def handle_message(event):
     strCheck = str(event.message.text)
     print(strCheck)
     
@@ -114,7 +114,7 @@ async def handle_message(event):
         if strCheck == "!蒜頭自介" or strCheck == "！蒜頭自介":
          #            if strCheck.find('自我介紹') >= 0 :
             message = TextSendMessage(text=" 安安你好\n我只是個蒜頭，你問啥我就回答啥~\n輸入 \'請問蒜頭\'\n來獲得一些小建議\n-----\n若想再看一次此內容\n請輸入：\n!蒜頭自介")
-            await line_bot_api.reply_message(event.reply_token, message)
+            line_bot_api.reply_message(event.reply_token, message)
 
         #ChatGPT 回覆            
         elif strCheck.find('請問蒜頭') == 0:
@@ -132,10 +132,24 @@ async def handle_message(event):
             reply_msg = response['choices'][0]['message']['content'].replace('\n', '')
 
             message = TextSendMessage(text=reply_msg)
-            await line_bot_api.reply_message(event.reply_token, message)
+            line_bot_api.reply_message(event.reply_token, message)
 
         elif strCheck.find('！公告 ') == 0 or strCheck.find('!公告 ') == 0: #geocoding test
-            reply = await checkfoodlist.lineNotifyAnnounce(event)
+            reply = checkfoodlist.lineNotifyAnnounce(event)
+
+        # 幹話
+        elif event.message.text == "好美":
+            message = TextSendMessage(text="哪有你美")
+            line_bot_api.reply_message(event.reply_token, message)
+        elif event.message.text == "好阿":
+            message = TextSendMessage(text="好阿")
+            line_bot_api.reply_message(event.reply_token, message)
+        elif event.message.text == "好啊":
+            message = TextSendMessage(text="好啊")
+            line_bot_api.reply_message(event.reply_token, message)
+        elif event.message.text == "好":
+            message = TextSendMessage(text="好")
+            line_bot_api.reply_message(event.reply_token, message)
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
