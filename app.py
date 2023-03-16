@@ -3,7 +3,7 @@ import os
 from flask import Flask, request, abort, render_template
 
 from linebot import (
-    LineBotApi, WebhookHandler
+    LineBotApi, WebhookHandlerV2
 )
 from linebot.exceptions import (
     InvalidSignatureError
@@ -20,7 +20,7 @@ from datetime import datetime
 app = Flask(__name__)
 
 line_bot_api = LineBotApi(os.getenv('LINE_CHANNEL_ACCESS_TOKEN',  None))
-handler = WebhookHandler(os.getenv('LINE_CHANNEL_SECRET',  None))
+handler = WebhookHandlerV2(os.getenv('LINE_CHANNEL_SECRET',  None))
 chatGPT_key = os.getenv('AI_APIKEY', None)
 
 
@@ -85,11 +85,11 @@ def lineNotifyWeather(token, msg):
 @app.route("/callback", methods=['POST'])
 async def callback():
     signature = request.headers['X-Line-Signature']
-    body = request.get_data(as_text=True)
+    body = await request.get_data()
     app.logger.info("Request body: " + body)
 
     try:
-        await handler.handle(body, signature)
+        await handler.handle_async(body, signature)
     except InvalidSignatureError:
         abort(400)
     return 'OK'
