@@ -3,7 +3,7 @@ import os
 from flask import Flask, request, abort, render_template
 
 from linebot import (
-    LineBotApi, WebhookHandlerV2
+    LineBotApi, WebhookHandler
 )
 from linebot.exceptions import (
     InvalidSignatureError
@@ -20,7 +20,7 @@ from datetime import datetime
 app = Flask(__name__)
 
 line_bot_api = LineBotApi(os.getenv('LINE_CHANNEL_ACCESS_TOKEN',  None))
-handler = WebhookHandlerV2(os.getenv('LINE_CHANNEL_SECRET',  None))
+handler = WebhookHandler(os.getenv('LINE_CHANNEL_SECRET',  None))
 chatGPT_key = os.getenv('AI_APIKEY', None)
 
 
@@ -89,7 +89,7 @@ async def callback():
     app.logger.info("Request body: " + body)
 
     try:
-        await handler.handle_async(body, signature)
+        handler.handle(body, signature)
     except InvalidSignatureError:
         abort(400)
     return 'OK'
