@@ -125,7 +125,7 @@ def handle_message(event):
             )
             # 接收到回覆訊息後，移除換行符號
             reply_msg = response['choices'][0]['message']['content'].replace('\n', '')
-            logging.debug("respond : " + reply_msg)
+            logging.info("respond : " + reply_msg)
 
             message = TextSendMessage(text=reply_msg)
             line_bot_api.reply_message(event.reply_token, message, timeout=30)
