@@ -5,6 +5,7 @@ import os
 import requests
 import json
 from datetime import datetime
+import logging
 
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
@@ -14,7 +15,7 @@ from foodlist import checkfoodlist
 
 
 app = Flask(__name__)
-app.logger.basicConfig(level=app.logger.INFO)
+logging.basicConfig(filename='record.log', level=logging.INFO)
 
 line_bot_api = LineBotApi(os.getenv('LINE_CHANNEL_ACCESS_TOKEN',  None), timeout=30)
 handler = WebhookHandler(os.getenv('LINE_CHANNEL_SECRET',  None))
