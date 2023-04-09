@@ -14,6 +14,7 @@ from foodlist import checkfoodlist
 
 
 app = Flask(__name__)
+app.logger.basicConfig(level=app.logger.INFO)
 
 line_bot_api = LineBotApi(os.getenv('LINE_CHANNEL_ACCESS_TOKEN',  None), timeout=30)
 handler = WebhookHandler(os.getenv('LINE_CHANNEL_SECRET',  None))
@@ -79,7 +80,7 @@ def lineNotifyWeather(token, msg):
 def callback():
     signature = request.headers['X-Line-Signature']
     body = request.get_data(as_text=True)
-    app.logger.info("Request body: " + body)
+    app.logger.debug("Request body: " + body)
 
     try:
         handler.handle(body, signature)
@@ -114,7 +115,7 @@ def handle_message(event):
             openai.api_key = chatGPT_key
             # 將第5個字元之後的訊息發送給 OpenAI
             prompt = strCheck[4:]
-            app.logger.warning("Send request to GPT-3.5")
+            app.logger.info("Send request to GPT-3.5")
             response = openai.ChatCompletion.create(
                 model='gpt-3.5-turbo',
                 messages=[
@@ -124,7 +125,7 @@ def handle_message(event):
             )
             # 接收到回覆訊息後，移除換行符號
             reply_msg = response['choices'][0]['message']['content'].replace('\n', '')
-            app.logger.warning("respond : " + reply_msg)
+            app.logger.info("respond : " + reply_msg)
 
             message = TextSendMessage(text=reply_msg)
             line_bot_api.reply_message(event.reply_token, message, timeout=30)
