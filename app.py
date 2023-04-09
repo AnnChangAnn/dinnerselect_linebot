@@ -1,20 +1,17 @@
-import openai
-import os
 from flask import Flask, request, abort, render_template
 
-from linebot import (
-    LineBotApi, WebhookHandler
-)
-from linebot.exceptions import (
-    InvalidSignatureError
-)
-from linebot.models import *
-
-from foodlist import checkfoodlist
-
+import openai
+import os
 import requests
 import json
 from datetime import datetime
+import logging
+
+from linebot import LineBotApi, WebhookHandler
+from linebot.exceptions import InvalidSignatureError
+from linebot.models import *
+
+from foodlist import checkfoodlist
 
 
 app = Flask(__name__)
@@ -22,6 +19,7 @@ app = Flask(__name__)
 line_bot_api = LineBotApi(os.getenv('LINE_CHANNEL_ACCESS_TOKEN',  None), timeout=30)
 handler = WebhookHandler(os.getenv('LINE_CHANNEL_SECRET',  None))
 chatGPT_key = os.getenv('AI_APIKEY', None)
+weather_token = os.getenv('WEATHER_TOKEN', None)
 
 
 # 喚醒heroku
@@ -38,11 +36,7 @@ def test():
     return 'OK'
 
 def lineNotifyWeather(token, msg):
-    # token = 'C2MMtPLrfSbUaTyaGWxZM7Zq58LwRKKoNjMfMWXtpGt' #國泰發行權杖
-    # token = 'Q2bIg5ezRJOwgRm6pk6kSQeaKXw82OoPg2XzaTWPnwp' #cathaybk測試權杖
-    # token = 'USkHU0yOjSAfbkeB3fWA8OgUfBixKvMlPKQ4OOSFbjC' #小嘍囉審核群
-    # token = 'zhhw2k6lirJwSfpXhZH249cxodCafjozQdCtqUqpdXU' #小嘍囉管理版公告
-    token = 'DSbKQs4mH5nTdEC0k3BGwNZiOUagMJiZGVTOcH4jMuh'  # 小嘍囉今日天氣
+    token = weather_token
     headers = {
         "Authorization": "Bearer " + token,
         "Content-Type": "application/x-www-form-urlencoded"}
@@ -121,7 +115,7 @@ def handle_message(event):
             openai.api_key = chatGPT_key
             # 將第5個字元之後的訊息發送給 OpenAI
             prompt = strCheck[4:]
-            app.logger.info("Send request to GPT-3.5")
+            logging.debug("Send request to GPT-3.5")
             response = openai.ChatCompletion.create(
                 model='gpt-3.5-turbo',
                 messages=[
@@ -131,7 +125,7 @@ def handle_message(event):
             )
             # 接收到回覆訊息後，移除換行符號
             reply_msg = response['choices'][0]['message']['content'].replace('\n', '')
-            app.logger.info("respond : " + reply_msg)
+            logging.debug("respond : " + reply_msg)
 
             message = TextSendMessage(text=reply_msg)
             line_bot_api.reply_message(event.reply_token, message, timeout=30)

@@ -1,4 +1,3 @@
-
 import os
 import psycopg2
 import random
@@ -20,7 +19,6 @@ def line_create_table(new_table_name):
     conn.commit()
 
     message = f"恭喜您！ 成功建立新表單！"
-#    print(message)
     cursor.close()
     conn.close()
 
@@ -40,7 +38,6 @@ def line_insert_reply(record_list):
     conn.commit()
 
     message = f"恭喜您！ 資料成功加入 tblreply 表單！"
-#    print(message)
     cursor.close()
     conn.close()
 
@@ -59,7 +56,6 @@ def line_insert_record(record_list):
     conn.commit()
 
     message = f"恭喜您！ 資料成功加入 tblfoodlist 表單！"
-#    print(message)
     cursor.close()
     conn.close()
 
@@ -78,7 +74,6 @@ def user_insert_record(record_list):
     conn.commit()
 
     message = f"好喔！下次會考慮推薦你這個～"
-#    print(message)
     cursor.close()
     conn.close()
 
@@ -103,7 +98,6 @@ def line_select_overall(choosetype):
 
     cursor.execute(postgres_select_query)
     rawreply = cursor.fetchall()
-#    print(rawreply)
     (reply_front, reply_end) = random.choice(rawreply)
     print(reply_front)
     print(reply_end)
@@ -154,7 +148,6 @@ def line_select_reply(choosetype):
 
     cursor.execute(postgres_select_query)
     rawreply = cursor.fetchall()
-#    print(rawreply)
     (reply_front, reply_end) = random.choice(rawreply)
     print(reply_front)
     print(reply_end)
