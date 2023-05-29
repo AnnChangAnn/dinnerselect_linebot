@@ -119,11 +119,12 @@ def handle_message(event):
             prompt = strCheck[4:]
             #app.logger.info("Send request to GPT-3.5")
             response = openai.ChatCompletion.create(
-                model='gpt-3.5-turbo',
+                model='text-davinci-003',       #replace from 'gpt-3.5-turbo'
                 messages=[
                     {'role': 'user', 'content': prompt}
                 ],
-                temperature=1.2
+                temperature=1.2,
+                max_tokens = 1500
             )
             # 接收到回覆訊息後，移除換行符號
             reply_msg = response['choices'][0]['message']['content'].replace('\n', '')
