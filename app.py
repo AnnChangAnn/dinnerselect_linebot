@@ -5,6 +5,7 @@ import os
 import requests
 import json
 from datetime import datetime
+import time
 #import logging
 
 from linebot import LineBotApi, WebhookHandler
@@ -147,6 +148,10 @@ def handle_message(event):
         elif event.message.text == "好":
             message = TextSendMessage(text="好")
             line_bot_api.reply_message(event.reply_token, message)
+        elif event.message.text == "!測試!":
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text=""))
+            time.sleep(40)
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text="測試成功"))
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
