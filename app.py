@@ -129,7 +129,7 @@ def handle_message(event):
             #app.logger.info("respond : " + reply_msg)
 
             message = TextSendMessage(text=reply_msg)
-            line_bot_api.reply_message(event.reply_token, message, timeout=30)
+            line_bot_api.reply_message(event.reply_token, message)
 
         elif strCheck.find('！公告 ') == 0 or strCheck.find('!公告 ') == 0: #geocoding test
             reply = checkfoodlist.lineNotifyAnnounce(event)
