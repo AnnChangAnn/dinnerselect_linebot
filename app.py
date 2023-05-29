@@ -119,7 +119,7 @@ def handle_message(event):
             prompt = strCheck[4:]
             #app.logger.info("Send request to GPT-3.5")
             response = openai.ChatCompletion.create(
-                model='text-davinci-003',       #replace from 'gpt-3.5-turbo'
+                model='gpt-3.5-turbo',       #replace from 'text-davinci-003'
                 messages=[
                     {'role': 'user', 'content': prompt}
                 ],
