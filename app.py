@@ -117,6 +117,7 @@ def handle_message(event):
             openai.api_key = chatGPT_key
             # 將第5個字元之後的訊息發送給 OpenAI
             prompt = strCheck[4:]
+            event_id = event.source.user_id
             #app.logger.info("Send request to GPT-3.5")
             response = openai.ChatCompletion.create(
                 model='gpt-3.5-turbo',       #replace from 'text-davinci-003'
@@ -133,7 +134,7 @@ def handle_message(event):
             message = TextSendMessage(text=reply_msg)
             
             # 因為ChatGPT回復可能超過30秒(replytoken會失效)，所以改使用push api
-            line_bot_api.push_message(event.source.user_id, message)
+            line_bot_api.push_message(event_id, message)
             #line_bot_api.reply_message(event.reply_token, message)
 
         elif strCheck.find('！公告 ') == 0 or strCheck.find('!公告 ') == 0: #geocoding test
@@ -154,8 +155,9 @@ def handle_message(event):
             line_bot_api.reply_message(event.reply_token, message)
         elif event.message.text == "!!測試":
             message = TextSendMessage(text="測試成功!")
+            event_id = event.source.user_id
             time.sleep(31)
-            line_bot_api.push_message(event.source.user_id, message)
+            line_bot_api.push_message(event_id, message)
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
