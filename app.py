@@ -23,20 +23,6 @@ handler = WebhookHandler(os.getenv('LINE_CHANNEL_SECRET',  None))
 chatGPT_key = os.getenv('AI_APIKEY', None)
 weather_token = os.getenv('WEATHER_TOKEN', None)
 
-
-# 喚醒heroku
-@app.route("/")
-def home():
-    return render_template("home.html")
-
-# Line Notify
-@app.route("/test", methods=['GET'])
-def test():
-    values = request.args.get('value')
-    # return  lineNotifyMessage('1',values)
-    status_code = lineNotifyWeather('1', values)
-    return 'OK'
-
 def lineNotifyWeather(token, msg):
     token = weather_token
     headers = {
@@ -76,6 +62,23 @@ def lineNotifyWeather(token, msg):
                       headers=headers, params=payload)
     return r.status_code
 
+def check_attribute(event, attribute_name):
+    if attribute_name in event:
+        return True
+    return False
+
+# 喚醒heroku
+@app.route("/")
+def home():
+    return render_template("home.html")
+
+# Line Notify
+@app.route("/test", methods=['GET'])
+def test():
+    values = request.args.get('value')
+    # return  lineNotifyMessage('1',values)
+    status_code = lineNotifyWeather('1', values)
+    return 'OK'
 
 # 監聽所有來自 /callback 的 Post Request
 @app.route("/callback", methods=['POST'])
@@ -155,9 +158,11 @@ def handle_message(event):
             line_bot_api.reply_message(event.reply_token, message)
         elif event.message.text == "!!測試":
             message = TextSendMessage(text="測試成功!")
-            event_id = event.source.user_id
+            if check_attribute(event, "group_id"):
+                event_id = event.source.group_id
+            else:
+                event_id = event.source.user_id
             print(event_id)
-            print(event.source.group_id)
             #time.sleep(31)
             line_bot_api.push_message(event_id, message)
 
