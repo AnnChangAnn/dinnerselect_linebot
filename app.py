@@ -149,6 +149,11 @@ def handle_message(event):
         elif event.message.text == "好":
             message = TextSendMessage(text="好")
             line_bot_api.reply_message(event.reply_token, message)
+        elif event.message.text == "!!測試":
+            message = TextSendMessage(text="測試成功!")
+            #time.sleep(31)
+            line_bot_api.push_message(event.source.user_id, message)
+            #line_bot_api.reply_message(event.reply_token, message)
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
