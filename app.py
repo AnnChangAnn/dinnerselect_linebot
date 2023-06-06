@@ -131,7 +131,10 @@ def handle_message(event):
             #app.logger.info("respond : " + reply_msg)
 
             message = TextSendMessage(text=reply_msg)
-            line_bot_api.reply_message(event.reply_token, message)
+            
+            # 因為ChatGPT回復可能超過30秒(replytoken會失效)，所以改使用push api
+            line_bot_api.push_message(event.source.user_id, message)
+            #line_bot_api.reply_message(event.reply_token, message)
 
         elif strCheck.find('！公告 ') == 0 or strCheck.find('!公告 ') == 0: #geocoding test
             reply = checkfoodlist.lineNotifyAnnounce(event)
@@ -151,9 +154,8 @@ def handle_message(event):
             line_bot_api.reply_message(event.reply_token, message)
         elif event.message.text == "!!測試":
             message = TextSendMessage(text="測試成功!")
-            #time.sleep(31)
+            time.sleep(31)
             line_bot_api.push_message(event.source.user_id, message)
-            #line_bot_api.reply_message(event.reply_token, message)
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
