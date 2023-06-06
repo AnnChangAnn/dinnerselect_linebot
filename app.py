@@ -123,8 +123,8 @@ def handle_message(event):
                 messages=[
                     {'role': 'user', 'content': prompt}
                 ],
-                temperature=1.2,
-                max_tokens = 1500
+                temperature=1.2
+                #max_tokens = 1500
             )
             # 接收到回覆訊息後，移除換行符號
             reply_msg = response['choices'][0]['message']['content'].replace('\n', '')
