@@ -121,7 +121,7 @@ def handle_message(event):
             openai.api_key = chatGPT_key
             # 將第5個字元之後的訊息發送給 OpenAI
             prompt = strCheck[4:]
-            eevent_id = check_group_or_user(event.source)
+            event_id = check_group_or_user(event.source)
             #app.logger.info("Send request to GPT-3.5")
             response = openai.ChatCompletion.create(
                 model='gpt-3.5-turbo',       #replace from 'text-davinci-003'
