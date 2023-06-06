@@ -122,7 +122,6 @@ def handle_message(event):
             # 將第5個字元之後的訊息發送給 OpenAI
             prompt = strCheck[4:]
             event_id = check_group_or_user(event.source)
-            #app.logger.info("Send request to GPT-3.5")
             response = openai.ChatCompletion.create(
                 model='gpt-3.5-turbo',       #replace from 'text-davinci-003'
                 messages=[
@@ -133,7 +132,7 @@ def handle_message(event):
             )
             # 接收到回覆訊息後，移除換行符號
             reply_msg = response['choices'][0]['message']['content'].replace('\n', '')
-            #app.logger.info("respond : " + reply_msg)
+            print(reply_msg)
             message = TextSendMessage(text=reply_msg)
             
             # 因為ChatGPT回復可能超過30秒(replytoken會失效)，所以改使用push api
