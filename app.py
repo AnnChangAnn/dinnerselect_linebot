@@ -5,7 +5,7 @@ import os
 import requests
 import json
 from datetime import datetime
-import time
+#import time
 #import logging
 
 from linebot import LineBotApi, WebhookHandler
@@ -13,7 +13,6 @@ from linebot.exceptions import InvalidSignatureError
 from linebot.models import *
 
 from foodlist import checkfoodlist
-
 
 app = Flask(__name__)
 #logging.basicConfig(filename='record.log', level=logging.INFO)
@@ -62,11 +61,12 @@ def lineNotifyWeather(token, msg):
                       headers=headers, params=payload)
     return r.status_code
 
-def check_attribute(eventsource, attribute_name):
-    if hasattr(eventsource, attribute_name):
-    #if attribute_name in eventsource:
-        return True
-    return False
+def check_group_or_user(eventsource):
+    if hasattr(eventsource, "group_id"):
+        return eventsource.group_id
+    else:
+        return eventsource.user_id
+    
 
 # 喚醒heroku
 @app.route("/")
@@ -121,7 +121,7 @@ def handle_message(event):
             openai.api_key = chatGPT_key
             # 將第5個字元之後的訊息發送給 OpenAI
             prompt = strCheck[4:]
-            event_id = event.source.group_id
+            eevent_id = check_group_or_user(event.source)
             #app.logger.info("Send request to GPT-3.5")
             response = openai.ChatCompletion.create(
                 model='gpt-3.5-turbo',       #replace from 'text-davinci-003'
@@ -134,7 +134,6 @@ def handle_message(event):
             # 接收到回覆訊息後，移除換行符號
             reply_msg = response['choices'][0]['message']['content'].replace('\n', '')
             #app.logger.info("respond : " + reply_msg)
-
             message = TextSendMessage(text=reply_msg)
             
             # 因為ChatGPT回復可能超過30秒(replytoken會失效)，所以改使用push api
@@ -159,10 +158,7 @@ def handle_message(event):
             line_bot_api.reply_message(event.reply_token, message)
         elif event.message.text == "!!測試":
             message = TextSendMessage(text="測試成功!")
-            if check_attribute(event.source, "group_id"):
-                event_id = event.source.group_id
-            else:
-                event_id = event.source.user_id
+            event_id = check_group_or_user(event.source)
             print(event_id)
             #time.sleep(31)
             line_bot_api.push_message(event_id, message)
