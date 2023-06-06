@@ -158,7 +158,7 @@ def handle_message(event):
             line_bot_api.reply_message(event.reply_token, message)
         elif event.message.text == "!!測試":
             message = TextSendMessage(text="測試成功!")
-            if check_attribute(json.loads(event.source), "group_id"):
+            if check_attribute(event.source, "group_id"):
                 event_id = event.source.group_id
             else:
                 event_id = event.source.user_id
