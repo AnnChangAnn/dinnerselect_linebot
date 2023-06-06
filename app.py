@@ -63,7 +63,8 @@ def lineNotifyWeather(token, msg):
     return r.status_code
 
 def check_attribute(eventsource, attribute_name):
-    if attribute_name in eventsource:
+    if hasattr(eventsource, attribute_name):
+    #if attribute_name in eventsource:
         return True
     return False
 
