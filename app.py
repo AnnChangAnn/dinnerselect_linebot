@@ -117,7 +117,7 @@ def handle_message(event):
             openai.api_key = chatGPT_key
             # 將第5個字元之後的訊息發送給 OpenAI
             prompt = strCheck[4:]
-            event_id = event.source.user_id
+            event_id = event.source.group_id
             #app.logger.info("Send request to GPT-3.5")
             response = openai.ChatCompletion.create(
                 model='gpt-3.5-turbo',       #replace from 'text-davinci-003'
@@ -156,7 +156,9 @@ def handle_message(event):
         elif event.message.text == "!!測試":
             message = TextSendMessage(text="測試成功!")
             event_id = event.source.user_id
-            time.sleep(31)
+            print(event_id)
+            print(event.source.group_id)
+            #time.sleep(31)
             line_bot_api.push_message(event_id, message)
 
 if __name__ == "__main__":
